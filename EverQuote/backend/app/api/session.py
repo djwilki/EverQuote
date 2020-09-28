@@ -13,7 +13,6 @@ session = Blueprint("session", __name__)
 
 @session.route("/login", methods=["POST"])
 def login():
-    print(request.headers)
     data = MultiDict(mapping=request.json)
     print(data)
     form = LoginForm(data)
@@ -26,6 +25,10 @@ def login():
         else:
             res = make_response({ "errors": ["Invalid credentials"]}, 401)
             return res
+    else:
+        res = make_response({ "errors": [{error: form.errors[error][0] for error in form.errors}]}, 401)
+        return res
+
 
 
 @session.route("/csrf", methods=["GET"])

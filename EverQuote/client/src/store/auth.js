@@ -9,16 +9,16 @@ export const setUser = user => {
     }
 };
 
-export const login = (username, password) => {
+export const login = (email_or_username, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {
-        const res = await fetch('/api/session', {
-            method: 'put',
+        const res = await fetch('/api/session/login', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'XSRF-TOKEN': csrfToken
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email_or_username, password })
         });
         res.data = await res.json();
 

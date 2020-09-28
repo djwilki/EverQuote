@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { login } from '../store/auth';
+import { login } from '../store/auth';
 
 const LoginForm = () => {
-    const [email, setEmail] = useState("");
+    const [emailOrUsername, setEmailOrUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
@@ -11,17 +11,15 @@ const LoginForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // const res = await dispatch(login(email, password))
+        const res = await dispatch(login(emailOrUsername, password))
 
-        // if (res.ok) {
-        //     return;
-        // }
-
-
+        if (res.ok) {
+            return;
+        }
     }
 
-    const onEmailChange = (event) => {
-        setEmail(event.target.value);
+    const onEmailOrUsernameChange = (event) => {
+        setEmailOrUsername(event.target.value);
     }
 
     const onPasswordChange = (event) => {
@@ -41,10 +39,10 @@ const LoginForm = () => {
                 <button>Continue with Demo User</button>
             </div>
             <div className="login_form_container">
-                <form method="" action="">
+                <form method="" action="" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" value={email} className="login_email" onChange={onEmailChange} />
+                        <label htmlFor="email_or_username">Email</label>
+                        <input type="text" name="email_or_username" value={emailOrUsername} className="login_email_or_username" onChange={onEmailOrUsernameChange} />
                     </div>
                     <div>
                         <label htmlFor="password">Password</label>

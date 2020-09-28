@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import SignUpPage from './components/SignUp'
+import SignUpCopyPage from './components/SignUpCopy'
 
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
                 <SignUpPage />
             </Route>
 
+            <Route path="/signupcopy">
+                <SignUpCopyPage />
+            </Route>
+            
             <Route path="/">
                 <h1>My Home Page</h1>
             </Route>

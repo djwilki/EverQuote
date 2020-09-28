@@ -2,10 +2,11 @@ import Cookies from 'js-cookie'
 
 export const CREATE_USER = "signup/CREATE_USER";
 
-const createUser = (user) => {
+// const createUser = (user) => {
+const createUser = (username, email, password) => {
     return {
         type: CREATE_USER,
-        user
+        user: {username, email, password}
     };
 };
 

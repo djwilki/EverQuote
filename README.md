@@ -1,4 +1,4 @@
-<img src=app/assets/images/jinx_logo.png style="display: flex; width: 50%; margin: auto" /> 
+<img src=https://i.imgur.com/iAwmGzz.jpg style="display: flex; width: 50%; margin: auto" /> 
 
 ## Welcome to [EverQuote](https://jinx-fullstack.herokuapp.com/#/), an [Evernote](https://www.yelp.com/) inspired web app.
 

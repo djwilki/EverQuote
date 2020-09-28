@@ -15,11 +15,11 @@ export const login = (email_or_username, password) => {
         const res = await fetch('/api/session/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'XSRF-TOKEN': csrfToken
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email_or_username, password })
+            body: JSON.stringify({ email_or_username, password, "csrf_token": csrfToken })
         });
+        console.log(res);
         res.data = await res.json();
 
         if (res.ok) {

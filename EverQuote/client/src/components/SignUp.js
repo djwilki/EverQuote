@@ -1,7 +1,10 @@
 import React from "react"
 import {NavLink, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux';
+import signup from "../store/signup";
+import login from "../store/auth";
 
-class SignUpPage extends React.Component {
+export class SignUpPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,9 +20,9 @@ class SignUpPage extends React.Component {
     submitHandler = async (e) => {
         e.preventDefault();
         const { username, email, password } = this.state;
-        // store fetch post
-        // login
-        // redirect to homepage, either by login or here
+        const res = await this.props.signup(username, email, password);
+        await this.props.login(res.data.username, password);
+        return <Redirect to="/" />
     }
 
     updateField(name) {
@@ -56,4 +59,18 @@ class SignUpPage extends React.Component {
     }
 }
 
-const m
+const mapStateToProps = ({auth}) => {
+    return {
+        loggedIn: !!auth.id
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    signup: (username, email, password) => dispatch(signup(username, email, password)),
+    login: (username, password) => dispatch(login(username, password))
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SignUpPage);

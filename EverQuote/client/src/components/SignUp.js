@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { NavLink, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import signup from "../store/signup";
-import login from "../store/auth";
+import { signup }  from "../store/signup.js";
+import { login } from "../store/auth.js";
 
 
-export default function SignUpCopyPage() {
+export default function SignUpPage() {
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');

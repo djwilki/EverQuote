@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import SignUpPage from './components/SignUp'
-import SignUpCopyPage from './components/SignUpCopy'
 
 
 function App() {
@@ -24,10 +23,6 @@ function App() {
 
             <Route path="/signup">
                 <SignUpPage />
-            </Route>
-
-            <Route path="/signupcopy">
-                <SignUpCopyPage />
             </Route>
             
             <Route path="/">

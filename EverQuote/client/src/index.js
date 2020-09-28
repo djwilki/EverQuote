@@ -7,10 +7,14 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -51,7 +51,7 @@ const LoginForm = ({ history }) => {
 
     return (
 
-        <div className="form-wrapper">
+        <div className="form-wrapper centered">
             <div className="form-container">
                 <div className="form-header">
                     <img alt="logo" src='https://i.imgur.com/GOpcw1D.png' style={{ width: "30%" }} />
@@ -62,7 +62,7 @@ const LoginForm = ({ history }) => {
                         Remember everything important.
                     </div>
                 </div>
-                <button onClick={demoUserClick} className="demo_button">Continue with Demo User</button>
+                <button onClick={demoUserClick} className="demo_button">Continue as Demo User</button>
                 <div class="divider-container">
                     <div class="divider-text">or</div>
                     <div class="divider-line"></div>
@@ -79,8 +79,8 @@ const LoginForm = ({ history }) => {
                         </div>
                         <div className="login_form_error_container">
                             {errors.length ?
-                                <ul>
-                                    {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
+                                <ul className="auth_error_list">
+                                    {errors.map((error, i) => <li className="error_message" key={`error-${i + 1}`}>{error}</li>)}
                                 </ul>
                                 : <></>}
                         </div>

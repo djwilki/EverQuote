@@ -30,7 +30,7 @@ export const login = (email_or_username, password) => {
     }
 };
 
-export default function authReducer(state = {}, action) {
+export default function authReducer(state = { user_id: null }, action) {
     switch (action.type) {
         case SET_USER:
             return action.user;

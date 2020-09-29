@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { login } from '../store/auth';
 
 const LoginForm = ({ history }) => {
@@ -75,6 +75,7 @@ const LoginForm = ({ history }) => {
                     <button type="submit">Sign In</button>
                 </form>
             </div>
+            <Link to='/sign-up'>Create account</Link>
         </div>
     )
 }

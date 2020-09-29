@@ -1,5 +1,4 @@
 from flask import Blueprint, request, make_response
-from json import JSONDecoder
 from sqlalchemy import or_
 from flask_login import login_user, current_user
 from app.auth import login_manager

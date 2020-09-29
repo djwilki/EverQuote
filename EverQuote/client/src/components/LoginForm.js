@@ -92,42 +92,11 @@ const LoginForm = ({ history }) => {
                         Don't have an account?
                     </div>
                     <div className="footer-cta-wrapper">
-                        <Link className="footer-cta" to='/sign-up'>Create account</Link>
+                        <Link className="footer-cta" to='/signup'>Create account</Link>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-        // <div>
-        //     <div className="login_top_container">
-        //         <img alt="logo" src='https://i.imgur.com/EYfDX1K.png' style={{ width: "6%" }} />
-        //         <button onClick={demoUserClick}>Continue with Demo User</button>
-        //     </div>
-        //     <div className="login_form_container">
-        //         <div className="login_form_error_container">
-        //             { errors.length ?
-        //             <ul>
-        //                 {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
-        //             </ul>
-        //             : <></>}
-        //         </div>
-        //         <form method="" action="" onSubmit={handleSubmit}>
-        //             <div>
-        //                 <label htmlFor="email_or_username">Email or Username</label>
-        //                 <input type="text" name="email_or_username" value={emailOrUsername} className="login_email_or_username" onChange={onEmailOrUsernameChange} />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor="password">Password</label>
-        //                 <input type="password" name="password" value={password} className="login_password" onChange={onPasswordChange} />
-        //             </div>
-        //             <button type="submit">Sign In</button>
-        //         </form>
-        //     </div>
-        //     <Link to='/sign-up'>Create account</Link>
-        // </div>
     )
 }
 

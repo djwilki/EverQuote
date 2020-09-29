@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { login } from '../store/auth';
+import '../styles/auth.css';
 
 const LoginForm = ({ history }) => {
     const [emailOrUsername, setEmailOrUsername] = useState("");
@@ -32,6 +33,7 @@ const LoginForm = ({ history }) => {
 
     const onPasswordChange = (event) => {
         setPassword(event.target.value);
+
     }
 
     const demoUserClick = async (event) => {
@@ -48,35 +50,84 @@ const LoginForm = ({ history }) => {
     }
 
     return (
-        <div>
-            <div className="login_top_container">
-                <img alt="logo" src='https://i.imgur.com/zwMLWaI.png' style={{ width: "6%" }} />
-                <h1>EverQuote</h1>
-                <h4>Quote anything important</h4>
-                <button onClick={demoUserClick}>Continue with Demo User</button>
-            </div>
-            <div className="login_form_container">
-                <div className="login_form_error_container">
-                    { errors.length ?
-                    <ul>
-                        {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
-                    </ul>
-                    : <></>}
+
+        <div className="form-wrapper">
+            <div className="form-container">
+                <div className="form-header">
+                    <img alt="logo" src='https://i.imgur.com/GOpcw1D.png' style={{ width: "30%" }} />
+                    <h1 className="header-title">
+                        EverQuote
+                    </h1>
+                    <div className="header-tagline">
+                        Remember everything important.
+                    </div>
                 </div>
-                <form method="" action="" onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="email_or_username">Email</label>
-                        <input type="text" name="email_or_username" value={emailOrUsername} className="login_email_or_username" onChange={onEmailOrUsernameChange} />
+                <button onClick={demoUserClick} className="demo_button">Continue with Demo User</button>
+                <div class="divider-container">
+                    <div class="divider-text">or</div>
+                    <div class="divider-line"></div>
+                </div>
+                <div className="login_form_container">
+
+                    <form method="" action="" onSubmit={handleSubmit}>
+                        <div>
+                            <input placeholder="Email or Username" type="text" name="email_or_username" value={emailOrUsername} className="auth_input" onChange={onEmailOrUsernameChange} />
+                        </div>
+
+                        <div>
+                            <input placeholder="Password" type="password" name="password" value={password} className="auth_input" onChange={onPasswordChange} />
+                        </div>
+                        <div className="login_form_error_container">
+                            {errors.length ?
+                                <ul>
+                                    {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
+                                </ul>
+                                : <></>}
+                        </div>
+                        <button type="submit" className="auth_button">Continue</button>
+                    </form>
+                </div>
+                <div className="form-footer">
+                    <div className="footer-tagline">
+                        Don't have an account?
                     </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value={password} className="login_password" onChange={onPasswordChange} />
+                    <div className="footer-cta-wrapper">
+                        <Link className="footer-cta" to='/sign-up'>Create account</Link>
                     </div>
-                    <button type="submit">Sign In</button>
-                </form>
+                </div>
             </div>
-            <Link to='/sign-up'>Create account</Link>
         </div>
+
+
+
+
+        // <div>
+        //     <div className="login_top_container">
+        //         <img alt="logo" src='https://i.imgur.com/EYfDX1K.png' style={{ width: "6%" }} />
+        //         <button onClick={demoUserClick}>Continue with Demo User</button>
+        //     </div>
+        //     <div className="login_form_container">
+        //         <div className="login_form_error_container">
+        //             { errors.length ?
+        //             <ul>
+        //                 {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
+        //             </ul>
+        //             : <></>}
+        //         </div>
+        //         <form method="" action="" onSubmit={handleSubmit}>
+        //             <div>
+        //                 <label htmlFor="email_or_username">Email or Username</label>
+        //                 <input type="text" name="email_or_username" value={emailOrUsername} className="login_email_or_username" onChange={onEmailOrUsernameChange} />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor="password">Password</label>
+        //                 <input type="password" name="password" value={password} className="login_password" onChange={onPasswordChange} />
+        //             </div>
+        //             <button type="submit">Sign In</button>
+        //         </form>
+        //     </div>
+        //     <Link to='/sign-up'>Create account</Link>
+        // </div>
     )
 }
 

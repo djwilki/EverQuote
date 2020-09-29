@@ -22,10 +22,9 @@ export const signup = (username, email, password) => {
             body: JSON.stringify({ username, password, email,  "csrf_token": csrfToken })
         });
         const data = await res.json();
-        console.log(data)
+        res.data = data;
         if (res.ok) {
             dispatch(createUser(data));
-            res.data = data;
             return res;
         } else {
             console.error('Bad response');

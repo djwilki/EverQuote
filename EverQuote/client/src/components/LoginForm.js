@@ -50,7 +50,7 @@ const LoginForm = ({ history }) => {
     return (
         <div>
             <div className="login_top_container">
-                <img alt="logo" src='https://www.iconfinder.com/data/icons/logos-and-brands/512/118_Evernote_logo_logos-512.png' style={{ width: "6%" }} />
+                <img alt="logo" src='https://i.imgur.com/zwMLWaI.png' style={{ width: "6%" }} />
                 <h1>EverQuote</h1>
                 <h4>Quote anything important</h4>
                 <button onClick={demoUserClick}>Continue with Demo User</button>

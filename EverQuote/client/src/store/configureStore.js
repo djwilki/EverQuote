@@ -2,13 +2,13 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 // import thunk from './middleware/thunk';
 import thunk from 'redux-thunk'
 import auth from './auth';
-import signup from './signup'
+import users from './users'
 
 let storeEnhancer;
 
 const rootReducer = combineReducers({
     auth,
-    signup
+    users
 })
 
 if (process.env.NODE_ENV !== 'production') {

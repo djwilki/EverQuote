@@ -5,7 +5,7 @@ from werkzeug.datastructures import MultiDict
 
 user_routes = Blueprint('users', __name__)
 
-@user_routes.route('/')
+@user_routes.route('/', methods=["GET"])
 def index():
   response = User.query.all()
   return { "users": [user.to_dict() for user in response]}
@@ -17,10 +17,12 @@ def new():
   form = SignUpForm(data)
   print(form.data)
   if form.validate():
-    if not User.query.filter(User.email == data["email"]):
+    if User.query.filter(User.email == data["email"]).first() is None:
       newUser = User(username = data["username"], email = data["email"], password = data["password"] )
       db.session.add(newUser)
       db.session.commit()
+      user_dict = newUser.to_dict()
+      return { user_dict["id"]: user_dict }
     else:
       res = make_response({ "errors": ["A user with that email already exists"] }, 401)
       return res

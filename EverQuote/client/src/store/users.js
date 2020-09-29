@@ -3,38 +3,38 @@ import Cookies from 'js-cookie'
 export const CREATE_USER = "signup/CREATE_USER";
 
 // const createUser = (user) => {
-const createUser = (username, email, password) => {
+const createUser = (user) => {
     return {
         type: CREATE_USER,
-        user: {username, email, password}
+        user
     };
 };
 
 export const signup = (username, email, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {
-        debugger
-        const res = await fetch('/api/users', {
+        const res = await fetch('/api/users/', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
-                'XSRF-TOKEN': csrfToken
+                'X-CSRFTOKEN': csrfToken
             },
-            body: JSON.stringify({ username, password, email })
+            body: JSON.stringify({ username, password, email,  "csrf_token": csrfToken })
         });
-        debugger
+        const data = await res.json();
+        console.log(data)
         if (res.ok) {
-            const data = await res.json();
             dispatch(createUser(data));
             res.data = data;
             return res;
         } else {
             console.error('Bad response');
+            return res;
         }
     }
 };
 
-export default function signupReducer(state = {}, action) {
+export default function usersReducer(state = {}, action) {
     console.log(action);
     switch (action.type) {
         case CREATE_USER:

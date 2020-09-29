@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { login } from '../store/auth';
 
-const LoginForm = () => {
+const LoginForm = ({ history }) => {
     const [emailOrUsername, setEmailOrUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setErrors([]);
+    }, [emailOrUsername, password]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -14,8 +19,11 @@ const LoginForm = () => {
         const res = await dispatch(login(emailOrUsername, password))
 
         if (res.ok) {
+            history.replace('/');
             return;
         }
+
+        setErrors(res.data.errors);
     }
 
     const onEmailOrUsernameChange = (event) => {
@@ -32,8 +40,11 @@ const LoginForm = () => {
         const res = await dispatch(login("demo@demo.com", "password"))
 
         if (res.ok) {
+            history.replace('/');
             return;
         }
+
+        setErrors(res.data.errors);
     }
 
     return (
@@ -45,6 +56,13 @@ const LoginForm = () => {
                 <button onClick={demoUserClick}>Continue with Demo User</button>
             </div>
             <div className="login_form_container">
+                <div className="login_form_error_container">
+                    { errors.length ?
+                    <ul>
+                        {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
+                    </ul>
+                    : <></>}
+                </div>
                 <form method="" action="" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email_or_username">Email</label>
@@ -61,4 +79,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

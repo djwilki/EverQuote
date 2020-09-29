@@ -26,7 +26,7 @@ def login():
             res = make_response({ "errors": ["Invalid credentials"] }, 401)
             return res
     else:
-        res = make_response({ "errors": [{ error: form.errors[error][0] for error in form.errors }]}, 401)
+        res = make_response({ "errors": [ form.errors[error][0] for error in form.errors ]}, 401)
         return res
 
 

@@ -27,7 +27,13 @@ const LoginForm = () => {
     }
 
     const demoUserClick = async (event) => {
-        // placeholder
+        event.preventDefault();
+
+        const res = await dispatch(login("demo@demo.com", "password"))
+
+        if (res.ok) {
+            return;
+        }
     }
 
     return (
@@ -36,7 +42,7 @@ const LoginForm = () => {
                 <img alt="logo" src='https://www.iconfinder.com/data/icons/logos-and-brands/512/118_Evernote_logo_logos-512.png' style={{ width: "6%" }} />
                 <h1>EverQuote</h1>
                 <h4>Quote anything important</h4>
-                <button>Continue with Demo User</button>
+                <button onClick={demoUserClick}>Continue with Demo User</button>
             </div>
             <div className="login_form_container">
                 <form method="" action="" onSubmit={handleSubmit}>

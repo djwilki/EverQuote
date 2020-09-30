@@ -34,8 +34,10 @@ def new():
     res = make_response({ "errors": errorlist}, 401)
     return res
 
-@user_routes.route('/<int:id>/notes', methods=["GET"])
-def get_user_notes():
-  notes = User.query.filter(User.id == id).first().notes
-  note_list = [{ note.to_dict["id"]: note.to_dict() } for note in notes]
-  return dict(note_list)
+@user_routes.route('/<int:user_id>/notes', methods=["GET"])
+def get_user_notes(user_id):
+  notes = User.query.filter(User.id == user_id).first().notes
+  note_dict = dict()
+  for note in notes:
+    note_dict[note.to_dict()["id"]] = note.to_dict()
+  return note_dict

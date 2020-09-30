@@ -36,4 +36,6 @@ def new():
 
 @user_routes.route('/<int:id>/notes', methods=["GET"])
 def get_user_notes():
-  pass
+  notes = User.query.filter(User.id == id).first().notes
+  note_list = [{ note.to_dict["id"]: note.to_dict() } for note in notes]
+  return dict(note_list)

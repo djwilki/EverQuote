@@ -12,9 +12,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    notes = db.relationship('Note')
-    notebooks = db.relationship('Notebook')
-    tags = db.relationship('Tag')
+    notes = db.relationship('Note', back_populates='user')
+    notebooks = db.relationship('Notebook', back_populates='user')
+    tags = db.relationship('Tag', back_populates="user")
 
 
     @property
@@ -44,7 +44,7 @@ class Note(db.Model):
     content = db.Column(db.String, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
-    user = db.relationship('User')
+    user = db.relationship('User', back_populates='notes')
     notebook = db.relationship('Notebook')
 
     def to_dict(self):
@@ -64,7 +64,7 @@ class Notebook(db.Model):
     title = db.Column(db.String(255), nullable=False)
     isDefault = db.Column(db.Boolean, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User')
+    user = db.relationship('User', back_populates="notebooks")
     __table_args__ = (db.UniqueConstraint('title', 'userId'), )
 
     def to_dict(self):
@@ -82,7 +82,7 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User')
+    user = db.relationship('User', back_populates="tags")
 
     def to_dict(self):
         return {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, NavLink, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import Notebooks from './Notebooks';
 import Notes from './Notes';
 

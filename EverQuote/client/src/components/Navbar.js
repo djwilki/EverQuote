@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter, Switch, Route, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { logout } from '../store/auth';
 import '../styles/navbar.css';
 
@@ -15,7 +15,7 @@ function Navbar({ history }) {
             history.replace("/login")
         }
         return;
-    } 
+    }
 
     return (
         <nav className='sidebar-nav'>

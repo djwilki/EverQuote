@@ -53,14 +53,14 @@ class Notebook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     isDefault = db.Column(db.Boolean, nullable=False)
-    userId = db.Column(db.Integer, nullable=False, db.ForeignKey('users.id'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User')
 
 
 class Tags(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    userId = db.Column(db.Integer, nullable=False, db.ForeignKey('users.id'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User')
 
 

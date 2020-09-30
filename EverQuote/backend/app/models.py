@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     notebooks = db.relationship('Notebook')
     tags = db.relationship('Tag')
 
+
     @property
     def password(self):
         return self.hashed_password
@@ -45,6 +46,16 @@ class Note(db.Model):
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
     user = db.relationship('User')
     notebook = db.relationship('Notebook')
+    __table_args__ = (db.UniqueConstraint('title', 'userId'), )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "content": self.content,
+            "userId": self.userId,
+            "notebookId": self.notebookId
+        }
 
 
 class Notebook(db.Model):
@@ -55,13 +66,31 @@ class Notebook(db.Model):
     isDefault = db.Column(db.Boolean, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User')
+    __table_args__ = (db.UniqueConstraint('title', 'userId'), )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "isDefault": self.isDefault,
+            "userId": self.userId
+        }
 
 
-class Tags(db.Model):
+class Tag(db.Model):
+    __tablename__ = 'tags'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User')
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "userId": self.userId
+        }
 
 
 noteTags = db.Table(

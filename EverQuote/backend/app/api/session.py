@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response
 from sqlalchemy import or_
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 from app.auth import login_manager
 from app.models import User
 from app.forms import LoginForm
@@ -31,7 +31,7 @@ def login():
 
 @session.route('/logout', methods=["DELETE"])
 def logout():
-    login_manager.logout_user()
+    logout_user()
     return { "message": "User successfully logged out" }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, withRouter } from 'react-router-dom';
-import Notes from './Notes';
+import { Redirect, Route } from 'react-router-dom';
 
 const AuthRoute = ({ user_id, path, component }) => {
     if (!user_id) {

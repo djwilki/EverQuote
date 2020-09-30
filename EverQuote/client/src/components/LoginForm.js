@@ -39,7 +39,7 @@ const LoginForm = ({ history }) => {
     const demoUserClick = async (event) => {
         event.preventDefault();
 
-        const res = await dispatch(login("demo@demo.com", "password"))
+        const res = await dispatch(login("demo", "password"))
 
         if (res.ok) {
             history.replace('/');

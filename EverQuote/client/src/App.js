@@ -6,7 +6,6 @@ import SignUpPage from './components/SignUp'
 import LoginForm from './components/LoginForm';
 import AuthRoute from './components/AuthRoute';
 import Home from './components/Home';
-import Notes from './components/Notes';
 
 
 function App() {

@@ -1,5 +1,4 @@
 body {
-    background-color: aquamarine;
     background-image: url("https://i.imgur.com/5yo53e8.jpg");
     background-repeat: repeat;
     background-size: 500px;
@@ -9,7 +8,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
   }
 
@@ -19,10 +17,8 @@ body {
     margin-right: auto;
     margin-left: auto;
     width: 314px;
-    /* border: 2px solid black; */
     padding: 55px 99px 55px 99px;
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.123);
-    border-radius: 2px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.295);
 }
 
 .form-container {
@@ -86,6 +82,10 @@ body {
 .auth_button:hover {
     filter: brightness(85%);
     transition: filter 0.3s
+}
+
+.auth_button:focus {
+    outline: none;
 }
 
 

@@ -5,6 +5,7 @@ import UserList from './components/UsersList';
 import SignUpPage from './components/SignUp'
 import LoginForm from './components/LoginForm';
 import AuthRoute from './components/AuthRoute';
+import Home from './components/Home';
 
 
 function App() {
@@ -23,26 +24,17 @@ function App() {
 
     return (
         <BrowserRouter>
-            <nav>
-                <ul>
-                    <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                    <li><NavLink to="/signup" activeclass="active">Sign up</NavLink></li>
-                </ul>
-            </nav>
             <Switch>
-                <Route path="/users">
+                <Route exact path="/users">
                     <UserList />
                 </Route>
-                <Route path="/login">
+                <Route exact path="/login">
                     <LoginForm />
                 </Route>
-                <Route path="/signup">
+                <Route exact path="/signup">
                     <SignUpPage />
                 </Route>
-                <AuthRoute path="/">
-                    <h1>My Home Page</h1>
-                </AuthRoute>
+                <AuthRoute path="/" component={Home} />
             </Switch>
         </BrowserRouter>
     );

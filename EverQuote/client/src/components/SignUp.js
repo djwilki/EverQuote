@@ -60,16 +60,16 @@ const SignUpPage = ({ history }) => {
                     </div>
                 </div>
                 <button onClick={demoUserClick} className="demo_button">Continue as Demo User</button>
-                <div class="divider-container">
-                    <div class="divider-text">or</div>
-                    <div class="divider-line"></div>
+                <div className="divider-container">
+                    <div className="divider-text">or</div>
+                    <div className="divider-line"></div>
                 </div>
                 <div className="login_form_container">
 
                     <form onSubmit={submitHandler}>
                         <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="auth_input" placeholder='Username' />
-                        <input name="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="auth_input" placeholder='Email' />
-                        <input name="password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} className="auth_input" placeholder='Password' />
+                        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="auth_input" placeholder='Email' />
+                        <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="auth_input" placeholder='Password' />
                         <div className="login_form_error_container" >
                             {errors.length ?
                                 <ul className="auth_error_list">
@@ -90,32 +90,7 @@ const SignUpPage = ({ history }) => {
                 </div>
             </div>
         </div>
-    )
-
-    // return (
-    //     <>
-    //         <div>
-    //             <img />
-    //             <h1></h1>
-    //             <h2></h2>
-    //             <NavLink to="/login">Continue with Demo User</NavLink>
-    //             <form onSubmit={submitHandler}>
-    //                 <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
-    //                 <input name="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
-    //                 <div className="login_form_error_container">
-    //                     {errors.length ?
-    //                         <ul className="">
-    //                             {errors.map((error, i) => <li key={`error-${i + 1}`}>{error}</li>)}
-    //                         </ul>
-    //                         : <></>}
-    //                 </div>
-    //                 <input name="password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
-    //                 <button type="submit">Continue</button>
-    //             </form>
-    //             <NavLink to="/login">Sign in</NavLink>
-    //         </div>
-    //     </>
-    // )
+    );
 }
 
 export default withRouter(SignUpPage)

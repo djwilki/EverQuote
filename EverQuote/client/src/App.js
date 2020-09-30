@@ -1,30 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
+import SignUpPage from './components/SignUp'
+import LoginForm from './components/LoginForm';
+import AuthRoute from './components/AuthRoute';
+import Home from './components/Home';
 
 
 function App() {
+    useEffect(() => {
+        const getCSRF = async () => {
+            const res = await fetch('/api/session/csrf');
 
-  return (
-    <BrowserRouter>
-        <nav>
-            <ul>
-                <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-            </ul>
-        </nav>
-        <Switch>
-            <Route path="/users">
-                <UserList />
-            </Route>
+            if (res.ok) {
+                return;
+            }
+        }
 
-            <Route path="/">
-                <h1>My Home Page</h1>
-            </Route>
-        </Switch>
-    </BrowserRouter>
-  );
+        getCSRF();
+    }, []);
+
+
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/users">
+                    <UserList />
+                </Route>
+                <Route exact path="/login">
+                    <LoginForm />
+                </Route>
+                <Route exact path="/signup">
+                    <SignUpPage />
+                </Route>
+                <AuthRoute path="/" component={Home} />
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 export default App;

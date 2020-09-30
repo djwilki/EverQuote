@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 
 const SET_USER = 'auth/SET_USER';
+const LOGOUT_USER = '/auth/LOGOUT_USER';
 
 export const setUser = user => {
     return {
@@ -9,17 +10,24 @@ export const setUser = user => {
     }
 };
 
-export const login = (username, password) => {
+export const logoutUser = () => {
+    return {
+        type: LOGOUT_USER
+    }
+}
+
+export const login = (email_or_username, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {
-        const res = await fetch('/api/session', {
-            method: 'put',
+        const res = await fetch('/api/session/login', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'XSRF-TOKEN': csrfToken
+                'X-CSRFTOKEN': csrfToken
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email_or_username, password, "csrf_token": csrfToken })
         });
+        console.log(res);
         res.data = await res.json();
 
         if (res.ok) {
@@ -29,10 +37,31 @@ export const login = (username, password) => {
     }
 };
 
-export default function authReducer(state = {}, action) {
+export const logout = () => {
+    const csrfToken = Cookies.get("XSRF-TOKEN");
+    return async dispatch => {
+        const res = await fetch('/api/session/logout', {
+            method: "DELETE",
+            headers: {
+                "X-CSRFTOKEN": csrfToken
+            }
+        })
+
+        res.data = await res.json();
+
+        if (res.ok) {
+            dispatch(logoutUser());
+        }
+        return res;
+    }
+}
+
+export default function authReducer(state = { user_id: null }, action) {
     switch (action.type) {
         case SET_USER:
             return action.user;
+        case LOGOUT_USER:
+            return { user_id: null };
         default:
             return state;
     }

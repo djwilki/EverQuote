@@ -1,13 +1,19 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+// import thunk from './middleware/thunk';
+import thunk from 'redux-thunk'
 import auth from './auth';
-
+import users from './users';
 
 let storeEnhancer;
 
+const entities = combineReducers({
+    users
+});
+
 const rootReducer = combineReducers({
-    auth
-})
+    auth,
+    entities
+});
 
 if (process.env.NODE_ENV !== 'production') {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -24,3 +30,4 @@ export default function configureStore(initialState) {
         storeEnhancer
     )
 }
+

@@ -1,0 +1,62 @@
+main {
+    margin-left: 191px;
+}
+
+.sidebar-nav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1a1a1a;
+    overflow-x: hidden;
+    padding-top: 20px;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.sidebar-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.sidebar-nav a {
+    color: #a6a6a6;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.sidebar-nav a:hover {
+    color: white;
+}
+
+.usernameDropDown {
+    display: block;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.newNoteBtn {
+    display: block;
+    background-color: #00a82d;
+    color: white;
+    font-size: 25px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.newNoteBtn:hover {
+    background-color: #008f26
+}
+
+.extra-navlinks {
+    position: fixed;
+    bottom: 30px;
+}

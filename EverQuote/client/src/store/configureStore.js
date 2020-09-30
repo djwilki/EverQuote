@@ -3,11 +3,13 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import auth from './auth';
 import users from './users';
+import notes from './notes';
 
 let storeEnhancer;
 
 const entities = combineReducers({
-    users
+    users,
+    notes
 });
 
 const rootReducer = combineReducers({
@@ -30,4 +32,3 @@ export default function configureStore(initialState) {
         storeEnhancer
     )
 }
-

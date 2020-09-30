@@ -33,3 +33,7 @@ def new():
     errorlist = list(errorset)
     res = make_response({ "errors": errorlist}, 401)
     return res
+
+@user_routes.route('/<int:id>/notes', methods=["GET"])
+def get_user_notes():
+  pass

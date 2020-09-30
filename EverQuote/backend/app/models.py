@@ -46,7 +46,6 @@ class Note(db.Model):
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
     user = db.relationship('User')
     notebook = db.relationship('Notebook')
-    __table_args__ = (db.UniqueConstraint('title', 'userId'), )
 
     def to_dict(self):
         return {

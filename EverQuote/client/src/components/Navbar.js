@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { logout } from '../store/auth';
 import '../styles/navbar.css';
+import NewNoteButton from './NewNoteButton';
 
 
 function Navbar({ history }) {
@@ -20,7 +21,7 @@ function Navbar({ history }) {
     return (
         <nav className='sidebar-nav'>
             <button className='usernameDropDown' onClick={handleLogout}>demo ▼</button>
-            <button className='newNoteBtn'>New Note</button>
+            <NewNoteButton />
             <ul className='navlinks'>
                 <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
                 <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>

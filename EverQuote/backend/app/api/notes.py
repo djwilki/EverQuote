@@ -1,7 +1,12 @@
-from flask import Blueprint
+from flask import Blueprint, request
+from app.models import db, Note
 
 notes = Blueprint("notes", __name__)
 
-@notes.route('/', methods=["POST"])
+@notes.route("", methods=["POST"])
 def new_note():
-    pass
+    data = request.json
+    note = Note(content="", userId=data['userId'], notebookId=data['notebookId'])
+    db.session.add(note)
+    db.session.commit()
+    return note.to_dict()

@@ -42,8 +42,7 @@ def upgrade():
     sa.Column('notebookId', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['notebookId'], ['notebooks.id'], ),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('title', 'userId')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('noteTags',
     sa.Column('noteId', sa.Integer(), nullable=False),

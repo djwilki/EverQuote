@@ -29,6 +29,11 @@ def login():
         return res
 
 
+@session.route('/logout', methods=["DELETE"])
+def logout():
+    login_manager.logout_user()
+    return { "message": "User successfully logged out" }
+
 
 @session.route("/csrf", methods=["GET"])
 def csrf():

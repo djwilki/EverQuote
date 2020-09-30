@@ -27,3 +27,4 @@ with app.app_context():
   db.session.add(demo)
 
   db.session.commit()
+  

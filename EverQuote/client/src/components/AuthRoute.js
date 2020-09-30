@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import Notes from './Notes';
 
-const AuthRoute = ({ user_id, path }) => {
+const AuthRoute = ({ user_id, path, component }) => {
     if (!user_id) {
-        return <Redirect to='/login'/>;
+        return <Redirect to='/login' />;
     }
 
     return (
-        <Route path={path}/>
+        <>
+        <Route path={path} component={component}/>
+        { path === '/' ? <Redirect to='/notes'/> : <></>}
+        </>
     );
 }
 

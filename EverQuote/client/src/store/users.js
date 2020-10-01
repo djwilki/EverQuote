@@ -1,4 +1,5 @@
 
+import Cookies from 'js-cookie'
 export const CREATE_USER = "signup/CREATE_USER";
 
 const createUser = (user) => {

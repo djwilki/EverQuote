@@ -2,33 +2,46 @@ import Cookies from 'js-cookie'
 
 
 export const SET_NOTEBOOKS = "notebooks/SET_NOTEBOOKS";
-export const ADD_NOTESBOOK = "notebooks/ADD_NOTEBOOK"
+export const ADD_NOTEBOOK = "notebooks/ADD_NOTEBOOK";
+export const SET_DEFAULT_NOTEBOOK = "notebooks/SET_DEFAULT_NOTEBOOK";
 
 
-const setUserNotebooks = (notebooks) => {
+const setNotebooks = (notebooks) => {
     return {
-        type: SEND_NOTEBOOKS,
+        type: SET_NOTEBOOKS,
         notebooks
     }
 }
 
-const addUserNotebooks = (notebook) => {
+const addNotebook = (notebook) => {
     return {
         type: ADD_NOTEBOOK,
         notebook
     }
 }
 
+export const setDefaultNotebook = (defaultNotebookId) => {
+    return {
+        type: SET_DEFAULT_NOTEBOOK,
+        defaultNotebookId
+    }
+}
 
-export const getUserNotebooks = id => {
+
+
+export const setUserNotebooks = id => {
     const path = `/api/users/${id}/notebooks`;
     return async dispatch => {
         const res = await fetch(path);
-        const data = await res.json();
-        res.data = data;
-        console.log(res);
+        res.data = await res.json();
+        console.log("reducer", res);
         if (res.ok) {
-            dispatch(setUserNotebooks(res.data));
+            dispatch(setNotebooks(res.data));
+            Object.values(res.data).forEach(ele => {
+                if (ele.isDefault) {
+                    dispatch(setDefaultNotebook(ele.id))
+                }
+            })
         }
         return res;
     }
@@ -49,7 +62,7 @@ export const addUserNotebooks = (title, isDefault, userId) => {
         const data = await res.json();
         res.data = data;
         if (res.ok) {
-            dispatch(addUserNotebook(res.data));
+            dispatch(addNotebook(res.data));
         }
         return res;
     }
@@ -60,6 +73,8 @@ export default function notebooksReducer(state = {}, action) {
     switch (action.type) {
         case SET_NOTEBOOKS:
             return action.notebooks;
+        case ADD_NOTEBOOK:
+            return action.notebook;
         default:
             return state;
     }

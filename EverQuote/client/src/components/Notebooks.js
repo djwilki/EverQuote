@@ -2,12 +2,18 @@ import React from 'react';
 import '../styles/index.css';
 import styles from '../styles/notebook.module.css';
 import {login} from '../store/users'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function Notebooks(props) {
 
     const dispatch = useDispatch();    
+    const userId = useSelector(state=>state.session.user_id)
+    
+    const newNotebook = () => {
+        
+    }
+
 
     return (
         <main className={styles.notebooks_container}>
@@ -17,7 +23,7 @@ function Notebooks(props) {
                     <h2>My notebook list</h2>
                 </div>
                 <div className={styles.buttons}>
-                    <button className={styles.newNotebook}>New Notebook</button>
+                    <button className={styles.newNotebook} onClick={newNotebook}>New Notebook</button>
                     <button className={styles.sortOptions}>&#8645;</button>
                 </div>
             </div>

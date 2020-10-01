@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 const SET_USER = 'auth/SET_USER';
 const LOGOUT_USER = '/auth/LOGOUT_USER';
 const SET_SELECTED_NOTEBOOK = '/ui/SET_SELECTED_NOTEBOOK';
+const SET_DEFAULT_NOTEBOOK = 'notebooks/SET_DEFAULT_NOTEBOOK'
+
 
 export const setUser = user => {
     return {
@@ -23,6 +25,8 @@ export const setSelectedNotebook = (notebookId) => {
         notebookId
     };
 }
+
+
 
 export const login = (email_or_username, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
@@ -65,10 +69,12 @@ export const logout = () => {
 
 const initialSessionState = {
     user_id: null,
-    selectedNotebookId: null
+    selectedNotebookId: null,
+    defaultNotebookId: null
 }
 
 export default function sessionReducer(state = initialSessionState, action) {
+    console.log(action)
     switch (action.type) {
         case SET_USER:
             const stateCopy = Object.assign({}, state);
@@ -80,6 +86,11 @@ export default function sessionReducer(state = initialSessionState, action) {
             const newState = Object.assign({}, state);
             newState.selectedNotebookId = action.notebookId;
             return newState;
+        case SET_DEFAULT_NOTEBOOK:
+            console.log("please")
+            const altState = Object.assign({}, state);
+            altState.defaultNotebookId = action.defaultNotebookId;
+            return altState;
         default:
             return state;
     }

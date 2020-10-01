@@ -19,3 +19,10 @@ def update_note(note_id):
     note.title = data["title"]
     db.session.commit()
     return note.to_dict()
+
+
+@notes.route("/<int:note_id>", methods=['DELETE'])
+def delete_note(note_id):
+    note = Note.query.filter(Note.id == note_id).first()
+    db.session.delete(note)
+    db.session.commit()

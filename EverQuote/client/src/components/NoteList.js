@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import NoteCard from './NoteCard';
 
@@ -12,7 +12,7 @@ const NoteList = ({ noteList, notes }) => {
             </div>
             { notes.map((note, i) => {
                 return (
-                    <NoteCard key={`note-${i + 1}`} note={note}/>
+                    <NoteCard key={`note-${i + 1}`} note={note} />
                 );
             })}
         </div>
@@ -20,9 +20,24 @@ const NoteList = ({ noteList, notes }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    let notes;
+
+    if (!state.session.noteList) {
+        notes = Object.values(state.entities.notes);
+    } else {
+        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList);
+    }
+
+    notes.sort((a, b) => {
+        const aDate = new Date(a.updated_at)
+        const bDate = new Date(b.updated_at)
+
+        return bDate.getTime() - aDate.getTime();
+    });
+
     return {
         noteList: state.session.noteList,
-        notes: !state.session.noteList ? Object.values(state.entities.notes) : Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList)
+        notes
     };
 }
 

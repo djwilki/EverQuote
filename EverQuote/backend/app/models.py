@@ -58,7 +58,9 @@ class Note(db.Model):
             "title": self.title,
             "content": self.content,
             "userId": self.userId,
-            "notebookId": self.notebookId
+            "notebookId": self.notebookId,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
 
 

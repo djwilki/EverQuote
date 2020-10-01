@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response
-from app.models import db, User
+from app.models import db, User, Note
 from app.forms import SignUpForm
 from werkzeug.datastructures import MultiDict
 
@@ -36,8 +36,8 @@ def new():
 
 @user_routes.route('/<int:user_id>/notes', methods=["GET"])
 def get_user_notes(user_id):
-  notes = User.query.filter(User.id == user_id).first().notes
+  notes = [note.to_dict() for note in User.query.filter(User.id == user_id).first().notes]
   note_dict = dict()
   for note in notes:
-    note_dict[note.to_dict()["id"]] = note.to_dict()
+    note_dict[note["id"]] = note
   return note_dict

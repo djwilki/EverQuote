@@ -33,8 +33,12 @@ const TextEditor = ({ activeNoteObj }) => {
             console.log(activeNoteObj.id, title, content);
             const res = await dispatch(updateNote(activeNoteObj.id, title, content));
             setLoading(false);
-        }, 500);
+        }, 250);
         return;
+    }
+
+    const preventSubmit = event => {
+        event.preventDefault();
     }
 
     return (
@@ -42,7 +46,7 @@ const TextEditor = ({ activeNoteObj }) => {
             <div style={{ minHeight: "92px", backgroundColor: "white", border: "1px solid #F2F2F2" }}>
                 Toolbar Placeholder
             </div>
-            <form style={{ display: "flex", flexDirection: "column", width: "100%", height: "799px", border: "1px solid #F2F2F2" }} onKeyUp={handleAutoSave}>
+            <form onSubmit={preventSubmit} style={{ display: "flex", flexDirection: "column", width: "100%", height: "799px", border: "1px solid #F2F2F2" }} onKeyUp={handleAutoSave}>
                 <input type="text" style={{ height: "8%", border: "none" }} value={title} onChange={handleTitleChange} />
                 <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange} resize="none"></textarea>
             </form>

@@ -11,7 +11,7 @@ function Home({ userId }) {
             await dispatch(setUserNotes(userId));
         }
         getNotes();
-    }, []);
+    }, [dispatch, userId]);
 
 
     return (
@@ -24,7 +24,7 @@ function Home({ userId }) {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        userId: state.auth.user_id
+        userId: state.session.user_id
     }
 };
 

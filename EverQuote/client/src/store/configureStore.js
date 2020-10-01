@@ -1,7 +1,7 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 // import thunk from './middleware/thunk';
 import thunk from 'redux-thunk'
-import auth from './auth';
+import session from './session';
 import users from './users';
 import notes from './notes';
 
@@ -13,7 +13,7 @@ const entities = combineReducers({
 });
 
 const rootReducer = combineReducers({
-    auth,
+    session,
     entities
 });
 

@@ -18,7 +18,6 @@ export const setNotes = notes => {
 }
 
 export const setUserNotes = userId => {
-    const csrfToken = Cookies.get('XSRF-TOKEN');
     const path = `/api/users/${userId}/notes`;
     return async dispatch => {
         const res = await fetch(path);

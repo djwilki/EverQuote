@@ -21,7 +21,7 @@ const NewNoteButton = ({ userId }) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        userId: state.auth.user_id
+        userId: state.session.user_id
     }
 }
 

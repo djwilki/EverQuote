@@ -16,7 +16,7 @@ const AuthRoute = ({ user_id, path, component }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { auth: { user_id } } = state;
+    const { session: { user_id } } = state;
     return { user_id: user_id, ...ownProps };
 }
 

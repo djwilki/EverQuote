@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { signup } from "../store/users.js";
-import { login } from "../store/auth.js";
+import { login } from "../store/session.js";
 import { withRouter } from 'react-router-dom';
 import '../styles/auth.css';
 

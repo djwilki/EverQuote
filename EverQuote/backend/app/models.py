@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -12,6 +13,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     notes = db.relationship('Note', back_populates='user')
     notebooks = db.relationship('Notebook', back_populates='user')
     tags = db.relationship('Tag', back_populates="user")
@@ -44,6 +47,8 @@ class Note(db.Model):
     content = db.Column(db.String, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     user = db.relationship('User', back_populates='notes')
     notebook = db.relationship('Notebook')
 
@@ -64,6 +69,8 @@ class Notebook(db.Model):
     title = db.Column(db.String(255), nullable=False)
     isDefault = db.Column(db.Boolean, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     user = db.relationship('User', back_populates="notebooks")
     __table_args__ = (db.UniqueConstraint('title', 'userId'), )
 
@@ -82,6 +89,8 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     user = db.relationship('User', back_populates="tags")
 
     def to_dict(self):

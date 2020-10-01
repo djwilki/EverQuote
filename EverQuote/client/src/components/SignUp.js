@@ -5,6 +5,7 @@ import { signup } from "../store/users.js";
 import { login } from "../store/auth.js";
 import { withRouter } from 'react-router-dom';
 import '../styles/auth.css';
+import styles from '../styles/auth.module.css';
 
 
 const SignUpPage = ({ history }) => {

@@ -7,6 +7,7 @@ const TextEditor = ({ activeNoteObj }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(false);
     let autosaveTimeout = useRef(null);
 
     useEffect(() => {
@@ -23,6 +24,7 @@ const TextEditor = ({ activeNoteObj }) => {
     }
 
     const handleAutoSave = event => {
+        setLoading(true);
         event.stopPropagation();
         if (autosaveTimeout.current) {
             clearTimeout(autosaveTimeout.current);
@@ -30,7 +32,8 @@ const TextEditor = ({ activeNoteObj }) => {
         autosaveTimeout.current = setTimeout(async () => {
             console.log(activeNoteObj.id, title, content);
             const res = await dispatch(updateNote(activeNoteObj.id, title, content));
-        }, 750);
+            setLoading(false);
+        }, 500);
         return;
     }
 
@@ -44,7 +47,7 @@ const TextEditor = ({ activeNoteObj }) => {
                 <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange}></textarea>
             </form>
             <div style={{ backgroundColor: "white", height: "100%" }}>
-                <span>Note saved</span>
+                <span>{loading ? "Processing and saving changes..." : "Note saved"}</span>
             </div>
         </div>
     );

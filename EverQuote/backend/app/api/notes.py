@@ -15,7 +15,7 @@ def new_note():
 def update_note(note_id):
     data = request.json
     note = Note.query.filter(Note.id == note_id).first()
-    note["content"] = data['content']
-    note["title"] = data["title"]
+    note.content = data['content']
+    note.title = data["title"]
     db.session.commit()
     return note.to_dict()

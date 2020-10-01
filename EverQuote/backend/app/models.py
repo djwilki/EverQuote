@@ -79,7 +79,9 @@ class Notebook(db.Model):
             "id": self.id,
             "title": self.title,
             "isDefault": self.isDefault,
-            "userId": self.userId
+            "userId": self.userId,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
 
 

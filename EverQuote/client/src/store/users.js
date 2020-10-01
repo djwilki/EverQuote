@@ -1,7 +1,5 @@
-import Cookies from 'js-cookie'
 
 export const CREATE_USER = "signup/CREATE_USER";
-export const SEND_NOTEBOOKS = "getNotebooks/SEND_NOTEBOOKS";
 
 const createUser = (user) => {
     return {
@@ -10,11 +8,6 @@ const createUser = (user) => {
     };
 };
 
-const sendNotebooks = () => {
-    return {
-        type: SEND_NOTEBOOKS
-    }
-}
 
 
 
@@ -41,26 +34,6 @@ export const signup = (username, email, password) => {
     }
 };
 
-export const getNotebooks = (id) => {
-    // const csrfToken = Cookies.get('XSRF-TOKEN');
-    return async dispatch => {
-        const res = await fetch('/api/users/' + id + '/notebooks', {
-            method: 'GET',
-            // headers: {
-            //     'X-CSRFTOKEN': csrfToken
-            // },
-        });
-        const data = await res.json();
-        res.data = data;
-        if (res.ok) {
-            dispatch(sendNotebooks(data));
-            return res;
-        } else {
-            console.error('Bad response');
-            return res;
-        }
-    }
-}
 
 export default function usersReducer(state = {}, action) {
     switch (action.type) {

@@ -2,12 +2,12 @@ import React from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { addNote } from '../store/notes';
 
-const NewNoteButton = ({ userId }) => {
+const NewNoteButton = ({ userId, selectedNotebookId }) => {
     const dispatch = useDispatch();
 
     const handleClick = async (event) => {
         event.stopPropagation();
-        const res = await dispatch(addNote(userId, 1));
+        const res = await dispatch(addNote(userId, selectedNotebookId));
 
         if (res.ok) {
             return;
@@ -21,7 +21,8 @@ const NewNoteButton = ({ userId }) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        userId: state.session.user_id
+        userId: state.session.user_id,
+        selectedNotebookId: state.session.selectedNotebookId
     }
 }
 

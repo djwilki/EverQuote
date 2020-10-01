@@ -65,7 +65,7 @@ export const logout = () => {
 
 const initialSessionState = {
     user_id: null,
-    selectedNotebook: null
+    selectedNotebookId: null
 }
 
 export default function sessionReducer(state = initialSessionState, action) {
@@ -78,7 +78,7 @@ export default function sessionReducer(state = initialSessionState, action) {
             return { user_id: null };
         case SET_SELECTED_NOTEBOOK:
             const newState = Object.assign({}, state);
-            newState.selectedNotebook = action.notebookId;
+            newState.selectedNotebookId = action.notebookId;
             return newState;
         default:
             return state;

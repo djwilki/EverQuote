@@ -1,11 +1,14 @@
 import React from 'react';
+import NoteList from './NoteList';
+import TextEditor from './TextEditor';
 
 
 function Notes(props) {
     return (
-        <main>
-            <h1>Notes</h1>
-        </main>
+        <section style={{display: "flex"}}>
+            <NoteList />
+            <TextEditor />
+        </section>
     );
 }
 export default Notes;

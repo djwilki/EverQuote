@@ -1,8 +1,9 @@
 import Cookies from 'js-cookie';
 
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = '/auth/LOGOUT_USER';
-const SET_SELECTED_NOTEBOOK = '/ui/SET_SELECTED_NOTEBOOK';
+const SET_USER = 'session/SET_USER';
+const LOGOUT_USER = 'session/LOGOUT_USER';
+const SET_SELECTED_NOTEBOOK = 'session/SET_SELECTED_NOTEBOOK';
+const SET_NOTE_LIST = "session/SET_NOTE_LIST";
 
 export const setUser = user => {
     return {
@@ -65,20 +66,24 @@ export const logout = () => {
 
 const initialSessionState = {
     user_id: null,
-    selectedNotebookId: null
+    selectedNotebookId: null,
+    noteList: null
 }
 
 export default function sessionReducer(state = initialSessionState, action) {
+    const newState = Object.assign({}, state);
     switch (action.type) {
         case SET_USER:
-            const stateCopy = Object.assign({}, state);
-            stateCopy.user_id = action.user.user_id;
-            return stateCopy;
+            newState.user_id = action.user.user_id;
+            return newState;
         case LOGOUT_USER:
-            return { user_id: null };
+            newState.user_id = null;
+            return newState;
         case SET_SELECTED_NOTEBOOK:
-            const newState = Object.assign({}, state);
             newState.selectedNotebookId = action.notebookId;
+            return newState;
+        case SET_NOTE_LIST:
+            newState.noteList = action.noteList;
             return newState;
         default:
             return state;

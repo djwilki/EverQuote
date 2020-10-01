@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 const NoteList = ({ noteList, notes }) => {
 
     return (
-        <div style={{width: "20%", height: "100%", backgroundColor: "#F8F8F8"}}>
+        <div style={{width: "380px", height: "100vh", backgroundColor: "#F8F8F8"}}>
             <div>
-            { noteList ? <h3>{noteList}</h3> : <h3 style={{color: "black"}}>All Notes</h3> }
+            { noteList ? <h1>{noteList}</h1> : <h1 style={{color: "black"}}>All Notes</h1> }
             </div>
             { notes.map((note) => {
                 return (
                     <div>
                         {
                             <>
-                            <h5>{note.title}</h5>
-                            <p>{note.content}</p>
+                            <h3>{note.title}</h3>
+                            <span>{note.content}</span>
                             </>
                         }
                     </div>

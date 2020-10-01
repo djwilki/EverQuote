@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from app import app, db
@@ -13,9 +14,14 @@ with app.app_context():
   demo_user_note = Note(title='Hello', content="", userId=1, notebookId=1)
   demo_user_note_2 = Note(content="", userId=1, notebookId=1)
 
+
   db.session.add(demo)
   db.session.add(demo_user_default_notebook)
   db.session.add(demo_user_note)
   db.session.add(demo_user_note_2)
+
+  demoDir = Notebook(title = "My Notebook", isDefault = True, userId = 1, user = demo)
+
+  db.session.add(demoDir)
 
   db.session.commit()

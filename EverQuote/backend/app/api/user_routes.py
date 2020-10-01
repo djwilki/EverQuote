@@ -39,5 +39,15 @@ def get_user_notes(user_id):
   notes = [note.to_dict() for note in User.query.filter(User.id == user_id).first().notes]
   note_dict = dict()
   for note in notes:
-    note_dict[note["id"]] = note
+      note_dict[note["id"]] = note
   return note_dict
+
+@user_routes.route("/<int:user_id>/trash", methods=['DELETE'])
+def delete_user_trash(user_id):
+  Note.query.filter(Note.isTrash == True and Note.userId == user_id).delete()
+  db.session.commit()
+
+@user_routes.route("/<int:user_id>/trash", methods=["GET"])
+def get_user_trash(user_id):
+  trash_notes = [note.to_dict()["id"] for note in Note.query.filter(Note.isTrash == True, Note.userId == user_id).all()]
+  return { "trash": trash_notes }

@@ -21,8 +21,9 @@ def update_note(note_id):
     return note.to_dict()
 
 
-@notes.route("/<int:note_id>", methods=['DELETE'])
+@notes.route("/<int:note_id>", methods=['PUT'])
 def delete_note(note_id):
     note = Note.query.filter(Note.id == note_id).first()
-    db.session.delete(note)
-    db.session.commit()
+    if not note['isTrash']:
+        note['isTrash'] = True
+        db.session.commit()

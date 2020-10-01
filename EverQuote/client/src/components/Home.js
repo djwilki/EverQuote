@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { connect, useDispatch } from 'react-redux';
 import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
+import { setUserTrash } from '../store/trash';
 
 function Home({ userId, selectedNotebookId, notes }) {
     const dispatch = useDispatch();
@@ -11,8 +12,11 @@ function Home({ userId, selectedNotebookId, notes }) {
         const getNotes = async () => {
             await dispatch(setUserNotes(userId));
         }
+        const getTrash = async () => {
+            await dispatch(setUserTrash(userId));
+        }
         getNotes();
-
+        getTrash();
         // Placeholder for setting selected notebook to user's default notebook on login
         dispatch(setSelectedNotebook(selectedNotebookId || 1));
     }, [dispatch, userId]);
@@ -20,10 +24,10 @@ function Home({ userId, selectedNotebookId, notes }) {
 
     return (
         <>
-        <div style={{display: "flex", height: "100vh"}}>
-            <Navbar />
-            <MainContent />
-        </div>
+            <div style={{ display: "flex", height: "100vh" }}>
+                <Navbar />
+                <MainContent />
+            </div>
         </>
     );
 }

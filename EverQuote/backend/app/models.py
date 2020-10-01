@@ -47,6 +47,7 @@ class Note(db.Model):
     content = db.Column(db.String, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
+    isTrash = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     user = db.relationship('User', back_populates='notes')
@@ -59,6 +60,7 @@ class Note(db.Model):
             "content": self.content,
             "userId": self.userId,
             "notebookId": self.notebookId,
+            "isTrash": self.isTrash,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

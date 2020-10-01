@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     let notes;
 
     if (!state.session.noteList) {
-        notes = Object.values(state.entities.notes);
+        notes = Object.values(state.entities.notes).filter((note) => !note.isTrash);
     } else {
         notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList);
     }

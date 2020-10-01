@@ -44,7 +44,7 @@ const TextEditor = ({ activeNoteObj }) => {
             </div>
             <form style={{ display: "flex", flexDirection: "column", width: "100%", height: "799px", border: "1px solid #F2F2F2" }} onKeyUp={handleAutoSave}>
                 <input type="text" style={{ height: "8%", border: "none" }} value={title} onChange={handleTitleChange} />
-                <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange}></textarea>
+                <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange} resize="none"></textarea>
             </form>
             <div style={{ backgroundColor: "white", height: "100%" }}>
                 <span>{loading ? "Processing and saving changes..." : "Note saved"}</span>

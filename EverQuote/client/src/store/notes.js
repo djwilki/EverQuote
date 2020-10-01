@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { setActiveNote } from './session';
 
 const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
@@ -26,6 +27,7 @@ export const setUserNotes = userId => {
         console.log(res);
         if (res.ok) {
             dispatch(setNotes(res.data));
+            dispatch(setActiveNote(Object.values(res.data)[0].id));
         }
 
         return res;

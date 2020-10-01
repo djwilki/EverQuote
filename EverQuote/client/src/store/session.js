@@ -4,6 +4,21 @@ const SET_USER = 'session/SET_USER';
 const LOGOUT_USER = 'session/LOGOUT_USER';
 const SET_SELECTED_NOTEBOOK = 'session/SET_SELECTED_NOTEBOOK';
 const SET_NOTE_LIST = "session/SET_NOTE_LIST";
+const SET_ACTIVE_NOTE = "session/SET_ACTIVE_NOTE";
+
+export const setSelectedNotebook = (notebookId) => {
+    return {
+        type: SET_SELECTED_NOTEBOOK,
+        notebookId
+    };
+}
+
+export const setActiveNote = (noteId) => {
+    return {
+        type: SET_ACTIVE_NOTE,
+        noteId
+    }
+}
 
 export const setUser = user => {
     return {
@@ -16,13 +31,6 @@ export const logoutUser = () => {
     return {
         type: LOGOUT_USER
     }
-}
-
-export const setSelectedNotebook = (notebookId) => {
-    return {
-        type: SET_SELECTED_NOTEBOOK,
-        notebookId
-    };
 }
 
 export const login = (email_or_username, password) => {
@@ -67,7 +75,8 @@ export const logout = () => {
 const initialSessionState = {
     user_id: null,
     selectedNotebookId: null,
-    noteList: null
+    noteList: null,
+    activeNote: null
 }
 
 export default function sessionReducer(state = initialSessionState, action) {
@@ -84,6 +93,9 @@ export default function sessionReducer(state = initialSessionState, action) {
             return newState;
         case SET_NOTE_LIST:
             newState.noteList = action.noteList;
+            return newState;
+        case SET_ACTIVE_NOTE:
+            newState.activeNote = action.noteId;
             return newState;
         default:
             return state;

@@ -8,9 +8,9 @@ const NoteList = ({ noteList, notes }) => {
             <div>
             { noteList ? <h1>{noteList}</h1> : <h1 style={{color: "black"}}>All Notes</h1> }
             </div>
-            { notes.map((note) => {
+            { notes.map((note, i) => {
                 return (
-                    <div>
+                    <div key={`note-${i + 1}`}>
                         {
                             <>
                             <h3>{note.title}</h3>
@@ -27,7 +27,7 @@ const NoteList = ({ noteList, notes }) => {
 const mapStateToProps = (state, ownProps) => {
     return {
         noteList: state.session.noteList,
-        notes: Object.values(state.entities.notes)
+        notes: !state.session.noteList ? Object.values(state.entities.notes) : Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList)
     };
 }
 

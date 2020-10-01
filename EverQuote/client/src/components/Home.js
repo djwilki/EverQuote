@@ -5,7 +5,7 @@ import { connect, useDispatch } from 'react-redux';
 import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 
-function Home({ userId, selectedNotebookId }) {
+function Home({ userId, selectedNotebookId, notes }) {
     const dispatch = useDispatch();
     useEffect(() => {
         const getNotes = async () => {

@@ -9,8 +9,6 @@ const createUser = (user) => {
 };
 
 
-
-
 export const signup = (username, email, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {
@@ -39,8 +37,6 @@ export default function usersReducer(state = {}, action) {
     switch (action.type) {
         case CREATE_USER:
             return action.user;
-        case SEND_NOTEBOOKS:
-            return action.notebooks;
         default:
             return state;
     }

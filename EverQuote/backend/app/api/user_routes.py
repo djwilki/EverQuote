@@ -43,7 +43,10 @@ def get_user_notes(user_id):
   return note_dict
 
   
-@user_routes.route('/<int:id>/notebooks', methods=["GET"])
-def find():
-  response = Notebook.query.filter(Notebook.userId == id).all()
-  return { "notebooks": [notebook.to_dict() for notebook in response]}
+@user_routes.route('/<int:user_id>/notebooks', methods=["GET"])
+def get_user_notebooks(user_id):
+  notebooks = Notebook.query.filter(Notebook.userId == user_id).all()
+  notebook_dict = dict()
+  for notebook in notebooks:
+    notebook_dict[notebook.to_dict()["id"]] = notebook.to_dict()
+  return notebook_dict

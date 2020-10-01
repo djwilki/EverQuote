@@ -21,12 +21,5 @@ with app.app_context():
   db.session.add(demo_user_note)
   db.session.add(demo_user_note_2)
 
-  demoDir = Notebook(title = "My Notebook", isDefault = True, userId = 1, user = demo)
-
-  db.session.add(demoDir)
-
-  demoDir = Notebook(title = "My Notebook", isDefault = True, userId = 1, user = demo)
-
-  db.session.add(demoDir)
 
   db.session.commit()

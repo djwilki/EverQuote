@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from '../styles/notebook.module.css';
 import {login} from '../store/users'
-
+import { useDispatch } from 'react-redux';
 
 function Notebooks(props) {
+
+    const dispatch = useDispatch();    
+
     return (
         <main className={styles.notebooks_container}>
             <h1>Notebooks</h1>

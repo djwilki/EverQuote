@@ -3,11 +3,13 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import auth from './auth';
 import users from './users';
+import notebooks from './notesbooks';
 
 let storeEnhancer;
 
 const entities = combineReducers({
-    users
+    users,
+    notebooks
 });
 
 const rootReducer = combineReducers({

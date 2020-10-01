@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { logout } from '../store/auth';
-import '../styles/navbar.css';
+import styles from '../styles/navbar.module.css';
 
 
 function Navbar({ history }) {
@@ -18,14 +18,14 @@ function Navbar({ history }) {
     }
 
     return (
-        <nav className='sidebar-nav'>
-            <button className='usernameDropDown' onClick={handleLogout}>demo ▼</button>
-            <button className='newNoteBtn'>New Note</button>
-            <ul className='navlinks'>
+        <nav className={styles.sidebar_nav}>
+            <button className={styles.usernameDropDown} onClick={handleLogout}>demo ▼</button>
+            <button className={styles.newNoteBtn}>New Note</button>
+            <ul className={styles.navlinks}>
                 <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
                 <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
             </ul>
-            <ul className='extra-navlinks'>
+            <ul className={styles.extra_navlinks}>
                 <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
                 <li><NavLink to="/signup" activeclass="active">Sign up</NavLink></li>
             </ul>

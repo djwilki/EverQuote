@@ -2,7 +2,7 @@ main {
     margin-left: 191px;
 }
 
-.sidebar-nav {
+.sidebar_nav {
     height: 100%;
     width: 160px;
     position: fixed;
@@ -16,21 +16,21 @@ main {
     padding: 20px;
 }
 
-.sidebar-nav ul {
+.sidebar_nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-top: 30px;
 }
 
-.sidebar-nav a {
+.sidebar_nav a {
     color: #a6a6a6;
     text-decoration: none;
     font-size: 18px;
     line-height: 1.5;
 }
 
-.sidebar-nav a:hover {
+.sidebar_nav a:hover {
     color: white;
 }
 
@@ -56,7 +56,7 @@ main {
     background-color: #008f26
 }
 
-.extra-navlinks {
+.extra_navlinks {
     position: fixed;
     bottom: 30px;
 }

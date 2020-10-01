@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import User
+from app.models import User, Notebook
 
 with app.app_context():
   db.drop_all()
@@ -24,7 +24,12 @@ with app.app_context():
 
   demo = User(username = 'demo', email = 'demo@demo.com', password='password')
 
+
   db.session.add(demo)
+
+  demoDir = Notebook(title = "My Notebook", isDefault = True, userId = 1, user = demo)
+
+  db.session.add(demoDir)
 
   db.session.commit()
   

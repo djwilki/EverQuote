@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response
-from app.models import db, User
+from app.models import db, User, Notebook
 from app.forms import SignUpForm
 from werkzeug.datastructures import MultiDict
 
@@ -33,3 +33,8 @@ def new():
     errorlist = list(errorset)
     res = make_response({ "errors": errorlist}, 401)
     return res
+
+@user_routes.route('/<int:id>/notebooks', methods=["GET"])
+def find():
+  response = Notebook.query.filter(Notebook.userId == id).all()
+  return { "notebooks": [notebook.to_dict() for notebook in response]}

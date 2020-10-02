@@ -12,12 +12,19 @@ def new_notebook():
     db.session.commit()
     return notebook.to_dict()
 
-@notebooks.route("/", methods=["PUT"])
-def edit_notebook():
+@notebooks.route("/<int:notebook_id>", methods=["PUT"])
+def edit_notebook(notebook_id):
     data = request.json
-    notebook = Notebook.query.get(data['notebookId'])
+    notebook = Notebook.query.get(notebook_id)
     notebook.title = data['title']
-    notebook.updated_at = datetime.now
+    notebook.updated_at = datetime.now()
+    db.session.commit()
+    return notebook.to_dict()
+
+@notebooks.route("/<int:notebook_id>/update", methods=["PUT"])
+def update_notebook(notebook_id):
+    notebook = Notebook.query.get(notebook_id)
+    notebook.updated_at = datetime.now()
     db.session.commit()
     return notebook.to_dict()
 

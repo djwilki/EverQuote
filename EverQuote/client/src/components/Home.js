@@ -6,7 +6,8 @@ import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 import { setUserNotebooks } from '../store/notesbooks';
 import { setUserTrash } from '../store/trash';
-import { addUserNotebooks } from '../store/notesbooks'
+import { addUserNotebooks } from '../store/notesbooks';
+import { setUserInfo } from '../store/users';
 
 function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {
     const dispatch = useDispatch();
@@ -25,6 +26,11 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
             await dispatch(setUserNotebooks(userId));
         }
         getNotebooks();
+
+        const getUserInfo = async () => {
+            await dispatch(setUserInfo(userId));
+        }
+        getUserInfo();
         
         dispatch(setSelectedNotebook(selectedNotebookId || defaultNotebookId));
     }, [dispatch, userId]);

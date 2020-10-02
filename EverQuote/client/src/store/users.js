@@ -2,6 +2,14 @@
 import Cookies from 'js-cookie'
 export const CREATE_USER = "signup/CREATE_USER";
 const LOGOUT_USER = 'session/LOGOUT_USER';
+const SET_USER = 'users/SET_USER';
+
+const setUser = (user) => {
+    return {
+        type: SET_USER,
+        user
+    }
+}
 
 const createUser = (user) => {
     return {
@@ -9,6 +17,7 @@ const createUser = (user) => {
         user
     };
 };
+
 
 
 export const signup = (username, email, password) => {
@@ -34,6 +43,20 @@ export const signup = (username, email, password) => {
     }
 };
 
+export const setUserInfo = (userId) => {
+    return async dispatch => {
+        const res = await fetch(`api/users/${userId}`);
+
+        res.data = await res.json();
+
+        if (res.ok) {
+            dispatch(setUser(res.data));
+        }
+
+        return res;
+    }
+}
+
 
 export default function usersReducer(state = {}, action) {
     switch (action.type) {
@@ -41,6 +64,8 @@ export default function usersReducer(state = {}, action) {
             return action.user;
         case LOGOUT_USER:
             return {};
+        case SET_USER:
+            return { [action.user.id]: action.user };
         default:
             return state;
     }

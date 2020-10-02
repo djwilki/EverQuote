@@ -18,13 +18,13 @@ function Home({ userId, selectedNotebookId, notes }) {
         }
         getNotes();
         getTrash();
-        
+
         const getNotebooks = async () => {
             await dispatch(setUserNotebooks(userId));
         }
         getNotebooks()
         dispatch(setSelectedNotebook(selectedNotebookId || 1));
-    }, [dispatch, userId]);
+    }, [dispatch, userId, selectedNotebookId]);
 
 
     return (

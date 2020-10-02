@@ -1,11 +1,11 @@
-import Cookies from 'js-cookie'
-
+import Cookies from 'js-cookie';
+import { setSelectedNotebook } from './session';
 
 export const SET_NOTEBOOKS = "notebooks/SET_NOTEBOOKS";
 export const ADD_NOTEBOOK = "notebooks/ADD_NOTEBOOK";
 export const EDIT_NOTEBOOK = "notebooks/EDIT_NOTEBOOK";
 export const SET_DEFAULT_NOTEBOOK = "notebooks/SET_DEFAULT_NOTEBOOK";
-const LOGOUT_USER = 'session/LOGOUT_USER';
+export const LOGOUT_USER = 'session/LOGOUT_USER';
 
 
 const setNotebooks = (notebooks) => {
@@ -21,6 +21,7 @@ const addNotebook = (notebook) => {
         notebook
     }
 }
+
 
 const editNotebook = (notebook) => {
     return {
@@ -49,6 +50,7 @@ export const setUserNotebooks = id => {
             Object.values(res.data).forEach(ele => {
                 if (ele.isDefault) {
                     dispatch(setDefaultNotebook(ele.id))
+                    dispatch(setSelectedNotebook(ele.id))
                 }
             })
         }
@@ -58,10 +60,11 @@ export const setUserNotebooks = id => {
 
 export const addUserNotebooks = (title, isDefault, userId) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
-    const path = `api/users/${userId}/notebooks`;
+    // const path = `api/users/${userId}/notebooks`;
+    const path = `/api/notebooks/`;
     return async dispatch => {
         const res = await fetch(path, {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFTOKEN': csrfToken
@@ -77,9 +80,12 @@ export const addUserNotebooks = (title, isDefault, userId) => {
     }
 }
 
+window.addUserNotebooks = addUserNotebooks;
+
+
 export const editUserNotebooks = (title, isDefault, userId) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
-    const path = `api/users/${userId}/notebooks`;
+    const path = `/api/users/${userId}/notebooks`;
     return async dispatch => {
         const res = await fetch(path, {
             method: 'put',

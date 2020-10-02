@@ -21,6 +21,11 @@ def new():
       newUser = User(username = data["username"], email = data["email"], password = data["password"] )
       db.session.add(newUser)
       db.session.commit()
+
+      newNotebook = Notebook(title = 'My Notebook', isDefault=True, userId=newUser.to_dict()["id"])
+      db.session.add(newNotebook)
+      db.session.commit()
+
       user_dict = newUser.to_dict()
       return { user_dict["id"]: user_dict }
     else:

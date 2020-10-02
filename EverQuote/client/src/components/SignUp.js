@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signup } from "../store/users.js";
 import { login } from "../store/session.js";
 import { withRouter } from 'react-router-dom';
 import '../styles/auth.css';
 import styles from '../styles/auth.module.css';
+import { addUserNotebooks } from "../store/notesbooks.js";
 
 
 const SignUpPage = ({ history }) => {

@@ -16,6 +16,7 @@ function Notebooks(props) {
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
 
+
     const note_rows = (currentNotebookId) => {
         return Object.values(notes).map(ele => {
             if (currentNotebookId == ele.notebookId) {

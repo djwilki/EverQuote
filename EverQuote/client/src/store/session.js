@@ -34,12 +34,7 @@ export const logoutUser = () => {
     }
 }
 
-export const setSelectedNotebook = (notebookId) => {
-    return {
-        type: SET_SELECTED_NOTEBOOK,
-        notebookId
-    };
-}
+
 
 
 
@@ -98,8 +93,9 @@ export default function sessionReducer(state = initialSessionState, action) {
             newState.user_id = action.user.user_id;
             return newState;
         case LOGOUT_USER:
-            newState.user_id = null;
-            return newState;
+            return {};
+            // newState.user_id = null;
+            // return newState;
         case SET_SELECTED_NOTEBOOK:
             newState.selectedNotebookId = action.notebookId;
             return newState;

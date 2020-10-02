@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 const SET_TRASH = "trash/SET_TRASH";
 const ADD_TO_TRASH = 'trash/ADD_TO_TRASH';
 const EMPTY_TRASH = 'trash/EMPTY_TRASH';
+const LOGOUT_USER = 'session/LOGOUT_USER';
 
 const addToTrash = (noteId) => {
     return {
@@ -68,6 +69,8 @@ export default function trashReducer(state = { trash: [] }, action) {
         case EMPTY_TRASH:
             newState.trash = [];
             return newState;
+        case LOGOUT_USER:
+            return {};
         default:
             return state;
     }

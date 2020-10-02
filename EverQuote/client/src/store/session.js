@@ -1,7 +1,24 @@
 import Cookies from 'js-cookie';
 
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = '/auth/LOGOUT_USER';
+const SET_USER = 'session/SET_USER';
+const LOGOUT_USER = 'session/LOGOUT_USER';
+const SET_SELECTED_NOTEBOOK = 'session/SET_SELECTED_NOTEBOOK';
+const SET_NOTE_LIST = "session/SET_NOTE_LIST";
+const SET_ACTIVE_NOTE = "session/SET_ACTIVE_NOTE";
+
+export const setSelectedNotebook = (notebookId) => {
+    return {
+        type: SET_SELECTED_NOTEBOOK,
+        notebookId
+    };
+}
+
+export const setActiveNote = (noteId) => {
+    return {
+        type: SET_ACTIVE_NOTE,
+        noteId
+    }
+}
 
 export const setUser = user => {
     return {
@@ -27,7 +44,6 @@ export const login = (email_or_username, password) => {
             },
             body: JSON.stringify({ email_or_username, password, "csrf_token": csrfToken })
         });
-        console.log(res);
         res.data = await res.json();
 
         if (res.ok) {
@@ -56,12 +72,31 @@ export const logout = () => {
     }
 }
 
-export default function authReducer(state = { user_id: null }, action) {
+const initialSessionState = {
+    user_id: null,
+    selectedNotebookId: null,
+    noteList: null,
+    activeNote: null
+}
+
+export default function sessionReducer(state = initialSessionState, action) {
+    const newState = Object.assign({}, state);
     switch (action.type) {
         case SET_USER:
-            return action.user;
+            newState.user_id = action.user.user_id;
+            return newState;
         case LOGOUT_USER:
-            return { user_id: null };
+            newState.user_id = null;
+            return newState;
+        case SET_SELECTED_NOTEBOOK:
+            newState.selectedNotebookId = action.notebookId;
+            return newState;
+        case SET_NOTE_LIST:
+            newState.noteList = action.noteList;
+            return newState;
+        case SET_ACTIVE_NOTE:
+            newState.activeNote = action.noteId;
+            return newState;
         default:
             return state;
     }

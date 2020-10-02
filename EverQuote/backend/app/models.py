@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -12,9 +13,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    notes = db.relationship('Note')
-    notebooks = db.relationship('Notebook')
-    tags = db.relationship('Tag')
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    notes = db.relationship('Note', back_populates='user')
+    notebooks = db.relationship('Notebook', back_populates='user')
+    tags = db.relationship('Tag', back_populates="user")
 
 
     @property
@@ -44,9 +47,11 @@ class Note(db.Model):
     content = db.Column(db.String, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     notebookId = db.Column(db.Integer, db.ForeignKey('notebooks.id'))
-    user = db.relationship('User')
+    isTrash = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    user = db.relationship('User', back_populates='notes')
     notebook = db.relationship('Notebook')
-    __table_args__ = (db.UniqueConstraint('title', 'userId'), )
 
     def to_dict(self):
         return {
@@ -54,7 +59,10 @@ class Note(db.Model):
             "title": self.title,
             "content": self.content,
             "userId": self.userId,
-            "notebookId": self.notebookId
+            "notebookId": self.notebookId,
+            "isTrash": self.isTrash,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
 
 
@@ -65,7 +73,9 @@ class Notebook(db.Model):
     title = db.Column(db.String(255), nullable=False)
     isDefault = db.Column(db.Boolean, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User')
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    user = db.relationship('User', back_populates="notebooks")
     __table_args__ = (db.UniqueConstraint('title', 'userId'), )
 
     def to_dict(self):
@@ -83,7 +93,9 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User')
+    created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    user = db.relationship('User', back_populates="tags")
 
     def to_dict(self):
         return {

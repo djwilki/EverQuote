@@ -2,29 +2,22 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import User
+from app.models import User, Notebook, Note
 
 with app.app_context():
   db.drop_all()
   db.create_all()
 
-  # ian = User(username = 'Ian', email = 'ian@aa.io')
-  # javier = User(username = 'Javier', email = 'javier@aa.io')
-  # dean = User(username = 'Dean', email = 'dean@aa.io')
-  # angela = User(username = 'Angela', email = 'angela@aa.io')
-  # soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io')
-  # alissa = User(username = 'Alissa', email = 'alissa@aa.io')
-
-  # db.session.add(ian)
-  # db.session.add(javier)
-  # db.session.add(dean)
-  # db.session.add(angela)
-  # db.session.add(soonmi)
-  # db.session.add(alissa)
-
   demo = User(username = 'demo', email = 'demo@demo.com', password='password')
+  demo_user_default_notebook = Notebook(title='My Notebook', isDefault=True, userId=1)
+  demo_user_note = Note(title='Hello', content="", userId=1, notebookId=1)
+  demo_user_note_2 = Note(content="", userId=1, notebookId=1)
+  demo_user_note_3 = Note(content="I'm the trash man. I eat garbage.", userId=1, notebookId=1, isTrash=True)
 
   db.session.add(demo)
+  db.session.add(demo_user_default_notebook)
+  db.session.add(demo_user_note)
+  db.session.add(demo_user_note_2)
+  db.session.add(demo_user_note_3)
 
   db.session.commit()
-  

@@ -2,7 +2,6 @@ import Cookies from 'js-cookie'
 
 export const CREATE_USER = "signup/CREATE_USER";
 
-// const createUser = (user) => {
 const createUser = (user) => {
     return {
         type: CREATE_USER,
@@ -19,7 +18,7 @@ export const signup = (username, email, password) => {
                 'Content-Type': 'application/json',
                 'X-CSRFTOKEN': csrfToken
             },
-            body: JSON.stringify({ username, password, email,  "csrf_token": csrfToken })
+            body: JSON.stringify({ username, password, email, "csrf_token": csrfToken })
         });
         const data = await res.json();
         res.data = data;
@@ -34,7 +33,6 @@ export const signup = (username, email, password) => {
 };
 
 export default function usersReducer(state = {}, action) {
-    console.log(action);
     switch (action.type) {
         case CREATE_USER:
             return action.user;

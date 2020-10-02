@@ -5,13 +5,15 @@ import session from './session';
 import users from './users';
 import notes from './notes';
 import notebooks from './notesbooks';
+import trash from './trash';
 
 let storeEnhancer;
 
 const entities = combineReducers({
     users,
     notes,
-    notebooks
+    notebooks,
+    trash
 });
 
 const rootReducer = combineReducers({

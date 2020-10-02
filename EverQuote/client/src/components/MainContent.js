@@ -5,7 +5,7 @@ import Notes from './Notes';
 
 function MainContent({ match }) {
     return (
-        <div>
+        <div style={{width: "100%"}}>
             <Route path={match.url + "notes"} component={Notes} />
             <Route path={match.url + "notebooks"} component={Notebooks} />
         </div>

@@ -1,10 +1,25 @@
 import Cookies from 'js-cookie';
 
-const SET_USER = 'auth/SET_USER';
-const LOGOUT_USER = '/auth/LOGOUT_USER';
-const SET_SELECTED_NOTEBOOK = '/ui/SET_SELECTED_NOTEBOOK';
 const SET_DEFAULT_NOTEBOOK = 'notebooks/SET_DEFAULT_NOTEBOOK'
+const SET_USER = 'session/SET_USER';
+const LOGOUT_USER = 'session/LOGOUT_USER';
+const SET_SELECTED_NOTEBOOK = 'session/SET_SELECTED_NOTEBOOK';
+const SET_NOTE_LIST = "session/SET_NOTE_LIST";
+const SET_ACTIVE_NOTE = "session/SET_ACTIVE_NOTE";
 
+export const setSelectedNotebook = (notebookId) => {
+    return {
+        type: SET_SELECTED_NOTEBOOK,
+        notebookId
+    };
+}
+
+export const setActiveNote = (noteId) => {
+    return {
+        type: SET_ACTIVE_NOTE,
+        noteId
+    }
+}
 
 export const setUser = user => {
     return {
@@ -70,27 +85,33 @@ export const logout = () => {
 const initialSessionState = {
     user_id: null,
     selectedNotebookId: null,
-    defaultNotebookId: null
+    defaultNotebookId: null,
+    noteList: null,
+    activeNote: null
 }
 
+
 export default function sessionReducer(state = initialSessionState, action) {
-    console.log(action)
+    const newState = Object.assign({}, state);
     switch (action.type) {
         case SET_USER:
-            const stateCopy = Object.assign({}, state);
-            stateCopy.user_id = action.user.user_id;
-            return stateCopy;
+            newState.user_id = action.user.user_id;
+            return newState;
         case LOGOUT_USER:
-            return { user_id: null };
+            newState.user_id = null;
+            return newState;
         case SET_SELECTED_NOTEBOOK:
-            const newState = Object.assign({}, state);
             newState.selectedNotebookId = action.notebookId;
             return newState;
         case SET_DEFAULT_NOTEBOOK:
-            console.log("please")
-            const altState = Object.assign({}, state);
-            altState.defaultNotebookId = action.defaultNotebookId;
-            return altState;
+            newState.defaultNotebookId = action.defaultNotebookId;
+            return newState;
+        case SET_NOTE_LIST:
+            newState.noteList = action.noteList;
+            return newState;
+        case SET_ACTIVE_NOTE:
+            newState.activeNote = action.noteId;
+            return newState;
         default:
             return state;
     }

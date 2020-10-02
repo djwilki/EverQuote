@@ -5,37 +5,42 @@ import { connect, useDispatch } from 'react-redux';
 import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 import { setUserNotebooks } from '../store/notesbooks';
+import { setUserTrash } from '../store/trash';
 
-function Home({ userId }) {
+function Home({ userId, selectedNotebookId, notes }) {
     const dispatch = useDispatch();
     useEffect(() => {
         const getNotes = async () => {
             await dispatch(setUserNotes(userId));
         }
+        const getTrash = async () => {
+            await dispatch(setUserTrash(userId));
+        }
         getNotes();
-
-        // Placeholder for setting selected notebook to user's default notebook on login
-        dispatch(setSelectedNotebook(1));
-
+        getTrash();
         
         const getNotebooks = async () => {
             await dispatch(setUserNotebooks(userId));
         }
         getNotebooks()
+        dispatch(setSelectedNotebook(selectedNotebookId || 1));
     }, [dispatch, userId]);
 
 
     return (
         <>
-            <Navbar />
-            <MainContent />
+            <div style={{ display: "flex", height: "100vh" }}>
+                <Navbar />
+                <MainContent />
+            </div>
         </>
     );
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        userId: state.session.user_id
+        userId: state.session.user_id,
+        selectedNotebookId: state.session.selectedNotebookId
     }
 };
 

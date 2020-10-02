@@ -4,14 +4,12 @@ main {
 
 .sidebar_nav {
     height: 100%;
-    width: 200px;
-    position: fixed;
+    width: 228px;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #1a1a1a;
     overflow-x: hidden;
-    padding-top: 20px;
     font-family: sans-serif;
     padding: 20px;
 }

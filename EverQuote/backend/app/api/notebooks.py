@@ -13,8 +13,7 @@ def new_notebook():
 
 @notes.route("/<int:notebook_id>")
 def get_notebook():
-    data = request.json
-    notebook = Notebook(title=data['title'], userId=data['userId'], isDefault=data['isDefault'])
+    notebook = Notebook.query
     db.session.add(notebook)
     db.session.commit()
     return notebook.to_dict()

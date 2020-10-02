@@ -1,8 +1,11 @@
-/* body {
+body {
+    margin:0;
+    padding:0;
+    overflow: hidden;
     background-image: url("https://i.imgur.com/5yo53e8.jpg");
     background-repeat: repeat;
     background-size: 500px;
-} */
+}
 
 .centered {
     position: fixed;
@@ -25,7 +28,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
 }
 
 .form-header {

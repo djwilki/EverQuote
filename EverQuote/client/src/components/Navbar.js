@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { logout } from '../store/session';
-// import '../styles/navbar.css';
 import NewNoteButton from './NewNoteButton';
 import styles from '../styles/navbar.module.css';
 

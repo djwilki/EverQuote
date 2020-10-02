@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { signup } from "../store/users.js";
 import { login } from "../store/session.js";
 import { withRouter } from 'react-router-dom';
-import '../styles/auth.css';
 import styles from '../styles/auth.module.css';
 
 
@@ -49,44 +48,44 @@ const SignUpPage = ({ history }) => {
 
     return (
 
-        <div className="form-wrapper centered">
-            <div className="form-container">
-                <div className="form-header">
+        <div className={`${styles.form_wrapper} ${styles.centered}`}>
+            <div className={styles.form_container}>
+                <div className={styles.form_header}>
                     <img alt="logo" src='https://i.imgur.com/GOpcw1D.png' style={{ width: "30%" }} />
-                    <h1 className="header-title">
+                    <h1 className={styles.header_title}>
                         EverQuote
                     </h1>
-                    <div className="header-tagline">
+                    <div className={styles.header_tagline}>
                         Remember everything important.
                     </div>
                 </div>
-                <button onClick={demoUserClick} className="demo_button">Continue as Demo User</button>
-                <div className="divider-container">
-                    <div className="divider-text">or</div>
-                    <div className="divider-line"></div>
+                <button onClick={demoUserClick} className={styles.demo_button}>Continue as Demo User</button>
+                <div className={styles.divider_container}>
+                    <div className={styles.divider_text}>or</div>
+                    <div className={styles.divider_line}></div>
                 </div>
-                <div className="login_form_container">
+                <div className={styles.login_form_container}>
 
                     <form onSubmit={submitHandler}>
-                        <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="auth_input" placeholder='Username' />
-                        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="auth_input" placeholder='Email' />
-                        <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="auth_input" placeholder='Password' />
-                        <div className="login_form_error_container" >
+                        <input name="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} className={styles.auth_input} placeholder='Username' />
+                        <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.auth_input} placeholder='Email' />
+                        <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.auth_input} placeholder='Password' />
+                        <div className={styles.login_form_error_container} >
                             {errors.length ?
-                                <ul className="auth_error_list">
-                                    {errors.map((error, i) => <li className="error_message" key={`error-${i + 1}`}>{error}</li>)}
+                                <ul className={styles.auth_error_list}>
+                                    {errors.map((error, i) => <li className={styles.error_message} key={`error-${i + 1}`}>{error}</li>)}
                                 </ul>
                                 : <></>}
                         </div>
-                        <button type="submit" className="auth_button">Continue</button>
+                        <button type="submit" className={styles.auth_button}>Continue</button>
                     </form>
                 </div>
-                <div className="form-footer">
-                    <div className="footer-tagline">
+                <div className={styles.form_footer}>
+                    <div className={styles.footer_tagline}>
                         Already have an account?
                     </div>
-                    <div className="footer-cta-wrapper">
-                        <Link className="footer-cta" to='/login'>Sign in</Link>
+                    <div className={styles.footer_cta_wrapper}>
+                        <Link className={styles.footer_cta} to='/login'>Sign in</Link>
                     </div>
                 </div>
             </div>

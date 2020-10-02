@@ -42,6 +42,8 @@ export const setUserNotes = userId => {
     }
 }
 
+window.setUserNotes = setUserNotes;
+
 export const addNote = (userId, notebookId) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {

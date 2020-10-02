@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie'
 
+import Cookies from 'js-cookie'
 export const CREATE_USER = "signup/CREATE_USER";
 
 const createUser = (user) => {
@@ -8,6 +8,7 @@ const createUser = (user) => {
         user
     };
 };
+
 
 export const signup = (username, email, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
@@ -31,6 +32,7 @@ export const signup = (username, email, password) => {
         }
     }
 };
+
 
 export default function usersReducer(state = {}, action) {
     switch (action.type) {

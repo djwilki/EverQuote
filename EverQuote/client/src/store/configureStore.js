@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import session from './session';
 import users from './users';
 import notes from './notes';
+import notebooks from './notesbooks';
 import trash from './trash';
 
 let storeEnhancer;
@@ -11,6 +12,7 @@ let storeEnhancer;
 const entities = combineReducers({
     users,
     notes,
+    notebooks,
     trash
 });
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response
-from app.models import db, User, Note
+from app.models import db, User, Notebook, Note
 from app.forms import SignUpForm
 from werkzeug.datastructures import MultiDict
 
@@ -42,8 +42,16 @@ def get_user_notes(user_id):
       note_dict[note["id"]] = note
   return note_dict
 
+@user_routes.route('/<int:user_id>/notebooks', methods=["GET"])
+def get_user_notebooks(user_id):
+  notebooks = Notebook.query.filter(Notebook.userId == user_id).all()
+  notebook_dict = dict()
+  for notebook in notebooks:
+    notebook_dict[notebook.to_dict()["id"]] = notebook.to_dict()
+  return notebook_dict
+
+
 @user_routes.route("/<int:user_id>/trash", methods=['DELETE'])
-def delete_user_trash(user_id):
   Note.query.filter(Note.isTrash == True and Note.userId == user_id).delete()
   db.session.commit()
 

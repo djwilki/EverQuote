@@ -1,8 +1,8 @@
 main {
-    margin-left: 191px;
+    margin-left: 217px;
 }
 
-.sidebar-nav {
+.sidebar_nav {
     height: 100%;
     width: 228px;
     z-index: 1;
@@ -14,21 +14,21 @@ main {
     padding: 20px;
 }
 
-.sidebar-nav ul {
+.sidebar_nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-top: 30px;
 }
 
-.sidebar-nav a {
+.sidebar_nav a {
     color: #a6a6a6;
     text-decoration: none;
     font-size: 18px;
     line-height: 1.5;
 }
 
-.sidebar-nav a:hover {
+.sidebar_nav a:hover {
     color: white;
 }
 
@@ -54,7 +54,36 @@ main {
     background-color: #008f26
 }
 
-.extra-navlinks {
+.extra_navlinks {
     position: fixed;
     bottom: 30px;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgb(230 230 230);
+    color: rgb(188 188 188);
+    height: 37px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+th, td {
+    text-align: left;
+}
+
+th {
+    padding: 0 5px
+}
+
+td {
+    padding: 8px;
+}
+
+tr:nth-child(odd) {background-color: #f8f8f8;}

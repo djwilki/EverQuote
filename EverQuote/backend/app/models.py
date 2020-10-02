@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
     notes = db.relationship('Note', back_populates='user')
     notebooks = db.relationship('Notebook', back_populates='user')
+    
     tags = db.relationship('Tag', back_populates="user")
 
 
@@ -83,7 +84,9 @@ class Notebook(db.Model):
             "id": self.id,
             "title": self.title,
             "isDefault": self.isDefault,
-            "userId": self.userId
+            "userId": self.userId,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
 
 

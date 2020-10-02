@@ -4,6 +4,7 @@ import { setActiveNote } from './session';
 const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
 const UPDATE_NOTE = "/notes/UPDATE_NOTE";
+const LOGOUT_USER = 'session/LOGOUT_USER';
 
 export const setNote = note => {
     return {
@@ -33,7 +34,7 @@ export const setUserNotes = userId => {
 
         res.data = await res.json();
         console.log(res);
-        if (res.ok) {
+        if (res.ok && Object.keys(res.data).length) {
             dispatch(setNotes(res.data));
             dispatch(setActiveNote(Object.values(res.data)[0].id));
         }
@@ -97,6 +98,8 @@ export default function noteReducer(state = {}, action) {
         case UPDATE_NOTE:
             newState[action.note.id] = action.note;
             return newState;
+        case LOGOUT_USER:
+            return {};
         default:
             return state;
     }

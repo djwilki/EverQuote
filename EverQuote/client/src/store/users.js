@@ -1,6 +1,7 @@
 
 import Cookies from 'js-cookie'
 export const CREATE_USER = "signup/CREATE_USER";
+const LOGOUT_USER = 'session/LOGOUT_USER';
 
 const createUser = (user) => {
     return {
@@ -38,6 +39,8 @@ export default function usersReducer(state = {}, action) {
     switch (action.type) {
         case CREATE_USER:
             return action.user;
+        case LOGOUT_USER:
+            return {};
         default:
             return state;
     }

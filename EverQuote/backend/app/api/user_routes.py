@@ -52,6 +52,7 @@ def get_user_notebooks(user_id):
 
 
 @user_routes.route("/<int:user_id>/trash", methods=['DELETE'])
+def delete_user_trash(user_id):
   Note.query.filter(Note.isTrash == True and Note.userId == user_id).delete()
   db.session.commit()
 

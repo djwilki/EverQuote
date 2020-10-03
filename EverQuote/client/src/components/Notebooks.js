@@ -2,61 +2,28 @@ import React, { useState, useEffect } from "react"
 import '../styles/index.css';
 import styles from '../styles/notebook.module.css';
 import { addUserNotebooks } from '../store/notesbooks'
+import { toggleCreateNotebookModal, toggleEditNotebookModal, toggleNotebookModal } from '../store/ui'
 import { useDispatch, useSelector } from 'react-redux';
-
+import NewNotebookModal from './NewNotebookModal';
+import EditNotebookModal from './EditNotebookModal'
+import NotebookMoreActionsModal from './NotebookMoreActionsModal'
+import NotebookRow from './NotebookRow';
 
 
 function Notebooks(props) {
 
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user_id)
-    const notebooks = useSelector(state => state.entities.notebooks)
-    const notes = useSelector(state => state.entities.notes)
+    const notebooks = useSelector(state => Object.values(state.entities.notebooks))
+    const notes = useSelector(state => Object.values(state.entities.notes))
     const username = useSelector(state => state.entities.users[userId].username)
-    console.log(notebooks)
+    const createNotebook = useSelector(state => state.ui.createNotebook)
+    const editNotebook = useSelector(state => state.ui.editNotebook)
+    
+
+    
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
-
-
-    const note_rows = (currentNotebookId) => {
-        return Object.values(notes).map(ele => {
-            if (currentNotebookId == ele.notebookId) {
-                return (
-                    <tr>
-                        <td style={{ padding: "0px 0px 0px 64px" }}>
-                            <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.665 4.5h8.75c.92 0 1.667.746 1.667 1.667v8.748h-3.334a.625.625 0 00-.625.624v3.958H7.665c-.92 0-1.667-.747-1.667-1.667V6.167c0-.92.747-1.667 1.667-1.667zm7.037 4.584a.625.625 0 100-1.25H9.298a.625.625 0 100 1.25h5.404zm.625 2.918c0 .345-.28.625-.625.625H9.298a.625.625 0 010-1.25h5.404c.345 0 .625.28.625.625zm-4.363 4.158a.625.625 0 100-1.25H9.298a.625.625 0 100 1.25h1.666z" fill="currentColor"></path><path d="M15.373 16.164h2.157l-2.107 2.693-.05.06v-2.753z" fill="currentColor"></path></svg>                            {ele.title}
-                        </td>
-                        <td>{username}</td>
-                        <td>{ele.updated_at}</td>
-                        <td>...</td>
-                    </tr>
-                )
-            }
-        })
-    }
-
-    const notebook_rows = Object.values(notebooks).map(ele => {
-        return (
-            <>
-                <tr>
-                    <td>
-                        <button >
-                            <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 7l6 5-6 5V7z" fill="currentColor"></path></svg>
-                        </button>
-                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.035 4.5H5.958v15h2.077v-15z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.285 4.5v15h7.09c.92 0 1.667-.746 1.667-1.667V6.167c0-.92-.747-1.667-1.667-1.667h-7.09zm6.63 5.083a.75.75 0 01-.75.75h-3a.75.75 0 110-1.5h3a.75.75 0 01.75.75z" fill="currentColor"></path></svg>
-                        {ele.title}
-                    </td>
-                    <td>{username}</td>
-                    <td>{ele.updated_at}</td>
-                    <td>...</td>
-                </tr>
-                {note_rows(ele.id)}
-            </>
-        )
-    })
-
-
-
 
     useEffect(() => {
         setErrors([]);
@@ -73,16 +40,30 @@ function Notebooks(props) {
         setErrors(res.data.errors);
     }
 
+    const CreateNotebookModal = (e) => {
+        e.preventDefault()
+        dispatch(toggleCreateNotebookModal());
+    }
+
+    const EditNotebookModal = (e) => {
+        e.preventDefault()
+        dispatch(toggleEditNotebookModal());
+    }
+
+
+
 
     return (
         <main className={styles.notebooks_container}>
+            {createNotebook ? <NewNotebookModal notebookModal={CreateNotebookModal}/> : ""}
+            {createNotebook ? <EditNotebookModal notebookModal={EditNotebookModal}/> : ""}
             <h1>Notebooks</h1>
             <div className={styles.notebooks_title_bar}>
                 <div className={styles.notebooks_title}>
                     <h2>My notebook list</h2>
                 </div>
                 <div className={styles.buttons}>
-                    <button className={styles.newNotebook} onClick={newNotebook}>
+                    <button className={styles.newNotebook} onClick={CreateNotebookModal}>
                         <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="_3rHKgsdA1qX-_9ks50GGiT"><path d="M5.955 4.5H8.03v15H5.955v-15z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.281 19.5v-15h7.09c.921 0 1.667.746 1.667 1.666v7.294h-.025a4.583 4.583 0 00-4.346 6.04H9.28zm5.88-9.167a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" fill="currentColor"></path><path d="M18.638 15.549a.625.625 0 10-1.25 0v1.904h-1.846a.625.625 0 100 1.25h1.846v1.846a.625.625 0 001.25 0v-1.846h1.904a.625.625 0 100-1.25h-1.904v-1.904z" fill="currentColor"></path></svg>
                         New Notebook
                     </button>
@@ -98,33 +79,12 @@ function Notebooks(props) {
                         <th>CREATED BY</th>
                         <th>UPDATED</th>
                         <th>ACTIONS</th>
-
                     </tr>
-                    {notebook_rows}
-                    {/* <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr> */}
+                    { notebooks.map((notebook, i) => {
+                        return (
+                            <NotebookRow notebook={notebook} username={username} key={`notebook-${i + 1}`}/>
+                        )
+                    })}
                 </tbody>
             </table>
         </main>

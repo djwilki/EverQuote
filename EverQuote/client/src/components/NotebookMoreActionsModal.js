@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
+import { addUserNotebooks } from '../store/notesbooks'
 
-const NewNotebookForm = ({}) => {
+const NotebookMoreActionsModal = ({ notebookModal }) => {
     const [title, setTitle] = useState("");
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user_id)
+
 
 
     const handleSubmit = async (event) => {
@@ -15,15 +17,15 @@ const NewNotebookForm = ({}) => {
             return;
         }
     }
-
     return (
-        <form action="" method="" onSubmit={handleSubmit}>
-            <label>Name</label>
-            <input name="title" type="text" placeholder="Notebook name" onChange={(e)=>setTitle(e.target.value)}/>
-            <div>
-                <button>Cancel</button>
-                <button type="submit">Continue</button>
-            </div>
-        </form>
+        <>
+        <div style={{position: "relative", zIndex: "8", backgroundColor: "white"}}>
+            <button onClick={(e)=>{
+
+            }} >Rename notebook</button>
+        </div>
+        </>
     )
 }
+
+export default NotebookMoreActionsModal;

@@ -35,7 +35,6 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
         dispatch(setSelectedNotebook(selectedNotebookId || defaultNotebookId));
     }, [dispatch, userId]);
 
-
     return (
         <>
             <div style={{ display: "flex", height: "100vh" }}>

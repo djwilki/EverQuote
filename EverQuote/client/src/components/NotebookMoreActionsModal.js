@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserNotebooks } from '../store/notesbooks'
+import EditNotebookModal from "./EditNotebookModal";
 
-const NotebookMoreActionsModal = ({ notebookModal }) => {
+const NotebookMoreActionsModal = ({ MoreActionsNotebookModal, EditNotebookModal }) => {
     const [title, setTitle] = useState("");
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user_id)
 
 
 
-    const handleSubmit = async (event) => {
+    const handleClick = async (event) => {
         event.stopPropagation();
-        const res = await dispatch(addUserNotebooks(title, false, userId));
-
-        if (res.ok) {
-            return;
-        }
+        MoreActionsNotebookModal(event);
     }
     return (
         <>
-        <div style={{position: "relative", zIndex: "8", backgroundColor: "white"}}>
+        <div style={{position: "relative", zIndex: "8", backgroundColor: "white", left: "-100px"}}>
             <button onClick={(e)=>{
 
             }} >Rename notebook</button>

@@ -19,8 +19,9 @@ function Notebooks(props) {
     const username = useSelector(state => state.entities.users[userId].username)
     const createNotebook = useSelector(state => state.ui.createNotebook)
     const editNotebook = useSelector(state => state.ui.editNotebook)
+    const [editNotebookId, setEditNotebookId] = useState(null);
     
-
+    console.log(editNotebookId)
     
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
@@ -45,18 +46,20 @@ function Notebooks(props) {
         dispatch(toggleCreateNotebookModal());
     }
 
-    const EditNotebookModal = (e) => {
+    const MoreActionsNotebookModal = (e) => {
         e.preventDefault()
-        dispatch(toggleEditNotebookModal());
+        dispatch(toggleNotebookModal());
     }
+
+
 
 
 
 
     return (
         <main className={styles.notebooks_container}>
-            {createNotebook ? <NewNotebookModal notebookModal={CreateNotebookModal}/> : ""}
-            {createNotebook ? <EditNotebookModal notebookModal={EditNotebookModal}/> : ""}
+            {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal}/> : ""}
+            {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId}/> : ""}
             <h1>Notebooks</h1>
             <div className={styles.notebooks_title_bar}>
                 <div className={styles.notebooks_title}>
@@ -64,7 +67,7 @@ function Notebooks(props) {
                 </div>
                 <div className={styles.buttons}>
                     <button className={styles.newNotebook} onClick={CreateNotebookModal}>
-                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="_3rHKgsdA1qX-_9ks50GGiT"><path d="M5.955 4.5H8.03v15H5.955v-15z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.281 19.5v-15h7.09c.921 0 1.667.746 1.667 1.666v7.294h-.025a4.583 4.583 0 00-4.346 6.04H9.28zm5.88-9.167a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" fill="currentColor"></path><path d="M18.638 15.549a.625.625 0 10-1.25 0v1.904h-1.846a.625.625 0 100 1.25h1.846v1.846a.625.625 0 001.25 0v-1.846h1.904a.625.625 0 100-1.25h-1.904v-1.904z" fill="currentColor"></path></svg>
+                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" className="_3rHKgsdA1qX-_9ks50GGiT"><path d="M5.955 4.5H8.03v15H5.955v-15z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M9.281 19.5v-15h7.09c.921 0 1.667.746 1.667 1.666v7.294h-.025a4.583 4.583 0 00-4.346 6.04H9.28zm5.88-9.167a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" fill="currentColor"></path><path d="M18.638 15.549a.625.625 0 10-1.25 0v1.904h-1.846a.625.625 0 100 1.25h1.846v1.846a.625.625 0 001.25 0v-1.846h1.904a.625.625 0 100-1.25h-1.904v-1.904z" fill="currentColor"></path></svg>
                         New Notebook
                     </button>
                     <button className={styles.sortOptions}>
@@ -82,7 +85,7 @@ function Notebooks(props) {
                     </tr>
                     { notebooks.map((notebook, i) => {
                         return (
-                            <NotebookRow notebook={notebook} username={username} key={`notebook-${i + 1}`}/>
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} key={`notebook-${i + 1}`}/>
                         )
                     })}
                 </tbody>

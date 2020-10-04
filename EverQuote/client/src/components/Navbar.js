@@ -6,6 +6,8 @@ import NewNoteButton from './NewNoteButton';
 import styles from '../styles/navbar.module.css';
 import UserModal from './UserModal';
 import { toggleUserModal } from '../store/ui';
+import { setSelectedNotebook } from '../store/session';
+
 
 
 function Navbar({ history }) {
@@ -17,11 +19,19 @@ function Navbar({ history }) {
         dispatch(toggleUserModal());
     }
 
+    const handleSelect = (e) => {
+        e.preventDefault();
+        console.log(e.target.value)
+        dispatch(setSelectedNotebook(Number(e.target.value)))
+        history.replace('/notes');
+        return;
+    }
+
     const select_notebooks = Object.values(notebooks).map(ele => {
         return (
-            <>
-                <button>{ele.title}</button>
-            </>
+            <li key={ele.id}>
+                <button value={ele.id} onClick={handleSelect}>{ele.title}</button>
+            </li>
         )
     });
 
@@ -33,6 +43,7 @@ function Navbar({ history }) {
             <ul className={styles.navlinks}>
                 <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
                 <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
+                {select_notebooks}
             </ul>
             <ul className={styles.extra_navlinks}>
                 <li><NavLink to="/users" activeclass="active">Users</NavLink></li>

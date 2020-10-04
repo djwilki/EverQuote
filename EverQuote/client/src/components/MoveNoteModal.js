@@ -3,7 +3,8 @@ import MoveNotebookTitle from './MoveNotebookTitle';
 import {  useSelector } from "react-redux";
 
 const MoveNoteModal = () => {
-    const notebooks = useSelector(state => state.entities.notebooks)
+    const notebooks = useSelector(state => state.entities.notebooks);
+    
     return (
         <table>
             <tbody>

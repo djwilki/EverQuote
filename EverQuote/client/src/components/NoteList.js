@@ -25,7 +25,8 @@ const mapStateToProps = (state, ownProps) => {
     if (!state.session.noteList) {
         notes = Object.values(state.entities.notes).filter((note) => !note.isTrash);
     } else {
-        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList);
+        // notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList);
+        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.selectedNotebookId);
     }
 
     notes.sort((a, b) => {

@@ -28,7 +28,7 @@ function Notebooks(props) {
 
     const note_rows = (currentNotebookId) => {
         return Object.values(notes).map(ele => {
-            if (currentNotebookId === ele.notebookId) {
+            if (currentNotebookId === ele.notebookId && !ele.isTrash) {
                 return (
                     <tr>
                         <td style={{ padding: "0px 0px 0px 64px" }}>

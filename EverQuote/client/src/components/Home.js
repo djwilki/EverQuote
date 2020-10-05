@@ -6,9 +6,12 @@ import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 import { setUserNotebooks } from '../store/notesbooks';
 import { setUserTrash } from '../store/trash';
+import { addUserNotebooks } from '../store/notesbooks';
+import { setUserInfo } from '../store/users';
 
-function Home({ userId, selectedNotebookId, notes }) {
+function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {
     const dispatch = useDispatch();
+
     useEffect(() => {
         const getNotes = async () => {
             await dispatch(setUserNotes(userId));
@@ -22,10 +25,16 @@ function Home({ userId, selectedNotebookId, notes }) {
         const getNotebooks = async () => {
             await dispatch(setUserNotebooks(userId));
         }
-        getNotebooks()
+        getNotebooks();
         dispatch(setSelectedNotebook(selectedNotebookId || 1));
-    }, [dispatch, userId, selectedNotebookId]);
 
+        const getUserInfo = async () => {
+            await dispatch(setUserInfo(userId));
+        }
+        getUserInfo();
+        
+        dispatch(setSelectedNotebook(selectedNotebookId || defaultNotebookId));
+    }, [dispatch, userId, selectedNotebookId]);
 
     return (
         <>
@@ -40,7 +49,9 @@ function Home({ userId, selectedNotebookId, notes }) {
 const mapStateToProps = (state, ownProps) => {
     return {
         userId: state.session.user_id,
-        selectedNotebookId: state.session.selectedNotebookId
+        selectedNotebookId: state.session.selectedNotebookId,
+        notebooks: state.entities.notebooks,
+        defaultNotebookId: state.session.defaultNotebookId
     }
 };
 

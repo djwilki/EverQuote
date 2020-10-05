@@ -2,17 +2,27 @@ import React, { useState, useEffect } from "react"
 import '../styles/index.css';
 import styles from '../styles/notebook.module.css';
 import { addUserNotebooks } from '../store/notesbooks'
+import { toggleCreateNotebookModal, toggleEditNotebookModal, toggleNotebookModal } from '../store/ui'
 import { useDispatch, useSelector } from 'react-redux';
-
+import NewNotebookModal from './NewNotebookModal';
+import EditNotebookModal from './EditNotebookModal'
+import NotebookMoreActionsModal from './NotebookMoreActionsModal'
+import NotebookRow from './NotebookRow';
 
 
 function Notebooks(props) {
 
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user_id)
-    const notebooks = useSelector(state => state.entities.notebooks)
-    const notes = useSelector(state => state.entities.notes)
-    console.log(notebooks)
+    const notebooks = useSelector(state => Object.values(state.entities.notebooks))
+    const notes = useSelector(state => Object.values(state.entities.notes))
+    const username = useSelector(state => state.entities.users[userId].username)
+    const createNotebook = useSelector(state => state.ui.createNotebook)
+    const editNotebook = useSelector(state => state.ui.editNotebook)
+    const [editNotebookId, setEditNotebookId] = useState(null);
+    
+    console.log(editNotebookId)
+    
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
 
@@ -71,17 +81,33 @@ function Notebooks(props) {
         setErrors(res.data.errors);
     }
 
+    const CreateNotebookModal = (e) => {
+        e.preventDefault()
+        dispatch(toggleCreateNotebookModal());
+    }
+
+    const MoreActionsNotebookModal = (e) => {
+        e.preventDefault()
+        dispatch(toggleNotebookModal());
+    }
+
+
+
+
+
 
     return (
         <main className={styles.notebooks_container}>
+            {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal}/> : ""}
+            {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId}/> : ""}
             <h1>Notebooks</h1>
             <div className={styles.notebooks_title_bar}>
                 <div className={styles.notebooks_title}>
                     <h2>My notebook list</h2>
                 </div>
                 <div className={styles.buttons}>
-                    <button className={styles.newNotebook} onClick={newNotebook}>
-                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="_3rHKgsdA1qX-_9ks50GGiT"><path d="M5.955 4.5H8.03v15H5.955v-15z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.281 19.5v-15h7.09c.921 0 1.667.746 1.667 1.666v7.294h-.025a4.583 4.583 0 00-4.346 6.04H9.28zm5.88-9.167a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" fill="currentColor"></path><path d="M18.638 15.549a.625.625 0 10-1.25 0v1.904h-1.846a.625.625 0 100 1.25h1.846v1.846a.625.625 0 001.25 0v-1.846h1.904a.625.625 0 100-1.25h-1.904v-1.904z" fill="currentColor"></path></svg>
+                    <button className={styles.newNotebook} onClick={CreateNotebookModal}>
+                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" className="_3rHKgsdA1qX-_9ks50GGiT"><path d="M5.955 4.5H8.03v15H5.955v-15z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M9.281 19.5v-15h7.09c.921 0 1.667.746 1.667 1.666v7.294h-.025a4.583 4.583 0 00-4.346 6.04H9.28zm5.88-9.167a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" fill="currentColor"></path><path d="M18.638 15.549a.625.625 0 10-1.25 0v1.904h-1.846a.625.625 0 100 1.25h1.846v1.846a.625.625 0 001.25 0v-1.846h1.904a.625.625 0 100-1.25h-1.904v-1.904z" fill="currentColor"></path></svg>
                         New Notebook
                     </button>
                     <button className={styles.sortOptions}>
@@ -96,33 +122,12 @@ function Notebooks(props) {
                         <th>CREATED BY</th>
                         <th>UPDATED</th>
                         <th>ACTIONS</th>
-
                     </tr>
-                    {notebook_rows}
-                    {/* <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>My Notebook (5)</td>
-                        <td>cole.joshua.hunter.dev@gmail.co...</td>
-                        <td>Sep 28</td>
-                        <td>...</td>
-                    </tr> */}
+                    { notebooks.map((notebook, i) => {
+                        return (
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} key={`notebook-${i + 1}`}/>
+                        )
+                    })}
                 </tbody>
             </table>
         </main>

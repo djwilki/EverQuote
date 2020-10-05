@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import { setActiveNote } from './session';
+import { updateUserNotebook } from './notesbooks';
 
 const ADD_NOTE = '/notes/ADD_NOTE';
 const SET_NOTES = '/notes/SET_NOTES';
@@ -61,6 +62,7 @@ export const addNote = (userId, notebookId) => {
 
         if (res.ok) {
             dispatch(setNote(res.data));
+            await dispatch(updateUserNotebook(notebookId));
             dispatch(setActiveNote(res.data.id));
         }
         return res;
@@ -83,6 +85,7 @@ export const updateNote = (noteId, title, content) => {
 
         if (res.ok) {
             dispatch(updateNoteItem(res.data));
+            await dispatch(updateUserNotebook(res.data.notebookId));
         }
         return res;
     }

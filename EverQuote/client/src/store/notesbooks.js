@@ -1,11 +1,11 @@
-import Cookies from 'js-cookie'
-
+import Cookies from 'js-cookie';
+import { setSelectedNotebook } from './session';
 
 export const SET_NOTEBOOKS = "notebooks/SET_NOTEBOOKS";
 export const ADD_NOTEBOOK = "notebooks/ADD_NOTEBOOK";
 export const EDIT_NOTEBOOK = "notebooks/EDIT_NOTEBOOK";
 export const SET_DEFAULT_NOTEBOOK = "notebooks/SET_DEFAULT_NOTEBOOK";
-const LOGOUT_USER = 'session/LOGOUT_USER';
+export const LOGOUT_USER = 'session/LOGOUT_USER';
 
 
 const setNotebooks = (notebooks) => {
@@ -22,6 +22,7 @@ const addNotebook = (notebook) => {
     }
 }
 
+
 const editNotebook = (notebook) => {
     return {
         type: EDIT_NOTEBOOK,
@@ -37,6 +38,27 @@ export const setDefaultNotebook = (defaultNotebookId) => {
 }
 
 
+export const updateUserNotebook = id => {
+    const csrfToken = Cookies.get('XSRF-TOKEN');
+    const path = `/api/notebooks/${id}/update`;
+    return async dispatch => {
+        const res = await fetch(path, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN': csrfToken
+            },
+            body: JSON.stringify({ id })
+        });
+        const data = await res.json();
+        res.data = data;
+        if (res.ok) {
+            dispatch(editNotebook(res.data));
+        }
+        return res;
+    }
+}
+
 
 export const setUserNotebooks = id => {
     const path = `/api/users/${id}/notebooks`;
@@ -49,6 +71,7 @@ export const setUserNotebooks = id => {
             Object.values(res.data).forEach(ele => {
                 if (ele.isDefault) {
                     dispatch(setDefaultNotebook(ele.id))
+                    dispatch(setSelectedNotebook(ele.id))
                 }
             })
         }
@@ -58,10 +81,11 @@ export const setUserNotebooks = id => {
 
 export const addUserNotebooks = (title, isDefault, userId) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
-    const path = `api/users/${userId}/notebooks`;
+    // const path = `api/users/${userId}/notebooks`;
+    const path = `/api/notebooks/`;
     return async dispatch => {
         const res = await fetch(path, {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFTOKEN': csrfToken
@@ -77,9 +101,12 @@ export const addUserNotebooks = (title, isDefault, userId) => {
     }
 }
 
-export const editUserNotebooks = (title, isDefault, userId) => {
+window.addUserNotebooks = addUserNotebooks;
+
+
+export const editUserNotebooks = (title, isDefault, userId, id) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
-    const path = `api/users/${userId}/notebooks`;
+    const path = `/api/notebooks/${id}`;
     return async dispatch => {
         const res = await fetch(path, {
             method: 'put',
@@ -99,14 +126,15 @@ export const editUserNotebooks = (title, isDefault, userId) => {
 }
 
 export default function notebooksReducer(state = {}, action) {
-    console.log(action);
+    const newState = Object.assign({}, state);
     switch (action.type) {
         case SET_NOTEBOOKS:
             return action.notebooks;
         case ADD_NOTEBOOK:
-            return action.notebook;
+            return {...state, [action.notebook.id]: action.notebook};
         case EDIT_NOTEBOOK:
-            return action.notebook;
+            newState[action.notebook.id] = action.notebook;
+            return newState;
         case LOGOUT_USER:
             return {};
         default:

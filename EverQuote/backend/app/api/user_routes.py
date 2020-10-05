@@ -21,6 +21,11 @@ def new():
       newUser = User(username = data["username"], email = data["email"], password = data["password"] )
       db.session.add(newUser)
       db.session.commit()
+
+      newNotebook = Notebook(title = 'My Notebook', isDefault=True, userId=newUser.to_dict()["id"])
+      db.session.add(newNotebook)
+      db.session.commit()
+
       user_dict = newUser.to_dict()
       return { user_dict["id"]: user_dict }
     else:
@@ -33,6 +38,11 @@ def new():
     errorlist = list(errorset)
     res = make_response({ "errors": errorlist}, 401)
     return res
+
+@user_routes.route('/<int:user_id>')
+def get_user_info(user_id):
+  user = User.query.get(user_id)
+  return user.to_dict()
 
 @user_routes.route('/<int:user_id>/notes', methods=["GET"])
 def get_user_notes(user_id):

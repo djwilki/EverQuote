@@ -6,6 +6,7 @@ import users from './users';
 import notes from './notes';
 import notebooks from './notesbooks';
 import trash from './trash';
+import ui from './ui';
 
 let storeEnhancer;
 
@@ -18,7 +19,8 @@ const entities = combineReducers({
 
 const rootReducer = combineReducers({
     session,
-    entities
+    entities,
+    ui
 });
 
 if (process.env.NODE_ENV !== 'production') {

@@ -1,5 +1,6 @@
 from flask import Blueprint, request
-from app.models import db, Note
+from app.models import db, Note, Notebook
+from datetime import datetime
 
 notes = Blueprint("notes", __name__)
 
@@ -27,3 +28,11 @@ def delete_note(note_id):
     if not note['isTrash']:
         note['isTrash'] = True
         db.session.commit()
+
+
+@notes.route('/<int:note_id>/move_to/<int:notebook_id>')
+def move_note(note_id, notebook_id):
+    note = Note.query.get(note_id)
+    note.notebookId = notebook_id
+    db.session.commit()
+    return note.to_dict()

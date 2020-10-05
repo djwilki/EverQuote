@@ -14,6 +14,7 @@ function Navbar({ history }) {
     const dispatch = useDispatch();
     const notebooks = useSelector(state => state.entities.notebooks);
     const userModal = useSelector(state => state.ui.userModal);
+    const users = useSelector(state => state.entities.users);
 
     const handleModalClick = (e) => {
         dispatch(toggleUserModal());
@@ -27,6 +28,10 @@ function Navbar({ history }) {
         return;
     }
 
+    const getUsername = Object.values(users).map(user => {
+        return user.username;
+    })
+
     const select_notebooks = Object.values(notebooks).map(ele => {
         return (
             <li key={ele.id}>
@@ -37,7 +42,7 @@ function Navbar({ history }) {
 
     return (
         <nav className={styles.sidebar_nav}>
-            <button className={styles.usernameDropDown} onClick={handleModalClick} id="toggleUserModal">demo ▼</button>
+            <button className={styles.usernameDropDown} onClick={handleModalClick} id="toggleUserModal">{getUsername} ▼</button>
             { userModal ? <UserModal /> : <></>}
             <NewNoteButton />
             <ul className={styles.navlinks}>

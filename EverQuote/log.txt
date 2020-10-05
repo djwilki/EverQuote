@@ -1,0 +1,559 @@
+commit 047595453af1ef8215a04af72c7cbc6d8b346e2d
+Merge: 424090a b191498
+Author: djwilki <11daniel@gmail.com>
+Date:   Sun Oct 4 20:01:53 2020 -0400
+
+    Merge modals and master
+
+commit 424090a398c63442742775b59af0382244b0f42f
+Author: djwilki <11daniel@gmail.com>
+Date:   Sun Oct 4 14:20:10 2020 -0400
+
+    Add inline styling of notebook modals
+
+commit d912d937c6277156090ced821b4aa098a9555535
+Author: djwilki <11daniel@gmail.com>
+Date:   Sun Oct 4 13:03:55 2020 -0400
+
+    Add Notebooks Modals and Notebook Navbar Links
+
+commit f208b2b9a733ea5021c0e702c6adb3acf847ae08
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 20:01:53 2020 -0400
+
+    Add beginnings of modals
+
+commit 044f8109bd331d1c4d89c07cc3c5c17d289cd540
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 17:31:07 2020 -0400
+
+    Add notebook update with note changes
+
+commit b8cda57d20034b891f1648c06a984d718d7e410e
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 16:29:17 2020 -0400
+
+    Add new user default notebook creation and default selected notebook
+
+commit b191498ac7cfd60b7916c45e68d864d367803fc8
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Fri Oct 2 14:39:16 2020 -0500
+
+    new static files
+
+commit 2edadf4d057449041251888eff539cd151a16aa2
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Fri Oct 2 12:48:21 2020 -0500
+
+    removed most of the react var warnings
+
+commit d0c16cc4f36e9240dc74e1cc9696d74eca6c0e26
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Fri Oct 2 12:39:58 2020 -0500
+
+    first note bug fix
+
+commit 4efc7d8d1d9bd77176f82f9525b4b061c0e56a1c
+Merge: 29b2952 fde65bb
+Author: djwilki <11danielw@gmail.com>
+Date:   Fri Oct 2 13:09:54 2020 -0400
+
+    Merge pull request #55 from djwilki/notebook
+    
+    Add bug fixes for default notebook and state persistance
+
+commit fde65bbefe993180782de7f59cb43ac19ac14425
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 13:08:28 2020 -0400
+
+    Add bug fixes for default notebook and state persistance
+
+commit 29b29528a15397de3268675ca317c8cbc537d541
+Merge: 60c842d 3cf1357
+Author: djwilki <11danielw@gmail.com>
+Date:   Fri Oct 2 12:22:54 2020 -0400
+
+    Merge pull request #54 from djwilki/notebook
+    
+    Notebook
+
+commit 3cf13579e412b673d63cb21db50693266bdcb2d4
+Merge: 2affabb 60c842d
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 11:51:28 2020 -0400
+
+    Merge notebook with master with notes
+
+commit 2affabbf84791c50ad45320ff314564dcfac30c6
+Author: djwilki <11daniel@gmail.com>
+Date:   Fri Oct 2 11:40:48 2020 -0400
+
+    Save branch for safety
+
+commit 60c842d91b4918eca2ebfaea72f47e34cb64b778
+Merge: a95c3d2 6983d60
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Thu Oct 1 19:07:30 2020 -0500
+
+    Merge pull request #47 from djwilki/notes
+    
+    Notes
+
+commit 78db7c00fad2b0bd8ed4dd11e1812d7f1511e9e1
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 19:39:06 2020 -0400
+
+    Add notebook rendering and notebook content rendering
+
+commit 6983d6003c0d2e04d999a272b8152378f06a0db4
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 19:35:41 2020 -0400
+
+    Faster autosave
+
+commit 7b5584beb26254420edc423a5d62368b8e8c80ff
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 19:13:02 2020 -0400
+
+    Implemented trash routes, front end state, and hiding of notes in trash in 'All Notes' view
+
+commit f1de2469ebf46afae13fc1a7614afeaa41c9961d
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 18:23:23 2020 -0400
+
+    Sorted notes in note list based on most recently updated
+
+commit 600325eb4395b879260f489288847f7fafcbf122
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 17:27:22 2020 -0400
+
+    Add notebook and default notebook to state
+
+commit 8fb22968ace410ca522cd6e3336648da1ff68776
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 17:20:18 2020 -0400
+
+    Update active note on note click
+
+commit c23a3bec4ff7e8d12d8ff2106130ccdb9d21715e
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 16:38:40 2020 -0400
+
+    Basic autosave implemented
+
+commit 3db18da9fce9cdc8072015467870113af08bb190
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 16:12:26 2020 -0400
+
+    Updated TextEditor logic for autosave
+
+commit 7f2f5c2ef935d12204b1da78d11eb7b9c106ea66
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 15:57:56 2020 -0400
+
+    Text Editor populates with active note content
+
+commit deccff930004f43e699a28dd15a01e4a448a0e1c
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 15:38:29 2020 -0400
+
+    Working on letting frontend components speak to each other
+
+commit cae3257c830a300ef0452e24c5dd8f9bbdadd9f8
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 14:32:03 2020 -0400
+
+    Added skeleton page styling
+
+commit 92c4f5bcaad1477776a1bd8ad298db446520e073
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 14:10:07 2020 -0400
+
+    Notes show in notelist
+
+commit 773ee66b1944690dc13958e692e115cbe6acac27
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 13:56:26 2020 -0400
+
+    Began work on displaying notes in front end component
+
+commit 32677b1b5197eeaf9f7464e0154a7b98e3e88091
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 13:35:35 2020 -0400
+
+    Add database timestamps
+
+commit 1c991c3ee10baba904af760e8265834cadd95fe0
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 12:58:11 2020 -0400
+
+    Added migration file for created and updated timestamps for all models
+
+commit d7398fcefdc2558c8fc23b473d100a44e3171a28
+Merge: e59c302 5b78d8f
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:20:25 2020 -0400
+
+    Merge Origin Notebook with Rebased Notebook
+
+commit e59c30255a957a94b0aa90a3b6969b5ce6619990
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:07:28 2020 -0400
+
+    pre merge
+
+commit 1c32e02da46bfc7ec082cf734ded36949e13fd5d
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:01:25 2020 -0400
+
+    Move notebook actions to notebook enhancer
+
+commit 72b433dc4b7aa0902f9e570c6d23b640014cb685
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Thu Oct 1 10:59:34 2020 -0500
+
+    set up component for notebooks and some css changes
+
+commit df0d010bdb85089e9f28d75b954137a216d836d4
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Wed Sep 30 19:00:33 2020 -0500
+
+    starting setting up notebook component
+
+commit 5b78d8fd86c1d2da864b61c0f394ae7403a6e1fd
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:07:28 2020 -0400
+
+    pre merge
+
+commit df555b3f3ed51107b50a755ab8e77cca552e9932
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 12:04:34 2020 -0400
+
+    New note button subscribed to selected notebook slice of state
+
+commit 9c78eba1b5efe57ab8d38f50f6145094a29db201
+Merge: 8e9a177 05bcacd
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:02:14 2020 -0400
+
+    Fix merge
+
+commit 8e9a177160f099ae955cb885d8c13d8b1e3ce47b
+Author: djwilki <11daniel@gmail.com>
+Date:   Thu Oct 1 12:01:25 2020 -0400
+
+    Move notebook actions to notebook enhancer
+
+commit 05bcacdf35b659e530386937bca0012f13bc11fd
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Thu Oct 1 10:59:34 2020 -0500
+
+    set up component for notebooks and some css changes
+
+commit 8f8f45d948e62b32f7f3dc8e371427127a6b9ba8
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Thu Oct 1 11:54:20 2020 -0400
+
+    Updated session slice of state
+
+commit c678f9b68d4353529d904d6aef452ffc7cf71110
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Wed Sep 30 19:00:33 2020 -0500
+
+    starting setting up notebook component
+
+commit bedac66fff9577d74d8e65120de21d6a883f81eb
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 19:36:36 2020 -0400
+
+    Retrieve all user notes and add to state on user login
+
+commit e7e47a423813e02b5576bbef326f50e62e55cad9
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 19:03:41 2020 -0400
+
+    Added backend route to retrieve all notes for a given user
+
+commit 74f9918424d12c837ec3ded5cbcd964ababb8289
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 18:51:14 2020 -0400
+
+    Generated note and added to state on 'New Note' button click
+
+commit de91852ecd0cd96ec9a352e312cf461a1d6c4869
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 18:09:19 2020 -0400
+
+    Initial commit for notes
+
+commit a95c3d25a07cc6fd934a0d24b6b54e34cd46607f
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 17:38:28 2020 -0400
+
+    Completed Heroku deployment
+
+commit 95f560aab04dbd065be64a7d67bce9324f93e7d1
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 16:36:55 2020 -0400
+
+    Removed unused vars
+
+commit 22756bd90c3cb025d4a09a9f7f867963f924dcd5
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Wed Sep 30 16:32:33 2020 -0400
+
+    Generated additional migration files
+
+commit f90f1a94713c1aa52e06a77b6a308982258df24d
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Wed Sep 30 13:50:43 2020 -0500
+
+    fixed the arg order in models
+
+commit dff8ae8d7b5ed1c7693f173888764b71c067e367
+Merge: 1b548cb a4435b4
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Wed Sep 30 13:20:08 2020 -0500
+
+    Merge pull request #21 from djwilki/signup
+    
+    Signup
+
+commit a4435b4b21fa7f1ae5a740eaf492ef624f98655c
+Merge: 5ea09cd eaab87b
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Wed Sep 30 13:16:55 2020 -0500
+
+    Merge branch 'signup' of github.com:djwilki/EverQuote into signup
+
+commit eaab87bdf8ab6f0de7e84a34ccb859aae51d7b5a
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Wed Sep 30 13:07:38 2020 -0500
+
+    completed log out and bug fixes
+
+commit c7a27ef81a68bd71e77420f5d4e739f5f0eacda0
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Wed Sep 30 11:57:16 2020 -0500
+
+    set up skeleton of routes and components for home page
+
+commit 5ea09cd38eee22c01fc8f32e85c8ca3b53973b74
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Tue Sep 29 19:04:17 2020 -0500
+
+    added the models
+
+commit 34f1b8351aab7184e03a2c2fcdc424119732e4db
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 17:32:20 2020 -0500
+
+    Finish SignUp page CSS
+
+commit a0d97a3d99a70a30848da0fd915519b0a9eaadaa
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 17:17:49 2020 -0500
+
+    Finish LoginForm CSS
+
+commit d6208e8b3a25276a508a3aa0b20998483001c0ab
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 16:46:23 2020 -0500
+
+    Add Login CSS
+
+commit 252a3c9bdacbb67f8ad4c608ee2e180308208585
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 13:15:33 2020 -0500
+
+    Add error and state for Sign up page
+
+commit 97fecf0beee96598f7b1ba1dac153fb6ab03a1e1
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 12:12:19 2020 -0500
+
+    Add sign up validation and error messages
+
+commit f53ac373b5e3efa10f472a4a03a20d0e68101dd8
+Merge: 4a3bd3c cceb4d6
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 11:46:38 2020 -0500
+
+    Resolve login signup merge
+
+commit cceb4d6752256fa617cf8a3968cacb4f833912ab
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Tue Sep 29 12:28:33 2020 -0400
+
+    Created AuthRouter to handle protected routes
+
+commit 9710cfb5da21b6494bb3c1bc0edbf4ded2e5d7f4
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Tue Sep 29 12:03:49 2020 -0400
+
+    Added demo user login and redirect on successful login
+
+commit 4a3bd3ccb888ee1bb465e566406bb910759cf6a5
+Merge: d0a188f b96f28c
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 10:50:35 2020 -0500
+
+    Merge branch 'signup' of https://github.com/djwilki/EverQuote
+
+commit d0a188fdd99e56c848fc845fd951e7d30d9bd9d3
+Merge: 9732f0b 1b548cb
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Tue Sep 29 10:49:25 2020 -0500
+
+    merge
+
+commit 66f447785e75ba519058e25678e63970d33e5759
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 20:07:56 2020 -0400
+
+    Added demo user button login
+
+commit b96f28cda82abdff56d7f271c9803391047887e9
+Author: djwilki <11daniel@gmail.com>
+Date:   Mon Sep 28 19:38:30 2020 -0400
+
+    Fix signup import for SignUpPage
+
+commit cc0523d141996e95fd963d52c03d0c4479f0d579
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 19:36:17 2020 -0400
+
+    Extra csrf protection
+
+commit 50623ba9c3734c73ef97d295d3862b04793510db
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 19:17:57 2020 -0400
+
+    Implemented all error handling for login on backend
+
+commit f681c440ce9ec097e8fa0a03c3b603630ae8b1ee
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 19:07:41 2020 -0400
+
+    Started implementation of form validation
+
+commit fb44966acb59ea00f9c29f6185c816031116a11a
+Author: djwilki <11daniel@gmail.com>
+Date:   Mon Sep 28 18:38:04 2020 -0400
+
+    Change SignUpPage from class to function
+
+commit c06d2d4a7610b5527c711ec65db198fcf827e5e8
+Author: djwilki <11daniel@gmail.com>
+Date:   Mon Sep 28 17:26:59 2020 -0400
+
+    Add signup store actions
+
+commit 089d7f3aff78472e20726d8a4e49d8ddc349b79e
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 16:48:56 2020 -0400
+
+    Added user to auth slice of state on proper login
+
+commit 68166ec1a25beefb4680aa573834a805431ea5a4
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 16:01:43 2020 -0400
+
+    Successfully sending login data to backend
+
+commit 4411f6e0d07060047ff2be54b6b0a7ead6d9b370
+Author: djwilki <11daniel@gmail.com>
+Date:   Mon Sep 28 15:28:14 2020 -0400
+
+    Create sign up render page
+
+commit 701c32ba3733cf43eb10d6caf42019c1857408bb
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 15:18:06 2020 -0400
+
+    Updated dependencies
+
+commit f6e8ed1c79aa94e827f32ffec18ab00ea8c78cd3
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 15:13:21 2020 -0400
+
+    Set up Login page
+
+commit 1b548cb7abb0eacdc39a4a033b8e862c9e1c0b72
+Merge: 4f8ce5d 88796f6
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 13:23:43 2020 -0500
+
+    Merge pull request #3 from djwilki/store
+    
+    Store
+
+commit 88796f64d6f0f0bd110bcb2238ed1a2f6a6aa599
+Merge: 05bd41c 4f8ce5d
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 13:23:27 2020 -0500
+
+    Merge branch 'master' into store
+
+commit 05bd41cec64e22bd01471900f57159b6c09be34c
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 13:21:33 2020 -0500
+
+    set up store and auth
+
+commit 9732f0b4c49aaaaf98c42a4a3f2bbff787a54e91
+Merge: 78d3d46 4f8ce5d
+Author: Cole Hunter <cole.joshua.hunter@outlook.com>
+Date:   Mon Sep 28 12:20:05 2020 -0500
+
+    merging new pull
+
+commit 4f8ce5d43cb710a6a8cc3433fc2e897400033da1
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 13:16:03 2020 -0400
+
+    Set up project
+
+commit 78d3d46a5390ffbbf94984b9f932f9237e82a6e2
+Author: Panayiotis Dimopoulos <panayiotis.dimopoulos@gmail.com>
+Date:   Mon Sep 28 13:12:23 2020 -0400
+
+    Set up project
+
+commit 9e37d1d64a836f76c35c161ad0ab82262117921d
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 10:47:30 2020 -0500
+
+    Update README.md
+
+commit 99686ee9fec3f52f0ccb8c4397f630056228b208
+Merge: e2f0aec 684eca3
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 10:43:06 2020 -0500
+
+    Merge branch 'master' of github.com:djwilki/EverQuote
+
+commit e2f0aec9e4d83776a62745d9c283a7a45929c5ee
+Author: Jerel <65048179+jerels@users.noreply.github.com>
+Date:   Mon Sep 28 10:41:48 2020 -0500
+
+    added the project starter
+
+commit 684eca336c3e503958d5f7a5a80fcfab4ac9aa5c
+Author: chunter3311 <60110662+chunter3311@users.noreply.github.com>
+Date:   Mon Sep 28 09:54:26 2020 -0500
+
+    Update README.md
+
+commit 53b0873bd6f657f4c214ffd1be258ec8a87a41bf
+Author: chunter3311 <60110662+chunter3311@users.noreply.github.com>
+Date:   Mon Sep 28 09:35:19 2020 -0500
+
+    Update README.md
+
+commit 5268338741945e4a5d854cc5e37ac6c31436f7ca
+Author: djwilki <11danielw@gmail.com>
+Date:   Fri Sep 25 18:54:52 2020 -0400
+
+    Initial commit

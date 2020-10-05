@@ -21,17 +21,36 @@ function Navbar({ history }) {
 
     return (
         <nav className={styles.sidebar_nav}>
-            <button className={styles.usernameDropDown} onClick={handleLogout}>demo ▼</button>
-            <NewNoteButton />
-            <ul className={styles.navlinks}>
-                <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
-                <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
-            </ul>
-            <ul className={styles.extra_navlinks}>
-                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                <li><NavLink to="/signup" activeclass="active">Sign up</NavLink></li>
+            <ul>
+                <li>
+                    demo
+                </li>
+                <li>
+                    New Note
+                </li>
+                <ul>
+                    <li>
+                        All Notes
+                    </li>
+                    <li>
+                        Notebooks
+                    </li>
+                </ul>
             </ul>
         </nav>
     );
 }
 export default withRouter(Navbar);
+
+{/* <nav className={styles.sidebar_nav}>
+<button className={styles.usernameDropDown} onClick={handleLogout}>demo ▼</button>
+<NewNoteButton />
+<ul className={styles.navlinks}>
+    <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
+    <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
+</ul>
+<ul className={styles.extra_navlinks}>
+    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+    <li><NavLink to="/signup" activeclass="active">Sign up</NavLink></li>
+</ul>
+</nav> */}

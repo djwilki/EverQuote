@@ -1,0 +1,89 @@
+main {
+    margin-left: 217px;
+}
+
+.sidebar_nav {
+    height: 100%;
+    width: 228px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1a1a1a;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.sidebar_nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.sidebar_nav a {
+    color: #a6a6a6;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.sidebar_nav a:hover {
+    color: white;
+}
+
+.usernameDropDown {
+    display: block;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.newNoteBtn {
+    display: block;
+    background-color: #00a82d;
+    color: white;
+    font-size: 25px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.newNoteBtn:hover {
+    background-color: #008f26
+}
+
+.extra_navlinks {
+    position: fixed;
+    bottom: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgb(230 230 230);
+    color: rgb(188 188 188);
+    height: 37px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+th, td {
+    text-align: left;
+}
+
+th {
+    padding: 0 5px
+}
+
+td {
+    padding: 8px;
+}
+
+tr:nth-child(odd) {background-color: #f8f8f8;}

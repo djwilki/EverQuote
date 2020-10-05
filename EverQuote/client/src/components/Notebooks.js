@@ -26,6 +26,46 @@ function Notebooks(props) {
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const note_rows = (currentNotebookId) => {
+        return Object.values(notes).map(ele => {
+            if (currentNotebookId === ele.notebookId) {
+                return (
+                    <tr>
+                        <td style={{ padding: "0px 0px 0px 64px" }}>
+                            <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.665 4.5h8.75c.92 0 1.667.746 1.667 1.667v8.748h-3.334a.625.625 0 00-.625.624v3.958H7.665c-.92 0-1.667-.747-1.667-1.667V6.167c0-.92.747-1.667 1.667-1.667zm7.037 4.584a.625.625 0 100-1.25H9.298a.625.625 0 100 1.25h5.404zm.625 2.918c0 .345-.28.625-.625.625H9.298a.625.625 0 010-1.25h5.404c.345 0 .625.28.625.625zm-4.363 4.158a.625.625 0 100-1.25H9.298a.625.625 0 100 1.25h1.666z" fill="currentColor"></path><path d="M15.373 16.164h2.157l-2.107 2.693-.05.06v-2.753z" fill="currentColor"></path></svg>                            {ele.title}
+                        </td>
+                        <td>You</td>
+                        <td>{ele.updated_at}</td>
+                        <td>...</td>
+                    </tr>
+                )
+            }
+        })
+    }
+
+    const notebook_rows = Object.values(notebooks).map(ele => {
+        return (
+            <>
+                <tr>
+                    <td>
+                        <button >
+                            <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 7l6 5-6 5V7z" fill="currentColor"></path></svg>
+                        </button>
+                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.035 4.5H5.958v15h2.077v-15z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M9.285 4.5v15h7.09c.92 0 1.667-.746 1.667-1.667V6.167c0-.92-.747-1.667-1.667-1.667h-7.09zm6.63 5.083a.75.75 0 01-.75.75h-3a.75.75 0 110-1.5h3a.75.75 0 01.75.75z" fill="currentColor"></path></svg>
+                        {ele.title}
+                    </td>
+                    <td>You</td>
+                    <td>{ele.updated_at}</td>
+                    <td>...</td>
+                </tr>
+                {note_rows(ele.id)}
+            </>
+        )
+    })
+
+
+
+
     useEffect(() => {
         setErrors([]);
     }, [title]);

@@ -63,6 +63,7 @@ export const addNote = (userId, notebookId) => {
         if (res.ok) {
             dispatch(setNote(res.data));
             await dispatch(updateUserNotebook(notebookId));
+            dispatch(setActiveNote(res.data.id));
         }
         return res;
     }

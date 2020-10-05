@@ -32,7 +32,7 @@ const TextEditor = ({ activeNoteObj }) => {
         }
         autosaveTimeout.current = setTimeout(async () => {
             console.log(activeNoteObj.id, title, content);
-            const res = await dispatch(updateNote(activeNoteObj.id, title, content));
+            await dispatch(updateNote(activeNoteObj.id, title, content));
             setLoading(false);
         }, 250);
         return;

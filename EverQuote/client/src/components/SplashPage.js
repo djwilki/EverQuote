@@ -34,5 +34,3 @@ function SplashPage(props) {
     );
 }
 export default SplashPage;
-
-

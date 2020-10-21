@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {NavLink} from 'react-router-dom'
 import NoteRow from './NoteRow';
 import NotebookMoreActionsModal from './NotebookMoreActionsModal'
-import { toggleEditNotebookModal, toggleNotebookModal } from '../store/ui';
+import { toggleEditNotebookModal, toggleNotebookModal, toggleListNotes } from '../store/ui';
 
 
-const NotebookRow = ({ notebook, username, setEditNotebookId }) => {
+const NotebookRow = ({ notebook, key, username, setEditNotebookId }) => {
     const notes = useSelector(state => Object.values(state.entities.notes).filter((note) => note.notebookId === notebook.id));
     const notebookOptions = useSelector(state => state.ui.notebookOptions)
+    // const listNotes = useSelector(state => state.ui.listNotes)
 
     const dispatch=useDispatch();
 
@@ -22,15 +24,23 @@ const NotebookRow = ({ notebook, username, setEditNotebookId }) => {
         dispatch(toggleEditNotebookModal())
     }
 
+
+    const [listNotes, setListNotes] = useState(false)
+
+    const togListNotes = (e) => {
+        e.preventDefault()
+        setListNotes(!listNotes);
+    }
+
     return (
-        <>
-            <tr className={`notebook-${notebook.id}`}>
+        <React.Fragment key={notebook.id}>
+            <tr key={notebook.id} className={`notebook-${notebook.id}`}>
                 <td>
-                    <button >
+                    <button  onClick={togListNotes}>
                         <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M10 7l6 5-6 5V7z" fill="currentColor"></path></svg>
                     </button>
                     <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.035 4.5H5.958v15h2.077v-15z" fill="currentColor"></path><path fillRule="evenodd" clipRule="evenodd" d="M9.285 4.5v15h7.09c.92 0 1.667-.746 1.667-1.667V6.167c0-.92-.747-1.667-1.667-1.667h-7.09zm6.63 5.083a.75.75 0 01-.75.75h-3a.75.75 0 110-1.5h3a.75.75 0 01.75.75z" fill="currentColor"></path></svg>
-                    {notebook.title}
+                    <NavLink to='/notes'>{notebook.title}</NavLink>
                 </td>
                 <td>{username}</td>
                 <td>{notebook.updated_at}</td>
@@ -41,12 +51,12 @@ const NotebookRow = ({ notebook, username, setEditNotebookId }) => {
                     {notebookOptions ? <NotebookMoreActionsModal togEditNotebookModal={togEditNotebookModal} notebookId={notebook.id}/> : ""}
                 </td>
             </tr>
-            { notes.map((note, i) => {
+            {listNotes ? notes.map((note, i) => {
                 return (
-                    <NoteRow key={`notebook-${notebook.id}-note-${i + 1}`} note={note} username={username} />
+                    <NoteRow note={note} username={username} />
                 )
-            })}
-        </>
+            }) : ''}
+        </React.Fragment>
     );
 }
 

@@ -4,6 +4,7 @@ const TOGGLE_NOTEBOOK_OPTIONS_MODAL = 'ui/TOGGLE_NOTEBOOK_OPTIONS_MODAL';
 const TOGGLE_MOVE_NOTES_MODAL = 'ui/TOGGLE_MOVE_NOTES_MODAL';
 const TOGGLE_EDIT_NOTEBOOK_MODAL = 'ui/TOGGLE_EDIT_NOTEBOOK_MODAL';
 const TOGGLE_CREATE_NOTEBOOK_MODAL = 'ui/TOGGLE_CREATE_NOTEBOOK_MODAL';
+const TOGGLE_LIST_NOTES = 'ui/TOGGLE_LIST_NOTES';
 
 export const toggleUserModal = () => {
     return {
@@ -41,13 +42,20 @@ export const toggleCreateNotebookModal = () => {
     }
 };
 
+export const toggleListNotes = () => {
+    return {
+        type: TOGGLE_LIST_NOTES
+    }
+}
+
 const initialUIState = {
     userModal: false,
     noteOptions: false,
     notebookOptions: false,
     moveNotes: false,
     editNotebook: false,
-    createNotebook: false
+    createNotebook: false,
+    listNotes: false,
 };
 
 export default function uiReducer(state = initialUIState, action) {
@@ -70,6 +78,9 @@ export default function uiReducer(state = initialUIState, action) {
             return newState;
         case TOGGLE_MOVE_NOTES_MODAL:
             newState.moveNotes = !newState.moveNotes;
+            return newState;
+        case TOGGLE_LIST_NOTES:
+            newState.listNotes = !newState.listNotes;
             return newState;
         default:
             return state;

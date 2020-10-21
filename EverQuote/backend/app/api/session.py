@@ -40,3 +40,17 @@ def csrf():
     res = make_response("Setting csrf token")
     res.set_cookie("XSRF-TOKEN", generate_csrf())
     return res
+
+@session.route('/load', methods=["GET"])
+def load():
+    print(current_user)
+    if current_user.is_authenticated:
+        return {"user": { "user_id": current_user.to_dict()['id']}}
+    else:
+        return {"user": {"user_id": ""}}
+
+@login_manager.user_loader
+def load_user(user_id):
+    if user_id is not None:
+        return User.query.get(user_id)
+    return None

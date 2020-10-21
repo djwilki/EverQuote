@@ -77,6 +77,18 @@ export const logout = () => {
     }
 }
 
+export const loadSession = () => {
+    return async dispatch => {
+        const res = await fetch('/api/session/load');
+        res.data = await res.json();
+        if (res.ok) {
+            dispatch(setUser(res.data.user));
+        }
+        return res
+    }
+
+}
+
 const initialSessionState = {
     user_id: null,
     selectedNotebookId: null,
@@ -97,6 +109,7 @@ export default function sessionReducer(state = initialSessionState, action) {
             // newState.user_id = null;
             // return newState;
         case SET_SELECTED_NOTEBOOK:
+            localStorage.setItem('selectedNotebook', action.notebookId)
             newState.selectedNotebookId = action.notebookId;
             return newState;
         case SET_DEFAULT_NOTEBOOK:
@@ -106,6 +119,7 @@ export default function sessionReducer(state = initialSessionState, action) {
             newState.noteList = action.noteList;
             return newState;
         case SET_ACTIVE_NOTE:
+            localStorage.setItem('activeNote', action.noteId)
             newState.activeNote = action.noteId;
             return newState;
         default:

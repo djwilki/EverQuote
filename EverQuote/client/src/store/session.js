@@ -81,7 +81,6 @@ const initialSessionState = {
     user_id: null,
     selectedNotebookId: null,
     defaultNotebookId: null,
-    noteList: null,
     activeNote: null
 }
 

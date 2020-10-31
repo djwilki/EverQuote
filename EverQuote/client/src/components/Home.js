@@ -26,15 +26,14 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
             await dispatch(setUserNotebooks(userId));
         }
         getNotebooks();
-        dispatch(setSelectedNotebook(selectedNotebookId || 1));
 
         const getUserInfo = async () => {
             await dispatch(setUserInfo(userId));
         }
         getUserInfo();
-        
+
         dispatch(setSelectedNotebook(selectedNotebookId || defaultNotebookId));
-    }, [dispatch, userId, selectedNotebookId]);
+    }, [dispatch, userId]);
 
     return (
         <>

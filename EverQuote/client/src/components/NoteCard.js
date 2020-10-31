@@ -5,7 +5,7 @@ import { setActiveNote } from '../store/session';
 const NoteCard = ({ note }) => {
     const dispatch = useDispatch();
 
-    const handleNoteClick = (event) => {
+    const handleNoteClick = () => {
         dispatch(setActiveNote(note.id));
     }
 

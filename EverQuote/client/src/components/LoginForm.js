@@ -50,7 +50,7 @@ const LoginForm = ({ history }) => {
     }
 
     return (
-
+        <div className="body">
         <div className={`${styles.form_wrapper} ${styles.centered}`}>
             <div className={styles.form_container}>
                 <div className={styles.form_header}>
@@ -94,6 +94,7 @@ const LoginForm = ({ history }) => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

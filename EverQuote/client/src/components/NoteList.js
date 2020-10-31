@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NoteCard from './NoteCard';
 
-const NoteList = ({ selectedNotebook, notes }) => {
+const NoteList = ({ notebook, notes }) => {
 
     return (
         <div style={{ width: "380px", height: "100vh", backgroundColor: "#F8F8F8" }}>
             <div>
-                {selectedNotebook ? <h1>{selectedNotebook.title}</h1> : <h1 style={{ color: "black" }}>All Notes</h1>}
+                {notebook ? <h1>{notebook.title}</h1> : <h1 style={{ color: "black" }}>All Notes</h1>}
                 <h3>{notes.length} Notes</h3>
             </div>
             { notes.map((note, i) => {
@@ -20,7 +20,13 @@ const NoteList = ({ selectedNotebook, notes }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    let notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.selectedNotebookId);
+    let notes;
+
+    if (state.session.noteList.id) {
+        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList.id)
+    } else {
+        notes = Object.values(state.entities.notes);
+    }
 
     notes.sort((a, b) => {
         const aDate = new Date(a.updated_at)
@@ -30,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
     });
 
     return {
-        selectedNotebook: state.entities.notebooks[state.session.selectedNotebookId],
+        notebook: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
         notes
     };
 }

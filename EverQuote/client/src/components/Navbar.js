@@ -6,6 +6,7 @@ import UserModal from './UserModal';
 import UserModalButton from './UserModalButton';
 import styles from '../styles/navbar.module.css';
 import NotebookSelect from './NotebookSelect';
+import { setNoteList } from '../store/session';
 
 function Navbar({ history }) {
     const dispatch = useDispatch();
@@ -13,13 +14,18 @@ function Navbar({ history }) {
     const userModal = useSelector(state => state.ui.userModal);
     const user = useSelector(state => state.entities.users[state.session.user_id]);
 
+    const handleAllNotesClick = (e) => {
+        e.preventDefault();
+        dispatch(setNoteList("notebook", null));
+    }
+
     return (
         <nav className={styles.sidebar_nav}>
             <UserModalButton user={user}/>
             { userModal ? <UserModal /> : <></>}
             <NewNoteButton />
             <ul className={styles.navlinks}>
-                <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
+                <li onClick={handleAllNotesClick}><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
                 <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
                 {notebooks && notebooks.length ?
                 notebooks.map((notebook, i) => <NotebookSelect notebook={notebook} key={`notebook-${i + 1}`}/>)

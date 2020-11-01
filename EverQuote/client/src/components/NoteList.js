@@ -1,20 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NoteCard from './NoteCard';
+import noteStyles from '../styles/note.module.css';
 
-const NoteList = ({ notebook, notes }) => {
+const NoteList = ({ noteList, notes }) => {
 
     return (
-        <div style={{ width: "380px", height: "100vh", backgroundColor: "#F8F8F8" }}>
-            <div>
-                {notebook ? <h1>{notebook.title}</h1> : <h1 style={{ color: "black" }}>All Notes</h1>}
-                <h3>{notes.length} Notes</h3>
+        <div className={noteStyles.noteListAndHeader}>
+            <div className={noteStyles.noteListHeaderContainer}>
+                <h1 className={noteStyles.noteListHeader}>{noteList ? noteList.title : "All Notes"}</h1>
+                <span className={noteStyles.noteAmount}>{notes.length} Notes</span>
             </div>
+            <div className={noteStyles.noteList + " noteList"}>
             { notes.map((note, i) => {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />
                 );
             })}
+            </div>
         </div>
     );
 }
@@ -36,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     });
 
     return {
-        notebook: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
+        noteList: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
         notes
     };
 }

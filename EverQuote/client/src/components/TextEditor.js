@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { updateNote } from '../store/notes';
+import { updateNote, updateNoteItem } from '../store/notes';
 import TextEditorTopSection from './TextEditorTopSection';
 import TextEditorContext from '../contexts/TextEditorContext';
 import noteStyles from '../styles/note.module.css';
@@ -8,6 +8,7 @@ import TextEditorBottomBar from './TextEditorBottomBar';
 
 
 const TextEditor = ({ activeNoteObj }) => {
+    console.log(activeNoteObj);
     const dispatch = useDispatch();
     const { editorFullscreen: { isFullscreen: editorFullscreen } } = useSelector(state => state.ui);
     const [title, setTitle] = useState("");
@@ -31,14 +32,23 @@ const TextEditor = ({ activeNoteObj }) => {
     const handleAutoSave = event => {
         setLoading(true);
         event.stopPropagation();
+        dispatch(updateNoteItem({
+            id: activeNoteObj.id,
+            title,
+            content,
+            isTrash: activeNoteObj.isTrash,
+            notebookId: activeNoteObj.notebookId,
+            userId: activeNoteObj.userId,
+            created_at: activeNoteObj.created_at,
+            updated_at: activeNoteObj.updated_at
+        }));
         if (autosaveTimeout.current) {
             clearTimeout(autosaveTimeout.current);
         }
         autosaveTimeout.current = setTimeout(async () => {
-            console.log(activeNoteObj.id, title, content);
-            dispatch(updateNote(activeNoteObj.id, title, content));
+            await dispatch(updateNote(activeNoteObj.id, title, content));
             setLoading(false);
-        }, 400);
+        }, 1000);
         return;
     }
 

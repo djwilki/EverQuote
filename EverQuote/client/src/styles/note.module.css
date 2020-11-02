@@ -59,7 +59,6 @@ button:hover {
     color: #00c033;
 }
 
-
 .noteListHeaderContainer {
     height: 12.5vh;
     padding-left: 8%;
@@ -149,28 +148,90 @@ button:hover {
 }
 
 .editorTopSection {
+    display: flex;
+
+    justify-content: space-between;
+
     min-height: 12.5vh;
+
+    padding: 18px 36px;
+
     background-color: white;
     border: 1px solid #F3F3F3;
 }
 
+.buttonContainer {
+    margin: auto 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    width: 256px;
+}
+
+.fullscreenButtonContainer {
+    position: relative;
+}
+
 .fullscreenButton {
-    width: 20px;
-    height: 20px;
+    width: 36px;
+    height: 36px;
+
+    padding: 4px 2px 4px 4px;
+
+    opacity: 60%;
+
+    border-radius: 8px;
+}
+
+.fullscreenButton:hover, .notebookButton:hover {
+    filter: brightness(80%);
+}
+
+.fullscreenButton:focus {
+    outline: none;
 }
 
 .notebookButtonContainer {
     position: relative;
 }
 
+.hidden {
+    position: absolute;
+    opacity: 0;
+}
+
 .notebookButton {
     display: flex;
-    height: 20px;
-    width: 200px;
+    height: 36px;
+
+    padding: 4px 6px 4px 0px;
+
+    align-items: center;
+
+    color: black;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    opacity: 60%;
+}
+
+.notebookButton:hover {
+    color: black;
+}
+
+.notebookButton:focus {
+    outline: none;
 }
 
 .notebookTooltip {
     position: absolute;
+
+    top: 44px;
+    left: 18px;
 
     height: 40px;
     width: 120px;
@@ -183,6 +244,8 @@ button:hover {
 
     color: white;
     background-color: #404040;
+
+    transition: opacity 0.3s;
 }
 
 .notebookTooltipTriangle {
@@ -202,8 +265,14 @@ button:hover {
 }
 
 .notebookSVGWrapper {
-    height: 20px;
-    width: 20px;
+    padding: 2px;
+
+    height: 32px;
+    width: 32px;
+
+    margin-right: 4px;
+
+    opacity: 80%;
 }
 
 .noteForm {
@@ -246,4 +315,55 @@ button:hover {
     height: 28px;
     padding: 6px 12px;
     border-top: 1px solid #F3F3F3;
+}
+
+.fullscreenTooltip {
+    position: absolute;
+
+    text-align: center;
+
+    top: 44px;
+    left: -34px;
+
+    height: 40px;
+    width: 106px;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: white;
+    background-color: #404040;
+
+    transition: opacity 0.3s;
+}
+
+.fullscreenTooltipTriangle {
+    position: absolute;
+
+    top: -4px;
+
+    right: 45.8%;
+
+    height: 12px;
+    width: 12px;
+    background-color: #404040;
+
+    transform: rotate(45deg);
+
+    z-index: 0;
+}
+
+.editorTopLeftContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.updatedText {
+    font-size: 13px;
+    color: #A6A6A6;
+    margin-bottom: -12px;
+    margin-left: 6px;
 }

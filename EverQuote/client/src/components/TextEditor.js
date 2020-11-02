@@ -7,7 +7,7 @@ import noteStyles from '../styles/note.module.css';
 
 const TextEditor = ({ activeNoteObj }) => {
     const dispatch = useDispatch();
-    const { editorFullscreen } = useSelector(state => state.ui);
+    const { editorFullscreen: { isFullscreen: editorFullscreen } } = useSelector(state => state.ui);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);

@@ -26,12 +26,14 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
 
     return (
         <div className={noteStyles.editorTopSection}>
-            <div style={{ display: "flex" }}>
+            <div className={noteStyles.editorTopLeftContainer}>
+            <div className={noteStyles.buttonContainer}>
                 <FullscreenButton />
                 <EditorNotebookButton activeNotebook={activeNotebook} />
             </div>
+            <span className={noteStyles.updatedText}>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
+            </div>
             <button onClick={handleNoteModal}>...</button>
-            <span>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
         </div>
     )
 }

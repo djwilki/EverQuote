@@ -42,10 +42,6 @@ export const logoutUser = () => {
     }
 }
 
-
-
-
-
 export const login = (email_or_username, password) => {
     const csrfToken = Cookies.get('XSRF-TOKEN');
     return async dispatch => {

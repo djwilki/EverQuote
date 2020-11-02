@@ -11,7 +11,7 @@ import { setUserInfo } from '../store/users';
 
 function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {
     const dispatch = useDispatch();
-    const { editorFullscreen } = useSelector(state => state.ui);
+    const { editorFullscreen: { isFullscreen: editorFullscreen } } = useSelector(state => state.ui);
 
     useEffect(() => {
         const getNotes = async () => {

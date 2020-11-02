@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { updateNote } from '../store/notes';
 import TextEditorTopSection from './TextEditorTopSection';
+import TextEditorContext from '../contexts/TextEditorContext';
 import noteStyles from '../styles/note.module.css';
+import TextEditorBottomBar from './TextEditorBottomBar';
 
 
 const TextEditor = ({ activeNoteObj }) => {
@@ -34,9 +36,9 @@ const TextEditor = ({ activeNoteObj }) => {
         }
         autosaveTimeout.current = setTimeout(async () => {
             console.log(activeNoteObj.id, title, content);
-            await dispatch(updateNote(activeNoteObj.id, title, content));
+            dispatch(updateNote(activeNoteObj.id, title, content));
             setLoading(false);
-        }, 250);
+        }, 400);
         return;
     }
 
@@ -44,7 +46,12 @@ const TextEditor = ({ activeNoteObj }) => {
         event.preventDefault();
     }
 
+    const value = {
+        loading
+    }
+
     return (
+        <TextEditorContext.Provider value={value}>
         <div className={editorFullscreen ? noteStyles.editorFullscreen : noteStyles.editor}>
             <TextEditorTopSection />
             <form onSubmit={preventSubmit} className={noteStyles.noteForm} onKeyUp={handleAutoSave}>
@@ -61,10 +68,9 @@ const TextEditor = ({ activeNoteObj }) => {
                 resize="none"
                 placeholder="Start writing your note!"></textarea>
             </form>
-            <div className={noteStyles.bottomBar}>
-                <span>{loading ? "Processing and saving changes..." : "Note saved"}</span>
-            </div>
+            <TextEditorBottomBar />
         </div>
+        </TextEditorContext.Provider>
     );
 }
 

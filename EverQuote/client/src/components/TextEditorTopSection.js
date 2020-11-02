@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, connect } from 'react-redux';
-import { setNoteList } from '../store/session';
-import { toggleEditorFullscreen, toggleNoteModal } from '../store/ui';
+import { toggleNoteModal } from '../store/ui';
 import noteStyles from '../styles/note.module.css';
 import EditorNotebookButton from './EditorNotebookButton';
 import FullscreenButton from './FullscreenButton';

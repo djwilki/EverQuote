@@ -14,7 +14,7 @@ const EditorNotebookButton = ({ activeNotebook }) => {
     }
 
     const handleNotebookClick = () => {
-        dispatch(setNoteList("notebook", activeNotebook.id));
+        dispatch(setNoteList("notebook", activeNotebook.id, true));
     }
 
     const handleHover = () => {

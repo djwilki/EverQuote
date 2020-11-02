@@ -7,11 +7,12 @@ const SET_SELECTED_NOTEBOOK = 'session/SET_SELECTED_NOTEBOOK';
 const SET_NOTE_LIST = "session/SET_NOTE_LIST";
 const SET_ACTIVE_NOTE = "session/SET_ACTIVE_NOTE";
 
-export const setNoteList = (noteListType, id) => {
+export const setNoteList = (noteListType, id, display) => {
     return {
         type: SET_NOTE_LIST,
         noteListType,
-        id
+        id,
+        display
     }
 }
 
@@ -86,6 +87,7 @@ const initialSessionState = {
     selectedNotebookId: null,
     defaultNotebookId: null,
     noteList: {
+        display: true,
         type: 'notebook',
         id: null
     },
@@ -109,6 +111,7 @@ export default function sessionReducer(state = initialSessionState, action) {
             return newState;
         case SET_NOTE_LIST:
             let newNoteList = {
+                display: action.display,
                 type: action.noteListType,
                 id: action.id
             };

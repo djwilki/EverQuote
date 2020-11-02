@@ -14,7 +14,7 @@ const NotebookRow = ({ notebook, key, username, setEditNotebookId }) => {
     const dispatch = useDispatch();
 
     const setNoteListAndSelectedNotebook = () => {
-        dispatch(setNoteList("notebook", notebook.id));
+        dispatch(setNoteList("notebook", notebook.id, true));
         dispatch(setSelectedNotebook(notebook.id));
     }
 

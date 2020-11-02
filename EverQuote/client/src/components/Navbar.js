@@ -16,7 +16,7 @@ function Navbar({ history }) {
 
     const handleAllNotesClick = (e) => {
         e.preventDefault();
-        dispatch(setNoteList("notebook", null));
+        dispatch(setNoteList("notebook", null, true));
     }
 
     return (

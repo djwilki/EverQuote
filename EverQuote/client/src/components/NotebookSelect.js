@@ -9,7 +9,7 @@ const NotebookSelect = ({ notebook, history }) => {
         e.preventDefault();
         console.log(e.target.value)
         dispatch(setSelectedNotebook(Number(e.target.value)));
-        dispatch(setNoteList("notebook", Number(e.target.value)));
+        dispatch(setNoteList("notebook", Number(e.target.value), true));
         history.replace('/notes');
         return;
     }

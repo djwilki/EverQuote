@@ -13,7 +13,7 @@ session = Blueprint("session", __name__)
 @session.route("/login", methods=["POST"])
 def login():
     data = MultiDict(mapping=request.json)
-    print(data)
+    print('data!:', data)
     form = LoginForm(data)
     print(form.data)
     if form.validate():

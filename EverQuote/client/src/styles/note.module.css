@@ -165,9 +165,7 @@ button:hover {
 
     display: flex;
 
-    justify-content: space-between;
-
-    width: 256px;
+    min-width: 256px;
 }
 
 .fullscreenButtonContainer {
@@ -195,6 +193,7 @@ button:hover {
 
 .notebookButtonContainer {
     position: relative;
+    margin-left: 36px;
 }
 
 .hidden {
@@ -231,7 +230,6 @@ button:hover {
     position: absolute;
 
     top: 44px;
-    left: 18px;
 
     height: 40px;
     width: 120px;

@@ -4,7 +4,7 @@ import { setActiveNote } from '../store/session';
 import NoteCard from './NoteCard';
 import noteStyles from '../styles/note.module.css';
 
-const NoteList = ({ noteList, notes }) => {
+const NoteList = ({ noteList, notes, hidden }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const NoteList = ({ noteList, notes }) => {
 
 
     return (
-        <div className={noteStyles.noteListAndHeader}>
+        <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
                 <h1 className={noteStyles.noteListHeader}>{noteList ? noteList.title : "All Notes"}</h1>
                 <span className={noteStyles.noteAmount}>{notes.length} Notes</span>

@@ -47,11 +47,21 @@ const TextEditor = ({ activeNoteObj }) => {
     return (
         <div className={editorFullscreen ? noteStyles.editorFullscreen : noteStyles.editor}>
             <TextEditorTopSection />
-            <form onSubmit={preventSubmit} style={{ display: "flex", flexDirection: "column", width: "100%", height: "799px", border: "1px solid #F2F2F2" }} onKeyUp={handleAutoSave}>
-                <input type="text" style={{ height: "8%", border: "none" }} value={title} onChange={handleTitleChange} />
-                <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange} resize="none"></textarea>
+            <form onSubmit={preventSubmit} className={noteStyles.noteForm} onKeyUp={handleAutoSave}>
+                <input
+                className={noteStyles.noteTitleInput}
+                type="text" value={title}
+                onChange={handleTitleChange}
+                placeholder="Title"/>
+                <textarea
+                className={noteStyles.noteContentInput}
+                rows="8"
+                value={content}
+                onChange={handleContentChange}
+                resize="none"
+                placeholder="Start writing your note!"></textarea>
             </form>
-            <div style={{ backgroundColor: "white", height: "100%" }}>
+            <div className={noteStyles.bottomBar}>
                 <span>{loading ? "Processing and saving changes..." : "Note saved"}</span>
             </div>
         </div>

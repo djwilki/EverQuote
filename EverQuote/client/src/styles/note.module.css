@@ -153,3 +153,97 @@ button:hover {
     background-color: white;
     border: 1px solid #F3F3F3;
 }
+
+.fullscreenButton {
+    width: 20px;
+    height: 20px;
+}
+
+.notebookButtonContainer {
+    position: relative;
+}
+
+.notebookButton {
+    display: flex;
+    height: 20px;
+    width: 200px;
+}
+
+.notebookTooltip {
+    position: absolute;
+
+    height: 40px;
+    width: 120px;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: white;
+    background-color: #404040;
+}
+
+.notebookTooltipTriangle {
+    position: absolute;
+
+    top: -4px;
+
+    right: 45%;
+
+    height: 12px;
+    width: 12px;
+    background-color: #404040;
+
+    transform: rotate(45deg);
+
+    z-index: 0;
+}
+
+.notebookSVGWrapper {
+    height: 20px;
+    width: 20px;
+}
+
+.noteForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 781px;
+    border: 1px solid #F3F3F3;
+}
+
+.noteTitleInput {
+    height: 8%;
+    border: none;
+
+    font-size: 30px;
+    font-weight: 600;
+    padding: 0 40px;
+}
+
+.noteTitleInput:focus {
+    outline: none;
+}
+
+.noteContentInput {
+    height: 92%;
+    border: none;
+
+    padding: 12px 40px 0;
+    resize: none;
+
+    font-size: 16px;
+}
+
+.noteContentInput:focus {
+    outline: none;
+}
+
+.bottomBar {
+    background-color: white;
+    height: 28px;
+    padding: 6px 12px;
+    border-top: 1px solid #F3F3F3;
+}

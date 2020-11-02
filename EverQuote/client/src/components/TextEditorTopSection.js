@@ -3,6 +3,8 @@ import { useDispatch, connect } from 'react-redux';
 import { setNoteList } from '../store/session';
 import { toggleEditorFullscreen, toggleNoteModal } from '../store/ui';
 import noteStyles from '../styles/note.module.css';
+import EditorNotebookButton from './EditorNotebookButton';
+import FullscreenButton from './FullscreenButton';
 
 const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     const dispatch = useDispatch();
@@ -22,21 +24,13 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
         dispatch(toggleNoteModal());
     }
 
-    const handleNotebookClick = () => {
-        dispatch(setNoteList("notebook", activeNotebook.id));
-    }
-
-    const handleFullscreen = () => {
-        dispatch(toggleEditorFullscreen());
-    }
-
     return (
         <div className={noteStyles.editorTopSection}>
-            <button onClick={handleFullscreen}>Fullscreen</button>
-            <button onClick={handleNoteModal}>...</button>
-            <div>
-                <button onClick={handleNotebookClick}>{activeNotebook ? activeNotebook.title : ""}</button>
+            <div style={{ display: "flex" }}>
+                <FullscreenButton />
+                <EditorNotebookButton activeNotebook={activeNotebook} />
             </div>
+            <button onClick={handleNoteModal}>...</button>
             <span>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
         </div>
     )

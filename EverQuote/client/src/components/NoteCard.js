@@ -26,7 +26,7 @@ const NoteCard = ({ note }) => {
         <div className={isActive ? noteStyles.activeCard : noteStyles.notecard} onClick={handleNoteClick}>
             {
                 <>
-                    <h5 className={noteStyles.noteHeader}>{note.title}</h5>
+                    <h5 className={noteStyles.noteHeader}>{note.title ? note.title : "Untitled"}</h5>
                     <span className={noteStyles.noteText}>{note.content.length > 80 ? note.content.slice(0, 83) + '...' : note.content ? note.content : ""}</span>
                 </>
             }

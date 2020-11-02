@@ -9,7 +9,6 @@ notes = Blueprint("notes", __name__)
 def new_note():
     data = request.json
     note_content = requests.get('https://api.quotable.io/random').json()
-    print(note_content)
     note = Note(content=note_content["content"], title=f"{note_content['author']} said...", userId=data['userId'], notebookId=data['notebookId'])
     db.session.add(note)
     db.session.commit()

@@ -1,20 +1,32 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { setActiveNote } from '../store/session';
 import NoteCard from './NoteCard';
+import noteStyles from '../styles/note.module.css';
 
 const NoteList = ({ noteList, notes }) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (notes.length) {
+            dispatch(setActiveNote(notes[0].id));
+        }
+    }, [noteList]);
+
 
     return (
-        <div style={{ width: "380px", height: "100vh", backgroundColor: "#F8F8F8" }}>
-            <div>
-                {noteList ? <h1>{noteList}</h1> : <h1 style={{ color: "black" }}>All Notes</h1>}
-                <h3>{notes.length} Notes</h3>
+        <div className={noteStyles.noteListAndHeader}>
+            <div className={noteStyles.noteListHeaderContainer}>
+                <h1 className={noteStyles.noteListHeader}>{noteList ? noteList.title : "All Notes"}</h1>
+                <span className={noteStyles.noteAmount}>{notes.length} Notes</span>
             </div>
+            <div className={noteStyles.noteList + " noteList"}>
             { notes.map((note, i) => {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />
                 );
             })}
+            </div>
         </div>
     );
 }
@@ -22,11 +34,10 @@ const NoteList = ({ noteList, notes }) => {
 const mapStateToProps = (state, ownProps) => {
     let notes;
 
-    if (!state.session.noteList) {
-        notes = Object.values(state.entities.notes).filter((note) => !note.isTrash);
+    if (state.session.noteList.id) {
+        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList.id)
     } else {
-        // notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList);
-        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.selectedNotebookId);
+        notes = Object.values(state.entities.notes);
     }
 
     notes.sort((a, b) => {
@@ -37,7 +48,7 @@ const mapStateToProps = (state, ownProps) => {
     });
 
     return {
-        noteList: state.session.noteList,
+        noteList: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
         notes
     };
 }

@@ -1,54 +1,35 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import { logout } from '../store/session';
 import NewNoteButton from './NewNoteButton';
-import styles from '../styles/navbar.module.css';
 import UserModal from './UserModal';
-import { toggleUserModal } from '../store/ui';
-import { setSelectedNotebook } from '../store/session';
-
-
+import UserModalButton from './UserModalButton';
+import styles from '../styles/navbar.module.css';
+import NotebookSelect from './NotebookSelect';
+import { setNoteList } from '../store/session';
 
 function Navbar({ history }) {
     const dispatch = useDispatch();
-    const notebooks = useSelector(state => state.entities.notebooks);
+    const notebooks = useSelector(state => Object.values(state.entities.notebooks));
     const userModal = useSelector(state => state.ui.userModal);
-    const users = useSelector(state => state.entities.users);
+    const user = useSelector(state => state.entities.users[state.session.user_id]);
 
-    const handleModalClick = (e) => {
-        dispatch(toggleUserModal());
-    }
-
-    const handleSelect = (e) => {
+    const handleAllNotesClick = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
-        dispatch(setSelectedNotebook(Number(e.target.value)))
-        history.replace('/notes');
-        return;
+        dispatch(setNoteList("notebook", null));
     }
-
-    const getUsername = Object.values(users).map(user => {
-        return user.username;
-    })
-
-    const select_notebooks = Object.values(notebooks).map(ele => {
-        return (
-            <li key={ele.id}>
-                <button value={ele.id} onClick={handleSelect}>{ele.title}</button>
-            </li>
-        )
-    });
 
     return (
         <nav className={styles.sidebar_nav}>
-            <button className={styles.usernameDropDown} onClick={handleModalClick} id="toggleUserModal">{getUsername} ▼</button>
+            <UserModalButton user={user}/>
             { userModal ? <UserModal /> : <></>}
             <NewNoteButton />
             <ul className={styles.navlinks}>
-                <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
+                <li onClick={handleAllNotesClick}><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
                 <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
-                {select_notebooks}
+                {notebooks && notebooks.length ?
+                notebooks.map((notebook, i) => <NotebookSelect notebook={notebook} key={`notebook-${i + 1}`}/>)
+            : <></>}
             </ul>
             <ul className={styles.extra_navlinks}>
                 <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
@@ -58,16 +39,3 @@ function Navbar({ history }) {
     );
 }
 export default withRouter(Navbar);
-
-{/* <nav className={styles.sidebar_nav}>
-<button className={styles.usernameDropDown} onClick={handleLogout}>demo ▼</button>
-<NewNoteButton />
-<ul className={styles.navlinks}>
-    <li><NavLink to="/notes" activeclass="active">All Notes</NavLink></li>
-    <li><NavLink to="/notebooks" activeclass="active">Notebooks</NavLink></li>
-</ul>
-<ul className={styles.extra_navlinks}>
-    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-    <li><NavLink to="/signup" activeclass="active">Sign up</NavLink></li>
-</ul>
-</nav> */}

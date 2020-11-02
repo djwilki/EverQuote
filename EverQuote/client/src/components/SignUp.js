@@ -48,7 +48,7 @@ const SignUpPage = ({ history }) => {
     }
 
     return (
-
+        <div className="body">
         <div className={`${styles.form_wrapper} ${styles.centered}`}>
             <div className={styles.form_container}>
                 <div className={styles.form_header}>
@@ -90,6 +90,7 @@ const SignUpPage = ({ history }) => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

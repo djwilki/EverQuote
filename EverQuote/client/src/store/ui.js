@@ -5,6 +5,27 @@ const TOGGLE_MOVE_NOTES_MODAL = 'ui/TOGGLE_MOVE_NOTES_MODAL';
 const TOGGLE_EDIT_NOTEBOOK_MODAL = 'ui/TOGGLE_EDIT_NOTEBOOK_MODAL';
 const TOGGLE_CREATE_NOTEBOOK_MODAL = 'ui/TOGGLE_CREATE_NOTEBOOK_MODAL';
 const TOGGLE_LIST_NOTES = 'ui/TOGGLE_LIST_NOTES';
+const TOGGLE_EDITOR_FULLSCREEN = 'ui/TOGGLE_EDITOR_FULLSCREEN';
+const TOGGLE_NOTEBOOK_TOOLTIP = "session/TOGGLE_NOTEBOOK_TOOLTIP";
+const TOGGLE_FULLSCREEN_TOOLTIP = "session/TOGGLE_FULLSCREEN_TOOLTIP";
+
+export const toggleNotebookTooltip = () => {
+    return {
+        type: TOGGLE_NOTEBOOK_TOOLTIP
+    }
+}
+
+export const toggleFullscreenTooltip = () => {
+    return {
+        type: TOGGLE_FULLSCREEN_TOOLTIP
+    }
+}
+
+export const toggleEditorFullscreen = () => {
+    return {
+        type: TOGGLE_EDITOR_FULLSCREEN
+    }
+}
 
 export const toggleUserModal = () => {
     return {
@@ -56,10 +77,16 @@ const initialUIState = {
     editNotebook: false,
     createNotebook: false,
     listNotes: false,
+    editorFullscreen: {
+        isFullscreen: false,
+        showTooltip: false
+    },
+    notebookTooltip: false
 };
 
 export default function uiReducer(state = initialUIState, action) {
     const newState = Object.assign({}, state);
+    let newEditorFullscreen = Object.assign({}, state.editorFullscreen);
     switch (action.type) {
         case TOGGLE_USER_MODAL:
             newState.userModal = !newState.userModal;
@@ -81,6 +108,17 @@ export default function uiReducer(state = initialUIState, action) {
             return newState;
         case TOGGLE_LIST_NOTES:
             newState.listNotes = !newState.listNotes;
+            return newState;
+        case TOGGLE_EDITOR_FULLSCREEN:
+            newEditorFullscreen.isFullscreen = !newEditorFullscreen.isFullscreen;
+            newState.editorFullscreen = newEditorFullscreen;
+            return newState;
+        case TOGGLE_FULLSCREEN_TOOLTIP:
+            newEditorFullscreen.showTooltip = !newEditorFullscreen.showTooltip;
+            newState.editorFullscreen = newEditorFullscreen;
+            return newState;
+        case TOGGLE_NOTEBOOK_TOOLTIP:
+            newState.notebookTooltip = !newState.notebookTooltip;
             return newState;
         default:
             return state;

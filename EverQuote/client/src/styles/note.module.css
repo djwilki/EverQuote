@@ -1,47 +1,43 @@
-* {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+.noteListAndHeader {
+    min-height: 100vh;
+    width: 446px;
+    background-color: #F8F8F8;
+
+    border-left: 1px solid rgb(230, 230, 230);
+    border-right: 1px solid rgb(230, 230, 230);
 }
 
-h1 {
-    font-size: 20px;
-    color: rgb(51 51 51);
-    font-weight: normal;
-    margin: 0;
+.noteList {
+    overflow-y: scroll;
+    height: 87.5vh;
 }
 
-body {
-    background-image: none;
-    padding: 0;
-    margin: 0;
+.noteList::-webkit-scrollbar {
+    width: 8px;
+    height: 12px;
 }
 
-main {
-    /* padding: 10px 40px; */
+.noteList::-webkit-scrollbar:hover {
+    width: 8px;
+    height: 12px;
 }
 
-.notes_container {
-
+.noteList::-webkit-scrollbar-track {
+    background: #f8f8f8;
+    border-radius: 10px;
 }
 
-.notes_list {
-    /* width: 202px; */
-    /* width: 20%;
-    height: 100%; */
-    /* background-color: #f8f8f8; */
-    /* background-color: #7c7c7c;
-    padding: 25px; */
+.noteList::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #f8f8f8;
+}
 
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 240px;
-    background-color: #1a1a1a;
-    overflow-x: hidden;
-    padding-top: 20px;
-    font-family: sans-serif;
-    padding: 20px;
+.noteList:hover::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+.noteList::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
 
 .notes_title_bar {
@@ -51,38 +47,7 @@ main {
     margin-top: 40px;
 }
 
-.notes_title {
-
-}
-
-.note_list_item {
-
-}
-
-.note_list_item_preview {
-
-}
-
-.note_list_item_title {
-
-}
-
-.note_list_item_content_snippet {
-
-}
-
-.note_list_item_last_updated {
-
-}
-
-.selected_note_container {
-
-}
-
-
-
 button {
-    /* outline: none !important; */
     border: none;
     background-color: white;
     color: #00a82d;
@@ -94,11 +59,322 @@ button:hover {
     color: #00c033;
 }
 
-button.newNotebook {
-
+.noteListHeaderContainer {
+    height: 12.5vh;
+    padding-left: 8%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 
-button.sortOptions {
 
+.noteListHeader {
+    color: #333333;
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
+.noteAmount {
+    color: #666666;
+    font-size: 13px;
+}
+
+.notecard {
+    position: relative;
+    height: 12.5vh;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding: 14px 28px;
+    overflow: hidden;
+}
+
+.activeCard {
+    position: relative;
+    height: 12.5vh;
+    border: 3px solid #0081C2;
+    padding: 11px 25px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.activeUpdated {
+    position: absolute;
+    font-size: 12px;
+    color: #737373;
+
+    bottom: 5px;
+    left: 25px;
+}
+
+.notecard:hover {
+    background-color: white;
+    transition: 0.2s;
+
+    cursor: default;
+}
+
+.noteHeader {
+    color: #333333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.noteText {
+    color: #737373;
+    font-size: 14px;
+}
+
+.noteUpdated {
+    position: absolute;
+    font-size: 12px;
+    color: #737373;
+
+    bottom: 7px;
+    left: 28px;
+}
+
+.editorFullscreen {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    z-index: 20;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.editorTopSection {
+    display: flex;
+
+    justify-content: space-between;
+
+    min-height: 12.5vh;
+
+    padding: 18px 36px;
+
+    background-color: white;
+    border: 1px solid #F3F3F3;
+}
+
+.buttonContainer {
+    margin: auto 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    width: 256px;
+}
+
+.fullscreenButtonContainer {
+    position: relative;
+}
+
+.fullscreenButton {
+    width: 36px;
+    height: 36px;
+
+    padding: 4px 2px 4px 4px;
+
+    opacity: 60%;
+
+    border-radius: 8px;
+}
+
+.fullscreenButton:hover, .notebookButton:hover {
+    filter: brightness(80%);
+}
+
+.fullscreenButton:focus {
+    outline: none;
+}
+
+.notebookButtonContainer {
+    position: relative;
+}
+
+.hidden {
+    position: absolute;
+    opacity: 0;
+}
+
+.notebookButton {
+    display: flex;
+    height: 36px;
+
+    padding: 4px 6px 4px 0px;
+
+    align-items: center;
+
+    color: black;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    opacity: 60%;
+}
+
+.notebookButton:hover {
+    color: black;
+}
+
+.notebookButton:focus {
+    outline: none;
+}
+
+.notebookTooltip {
+    position: absolute;
+
+    top: 44px;
+    left: 18px;
+
+    height: 40px;
+    width: 120px;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: white;
+    background-color: #404040;
+
+    transition: opacity 0.3s;
+}
+
+.notebookTooltipTriangle {
+    position: absolute;
+
+    top: -4px;
+
+    right: 45%;
+
+    height: 12px;
+    width: 12px;
+    background-color: #404040;
+
+    transform: rotate(45deg);
+
+    z-index: 0;
+}
+
+.notebookSVGWrapper {
+    padding: 2px;
+
+    height: 32px;
+    width: 32px;
+
+    margin-right: 4px;
+
+    opacity: 80%;
+}
+
+.noteForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 781px;
+    border: 1px solid #F3F3F3;
+}
+
+.noteTitleInput {
+    height: 8%;
+    border: none;
+
+    font-size: 30px;
+    font-weight: 600;
+    padding: 0 40px;
+}
+
+.noteTitleInput:focus {
+    outline: none;
+}
+
+.noteContentInput {
+    height: 92%;
+    border: none;
+
+    padding: 12px 40px 0;
+    resize: none;
+
+    font-size: 16px;
+}
+
+.noteContentInput:focus {
+    outline: none;
+}
+
+.bottomBar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-size: 13px;
+
+    height: 40px;
+    padding: 6px 12px;
+
+    background-color: white;
+    border-top: 1px solid #F3F3F3;
+}
+
+.bottomBarText {
+    color: #A6A6A6;
+}
+
+.fullscreenTooltip {
+    position: absolute;
+
+    text-align: center;
+
+    top: 44px;
+    left: -34px;
+
+    height: 40px;
+    width: 106px;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    color: white;
+    background-color: #404040;
+
+    transition: opacity 0.3s;
+}
+
+.fullscreenTooltipTriangle {
+    position: absolute;
+
+    top: -4px;
+
+    right: 45.8%;
+
+    height: 12px;
+    width: 12px;
+    background-color: #404040;
+
+    transform: rotate(45deg);
+
+    z-index: 0;
+}
+
+.editorTopLeftContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.updatedText {
+    font-size: 13px;
+    color: #A6A6A6;
+    margin-bottom: -12px;
+    margin-left: 6px;
+}

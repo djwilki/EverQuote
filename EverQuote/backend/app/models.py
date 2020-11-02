@@ -15,9 +15,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
-    notes = db.relationship('Note', back_populates='user')
+    notes = db.relationship('Note', back_populates='user', order_by="Note.updated_at")
     notebooks = db.relationship('Notebook', back_populates='user')
-    
+
     tags = db.relationship('Tag', back_populates="user")
 
 

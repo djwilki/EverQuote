@@ -8,6 +8,11 @@ const EditorNotebookButton = ({ activeNotebook }) => {
     const dispatch = useDispatch();
     const { notebookTooltip: showTooltip } = useSelector(state => state.ui);
 
+    const getTooltipPlacement = () => {
+        let box = document.querySelector(".notebookButton") || { offsetWidth: 0 };
+        return (box.offsetWidth - 120) / 2;
+    }
+
     const handleNotebookClick = () => {
         dispatch(setNoteList("notebook", activeNotebook.id));
     }
@@ -19,7 +24,7 @@ const EditorNotebookButton = ({ activeNotebook }) => {
     return (
         <div className={noteStyles.notebookButtonContainer}>
             <button
-                className={noteStyles.notebookButton}
+                className={noteStyles.notebookButton + " notebookButton"}
                 onClick={handleNotebookClick}
                 onMouseEnter={handleHover}
                 onMouseLeave={handleHover}>
@@ -28,7 +33,9 @@ const EditorNotebookButton = ({ activeNotebook }) => {
                 </div>
                 <span>{activeNotebook ? activeNotebook.title : ""}</span>
             </button>
-            <div className={showTooltip ? noteStyles.notebookTooltip : noteStyles.hidden}>
+            <div
+            className={showTooltip ? noteStyles.notebookTooltip : noteStyles.hidden}
+            style={{ left: getTooltipPlacement(), right: getTooltipPlacement()}}>
                 <div className={noteStyles.notebookTooltipTriangle}></div>
                 <span>Go to Notebook</span>
             </div>

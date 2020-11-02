@@ -1,12 +1,14 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { toggleNoteModal } from '../store/ui';
 import noteStyles from '../styles/note.module.css';
 import EditorNotebookButton from './EditorNotebookButton';
 import FullscreenButton from './FullscreenButton';
+import NoteOptionsModal from './NoteOptionsModal';
 
 const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     const dispatch = useDispatch();
+    const noteModal = useSelector(state => state.ui.noteOptions);
 
     const genUpdatedAt = (updatedAt) => {
         const lessThan10 = /^0[1-9]/;
@@ -19,8 +21,10 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
         }
     }
 
-    const handleNoteModal = () => {
-        dispatch(toggleNoteModal());
+    const handleNoteModal = async e => {
+        e.preventDefault();
+        await dispatch(toggleNoteModal());
+        return;
     }
 
     return (
@@ -33,6 +37,7 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
             <span className={noteStyles.updatedText}>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
             </div>
             <button onClick={handleNoteModal}>...</button>
+            { noteModal ? <NoteOptionsModal /> : <></>}
         </div>
     )
 }

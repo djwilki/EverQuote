@@ -13,7 +13,6 @@ const NoteList = ({ noteList, notes, hidden }) => {
         }
     }, [noteList]);
 
-
     return (
         <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
@@ -22,9 +21,11 @@ const NoteList = ({ noteList, notes, hidden }) => {
             </div>
             <div className={noteStyles.noteList + " noteList"}>
             { notes.map((note, i) => {
+                if (!note.isTrash) {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />
                 );
+                }
             })}
             </div>
         </div>

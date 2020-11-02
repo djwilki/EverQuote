@@ -9,7 +9,7 @@ function Notes(props) {
 
     return (
         <section style={{display: "flex"}}>
-            {noteList ? <NoteList /> : <></>}
+            <NoteList hidden={!noteList}/>
             <TextEditor />
         </section>
     );

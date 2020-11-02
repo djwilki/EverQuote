@@ -1,9 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { setActiveNote } from '../store/session';
 import NoteCard from './NoteCard';
 import noteStyles from '../styles/note.module.css';
 
 const NoteList = ({ noteList, notes }) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (notes.length) {
+            dispatch(setActiveNote(notes[0].id));
+        }
+    }, [noteList]);
+
 
     return (
         <div className={noteStyles.noteListAndHeader}>

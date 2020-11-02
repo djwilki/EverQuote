@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { updateNote } from '../store/notes';
-import { toggleNoteModal } from '../store/ui';
+import TextEditorTopSection from './TextEditorTopSection';
+import noteStyles from '../styles/note.module.css';
 
 
 const TextEditor = ({ activeNoteObj }) => {
     const dispatch = useDispatch();
+    const { editorFullscreen } = useSelector(state => state.ui);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
@@ -42,16 +44,9 @@ const TextEditor = ({ activeNoteObj }) => {
         event.preventDefault();
     }
 
-    const handleNoteModal = () => {
-        dispatch(toggleNoteModal());
-    }
-
     return (
-        <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100vh" }}>
-            <div style={{ minHeight: "92px", backgroundColor: "white", border: "1px solid #F2F2F2" }}>
-                Toolbar Placeholder
-            </div>
-            <div onClick={handleNoteModal}>...</div>
+        <div className={editorFullscreen ? noteStyles.editorFullscreen : noteStyles.editor}>
+            <TextEditorTopSection />
             <form onSubmit={preventSubmit} style={{ display: "flex", flexDirection: "column", width: "100%", height: "799px", border: "1px solid #F2F2F2" }} onKeyUp={handleAutoSave}>
                 <input type="text" style={{ height: "8%", border: "none" }} value={title} onChange={handleTitleChange} />
                 <textarea rows="8" style={{ height: "92%", border: "none" }} value={content} onChange={handleContentChange} resize="none"></textarea>

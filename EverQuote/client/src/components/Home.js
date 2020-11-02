@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import MainContent from './MainContent';
 import Navbar from './Navbar';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 import { setUserNotebooks } from '../store/notesbooks';
@@ -11,6 +11,7 @@ import { setUserInfo } from '../store/users';
 
 function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {
     const dispatch = useDispatch();
+    const { editorFullscreen } = useSelector(state => state.ui);
 
     useEffect(() => {
         const getNotes = async () => {
@@ -19,17 +20,18 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
         const getTrash = async () => {
             await dispatch(setUserTrash(userId));
         }
-        getNotes();
-        getTrash();
 
         const getNotebooks = async () => {
             await dispatch(setUserNotebooks(userId));
         }
-        getNotebooks();
 
         const getUserInfo = async () => {
             await dispatch(setUserInfo(userId));
         }
+
+        getNotes();
+        getTrash();
+        getNotebooks();
         getUserInfo();
 
         dispatch(setSelectedNotebook(selectedNotebookId || defaultNotebookId));
@@ -38,7 +40,7 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
     return (
         <>
             <div style={{ display: "flex", height: "100vh" }}>
-                <Navbar />
+               { editorFullscreen ? <></> : <Navbar /> }
                 <MainContent />
             </div>
         </>

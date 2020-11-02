@@ -34,10 +34,19 @@ export const setUserNotes = userId => {
         const res = await fetch(path);
 
         res.data = await res.json();
-        console.log(res);
+
         if (res.ok && Object.keys(res.data).length) {
             dispatch(setNotes(res.data));
-            dispatch(setActiveNote(Object.values(res.data)[0].id));
+            let notes = Object.values(res.data);
+
+            notes.sort((a, b) => {
+                const aDate = new Date(a.updated_at)
+                const bDate = new Date(b.updated_at)
+
+                return bDate.getTime() - aDate.getTime();
+            });
+
+            dispatch(setActiveNote(notes[0].id));
         }
 
         return res;

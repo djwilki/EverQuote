@@ -5,6 +5,13 @@ const TOGGLE_MOVE_NOTES_MODAL = 'ui/TOGGLE_MOVE_NOTES_MODAL';
 const TOGGLE_EDIT_NOTEBOOK_MODAL = 'ui/TOGGLE_EDIT_NOTEBOOK_MODAL';
 const TOGGLE_CREATE_NOTEBOOK_MODAL = 'ui/TOGGLE_CREATE_NOTEBOOK_MODAL';
 const TOGGLE_LIST_NOTES = 'ui/TOGGLE_LIST_NOTES';
+const TOGGLE_EDITOR_FULLSCREEN = 'ui/TOGGLE_EDITOR_FULLSCREEN';
+
+export const toggleEditorFullscreen = () => {
+    return {
+        type: TOGGLE_EDITOR_FULLSCREEN
+    }
+}
 
 export const toggleUserModal = () => {
     return {
@@ -56,6 +63,7 @@ const initialUIState = {
     editNotebook: false,
     createNotebook: false,
     listNotes: false,
+    editorFullscreen: false
 };
 
 export default function uiReducer(state = initialUIState, action) {
@@ -81,6 +89,9 @@ export default function uiReducer(state = initialUIState, action) {
             return newState;
         case TOGGLE_LIST_NOTES:
             newState.listNotes = !newState.listNotes;
+            return newState;
+        case TOGGLE_EDITOR_FULLSCREEN:
+            newState.editorFullscreen = !newState.editorFullscreen;
             return newState;
         default:
             return state;

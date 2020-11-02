@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActiveNote } from '../store/session';
 import noteStyles from '../styles/note.module.css';
 
 const NoteCard = ({ note }) => {
     const dispatch = useDispatch();
-    console.log(note)
+    const isActive = useSelector(state => note.id === state.session.activeNote);
 
     const handleNoteClick = () => {
         dispatch(setActiveNote(note.id));
@@ -23,14 +23,14 @@ const NoteCard = ({ note }) => {
     }
 
     return (
-        <div className={noteStyles.notecard} onClick={handleNoteClick}>
+        <div className={isActive ? noteStyles.activeCard : noteStyles.notecard} onClick={handleNoteClick}>
             {
                 <>
                     <h5 className={noteStyles.noteHeader}>{note.title}</h5>
                     <span className={noteStyles.noteText}>{note.content.length > 80 ? note.content.slice(0, 83) + '...' : note.content ? note.content : ""}</span>
                 </>
             }
-            <span className={noteStyles.noteUpdated}>{genUpdatedAt(note.updated_at)}</span>
+            <span className={isActive ? noteStyles.activeUpdated : noteStyles.noteUpdated}>{genUpdatedAt(note.updated_at)}</span>
         </div>
     )
 }

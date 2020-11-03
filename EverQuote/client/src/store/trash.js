@@ -42,17 +42,19 @@ export const setUserTrash = (userId) => {
 export const trashNote = noteId => {
     const csrfToken = Cookie.get("XSRF-TOKEN");
     return async dispatch => {
-        const res = await fetch(`/api/notes/${noteId}`, {
+        const res = await fetch(`/api/notes/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFTOKEN': csrfToken
-            }
+            },
+            body: noteId
         });
-
+        res.data = await res.json();
         if (res.ok) {
-            dispatch(addToTrash(noteId))
+            dispatch(addToTrash(noteId));
         }
+        return res;
     }
 }
 

@@ -18,6 +18,7 @@ const NoteOptionModal = () => {
         await dispatch(trashNote(noteId));
         note.isTrash = true;
         await dispatch(toggleNoteModal());
+        return;
     };
 
     return (

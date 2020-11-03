@@ -6,6 +6,8 @@ import noteStyles from '../styles/note.module.css';
 
 const NoteList = ({ noteList, notes, hidden }) => {
     const dispatch = useDispatch();
+    const notTrash = notes.filter(note => !note.isTrash);
+    console.log(notTrash);
 
     useEffect(() => {
         if (notes.length) {
@@ -17,10 +19,10 @@ const NoteList = ({ noteList, notes, hidden }) => {
         <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
                 <h1 className={noteStyles.noteListHeader}>{noteList ? noteList.title : "All Notes"}</h1>
-                <span className={noteStyles.noteAmount}>{notes.length} Notes</span>
+                <span className={noteStyles.noteAmount}>{notTrash.length} Notes</span>
             </div>
             <div className={noteStyles.noteList + " noteList"}>
-            { notes.map((note, i) => {
+            { notTrash.map((note, i) => {
                 if (!note.isTrash) {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />

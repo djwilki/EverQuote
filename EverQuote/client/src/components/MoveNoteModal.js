@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import MoveNotebookTitle from './MoveNotebookTitle';
 import styles from '../styles/notebook.module.css';
 import { toggleMoveModal } from '../store/ui';
@@ -11,13 +11,18 @@ const MoveNoteModal = () => {
     const notebooks = Object.values(useSelector(state => state.entities.notebooks));
     const activeId = useSelector(state => state.session.activeNote);
     const activeNote = useSelector(state => state.entities.notes[activeId]);
+    const [selectedNotebook, setSelectedNotebook] = useState(activeNote.notebookId);
     const dispatch = useDispatch();
 
     const handleClose = async e => {
         e.preventDefault()
         await dispatch(toggleMoveModal());
         return;
-    }
+    };
+
+    useEffect(() => {
+        setSelectedNotebook(selectedNotebook);
+    }, [selectedNotebook]);
 
     return (
         <div style={{posistion: 'fixed', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '312px', minWidth: '482px'}}>
@@ -41,7 +46,7 @@ const MoveNoteModal = () => {
                         <tbody>
                             {notebooks.map(notebook => {
                                 return (
-                                    <MoveNotebookTitle key={notebook.id} notebook={notebook} activeNote={activeNote} />
+                                    <MoveNotebookTitle key={notebook.id} notebook={notebook} activeNote={activeNote} selectedNotebook={selectedNotebook} setSelectedNotebook={setSelectedNotebook} />
                                 )
                             })}
                         </tbody>

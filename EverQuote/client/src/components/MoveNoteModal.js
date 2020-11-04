@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import MoveNotebookTitle from './MoveNotebookTitle';
 import styles from '../styles/notebook.module.css';
 import { toggleMoveModal } from '../store/ui';
+import {moveNote} from '../store/notes';
 import {  useSelector, useDispatch } from "react-redux";
 
 
@@ -19,6 +20,13 @@ const MoveNoteModal = () => {
         await dispatch(toggleMoveModal());
         return;
     };
+
+    const handleMove = async e => {
+        e.preventDefault();
+        await dispatch(moveNote(activeId, selectedNotebook));
+        dispatch(toggleMoveModal());
+        return;
+    }
 
     useEffect(() => {
         setSelectedNotebook(selectedNotebook);
@@ -56,9 +64,9 @@ const MoveNoteModal = () => {
             <div style={{borderTop: '1px solid #d9d9d9', padding: '20px 25px', position: 'relative'}}>
                 <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'row-reverse', marginTop: '0', width: '100%'}}>
                     {selectedNotebook === activeNote.notebookId ? <button style={{border: '1px solid #ccc', color: '#fff', backgroundColor: '#ccc', cursor: 'not-allowed', all: 'unset', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', verticalAlign: 'middle', borderRadius: '4px', padding: '10px 15px', margin: '0', fontWeight: '400', fontSize: '14px', textAlign: 'center', lineHeight: '1', letterSpacing: '0', transition: 'background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out', touchAction: 'manipulation'}}>Move</button> :
-                    <button style={{margin: '0', backgroundColor: '#00a82d', border: '1px solid #00a82d', color: '#fff', cursor: 'pointer', all: 'unset', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', verticalAlign: 'middle', borderRadius: '4px', padding: '10px 15px', fontWeight: '400', fontSize: '14px', textAlign: 'center', lineHeight: '1', letterSpacing: '0', transition: 'background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out', touchAction: 'manipulation'}}>Move</button>
+                    <button onClick={handleMove} style={{margin: '0', backgroundColor: '#00a82d', border: '1px solid #00a82d', color: '#fff', cursor: 'pointer', all: 'unset', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', verticalAlign: 'middle', borderRadius: '4px', padding: '10px 15px', fontWeight: '400', fontSize: '14px', textAlign: 'center', lineHeight: '1', letterSpacing: '0', transition: 'background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out', touchAction: 'manipulation'}}>Move</button>
                     }
-                    <button style={{margin: '0 10px 0 0', cursor: 'pointer', backgroundColor: 'transparent', border: '1px solid #ccc', color: '#737373', all: 'unset', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', verticalAlign: 'middle', borderRadius: '4px', padding: '10px 15px', fontWeight: '400', fontSize: '14px', textAlign: 'center', lineHeight: '1', letterSpacing: '0', transition: 'background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out', touchAction: 'manipulation'}}>Cancel</button>
+                    <button onClick={handleClose} style={{margin: '0 10px 0 0', cursor: 'pointer', backgroundColor: 'transparent', border: '1px solid #ccc', color: '#737373', all: 'unset', display: 'inline-flex', justifyContent: 'center', alignItems: 'center', verticalAlign: 'middle', borderRadius: '4px', padding: '10px 15px', fontWeight: '400', fontSize: '14px', textAlign: 'center', lineHeight: '1', letterSpacing: '0', transition: 'background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out', touchAction: 'manipulation'}}>Cancel</button>
                 </div>
             </div>
         </div>

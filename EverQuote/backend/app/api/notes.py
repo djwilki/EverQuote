@@ -35,7 +35,7 @@ def delete_note():
     return {'message': 'Note is trash'}
 
 
-@notes.route('/<int:note_id>/move_to/<int:notebook_id>')
+@notes.route('/<int:note_id>/move_to/<int:notebook_id>', methods=['PUT'])
 def move_note(note_id, notebook_id):
     note = Note.query.get(note_id)
     note.notebookId = notebook_id

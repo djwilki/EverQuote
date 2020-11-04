@@ -98,7 +98,7 @@ export default function uiReducer(state = initialUIState, action) {
             newState.editNotebook = !newState.editNotebook;
             return newState;
         case TOGGLE_NOTE_OPTIONS_MODAL:
-            newState.noteOptions = !newState.userModal;
+            newState.noteOptions = !newState.noteOptions;
             return newState;
         case TOGGLE_NOTEBOOK_OPTIONS_MODAL:
             newState.notebookOptions = !newState.notebookOptions;

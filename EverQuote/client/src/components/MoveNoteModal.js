@@ -20,8 +20,8 @@ const MoveNoteModal = () => {
                     </div>
                     <div>
                         <button style={{padding: '0', backgroundColor: 'transparent', borderStyle: 'none', fontSize: '1em', margin: '0'}}>
-                            <svg style={{width: "24", height: "24", fill: "none", xmlns: "http://www.w3.org/2000/svg"}}>
-                                <path style={{d: "M17.53 6.47a.75.75 0 00-1.06 0L12 10.94 7.53 6.47a.75.75 0 00-1.06 1.06L10.94 12l-4.47 4.47a.75.75 0 101.06 1.06L12 13.06l4.47 4.47a.75.75 0 101.06-1.06L13.06 12l4.47-4.47a.75.75 0 000-1.06z", fill: "currentColor"}}></path>
+                            <svg style={{width: "24", height: "24"}} fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.53 6.47a.75.75 0 00-1.06 0L12 10.94 7.53 6.47a.75.75 0 00-1.06 1.06L10.94 12l-4.47 4.47a.75.75 0 101.06 1.06L12 13.06l4.47 4.47a.75.75 0 101.06-1.06L13.06 12l4.47-4.47a.75.75 0 000-1.06z" fill="currentColor"></path>
                             </svg>
                         </button>
                     </div>
@@ -33,7 +33,7 @@ const MoveNoteModal = () => {
                         <tbody>
                             {notebooks.map(notebook => {
                                 return (
-                                    <MoveNoteModal key={notebook.id} notebook={notebook} activeNote={activeNote} />
+                                    <MoveNotebookTitle key={notebook.id} notebook={notebook} activeNote={activeNote} />
                                 )
                             })}
                         </tbody>

@@ -12,6 +12,7 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     const noteModal = useSelector(state => state.ui.noteOptions);
     const noteMoveModal = useSelector(state => state.ui.moveNotes);
 
+
     const genUpdatedAt = (updatedAt) => {
         const lessThan10 = /^0[1-9]/;
         const updatedAtArr = new Date(updatedAt).toDateString().split(" ");

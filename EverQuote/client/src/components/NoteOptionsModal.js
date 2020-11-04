@@ -5,15 +5,18 @@ import { toggleMoveModal, toggleNoteModal } from '../store/ui';
 import { setActiveNote } from '../store/session';
 import { trashNote } from '../store/trash';
 
+
 const NoteOptionModal = () => {
     const dispatch = useDispatch();
+
     const noteId = useSelector(state => state.session.activeNote);
     const notes = [useSelector(state => state.entities.notes)];
     const note = useSelector(state => state.entities.notes[noteId]);
 
     const handleMoveModal = async e => {
-        await dispatch(toggleMoveModal());
+        e.preventDefault();
         await dispatch(toggleNoteModal());
+        await dispatch(toggleMoveModal());
         return;
     };
 
@@ -40,6 +43,7 @@ const NoteOptionModal = () => {
                 <li><button onClick={handleMoveModal}>Move...</button></li>
                 <li><button onClick={handleTrash}>Move to Trash</button></li>
             </ul>
+
         </div>
     )
 }

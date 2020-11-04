@@ -5,10 +5,12 @@ import noteStyles from '../styles/note.module.css';
 import EditorNotebookButton from './EditorNotebookButton';
 import FullscreenButton from './FullscreenButton';
 import NoteOptionsModal from './NoteOptionsModal';
+import MoveNoteModal from './MoveNoteModal';
 
 const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     const dispatch = useDispatch();
     const noteModal = useSelector(state => state.ui.noteOptions);
+    const noteMoveModal = useSelector(state => state.ui.moveNotes);
 
     const genUpdatedAt = (updatedAt) => {
         const lessThan10 = /^0[1-9]/;
@@ -38,6 +40,7 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
             </div>
             <button onClick={handleNoteModal}>...</button>
             { noteModal ? <NoteOptionsModal /> : <></>}
+            { noteMoveModal ? <MoveNoteModal /> : <></>}
         </div>
     )
 }

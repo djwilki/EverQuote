@@ -26,11 +26,11 @@ const NoteOptionModal = () => {
                     debugger;
                     console.log(value);
                     await dispatch(setActiveNote(value.id));
+                    await dispatch(toggleNoteModal());
                     return;
             }
             }
         }
-        await dispatch(toggleNoteModal());
         return;
     };
 

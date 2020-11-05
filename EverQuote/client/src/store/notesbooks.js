@@ -136,7 +136,7 @@ export const editUserNotebooks = (title, isDefault, userId, id) => {
 export const removeNotebook = (notebookId) => {
     const csrfToken = Cookies.get("XSRF-TOKEN");
     return async dispatch => {
-        const res = await fetch(`/api/notesbooks/${notebookId}`, {
+        const res = await fetch(`/api/notebooks/${notebookId}`, {
             method: "DELETE",
             headers: {
                 "X-CSRFTOKEN": csrfToken

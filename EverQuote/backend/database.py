@@ -15,11 +15,11 @@ with app.app_context():
   demo_user_note = Note(title='The Two Towers', content="'There is some good in this world, and it's worth fighting for.' - Samwise Gamgee", userId=1, notebookId=2)
   demo_user_note_2 = Note(title='A Tale of Two Cities', content='"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair." — Charles Dickens', userId=1, notebookId=2)
   demo_user_new_notebook2 = Notebook(title='TV Shows', isDefault=False, userId=1)
-  demo_user_note_3 = Note(title="Breaking Bad", content="'I am the one who knocks.' — Walter White", userId=1, notebookId=3, isTrash=True)
-  demo_user_note_4 = Note(title="The Wire", content="'You come at the king, you best not miss.' — Omar Little", userId=1, notebookId=3, isTrash=True)
+  demo_user_note_3 = Note(title="Breaking Bad", content="'I am the one who knocks.' — Walter White", userId=1, notebookId=None, isTrash=True)
+  demo_user_note_4 = Note(title="The Wire", content="'You come at the king, you best not miss.' — Omar Little", userId=1, notebookId=None, isTrash=True)
   demo_user_new_notebook3 = Notebook(title='Movies', isDefault=False, userId=1)
-  demo_user_note_5 = Note(title="Finding Nemo", content='"Just keep swimming" - Dory', userId=1, notebookId=4, isTrash=True)
-  demo_user_note_6 = Note(title="The Godfather", content="I'm going to make him an offer he can't refuse. - The Godfather", userId=1, notebookId=4, isTrash=True)
+  demo_user_note_5 = Note(title="Finding Nemo", content='"Just keep swimming" - Dory', userId=1, notebookId=None, isTrash=True)
+  demo_user_note_6 = Note(title="The Godfather", content="I'm going to make him an offer he can't refuse. - The Godfather", userId=1, notebookId=None, isTrash=True)
 
 
 

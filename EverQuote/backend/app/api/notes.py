@@ -31,6 +31,7 @@ def delete_note():
     print('NOTE!!!!: ', note)
     if not note.isTrash:
         note.isTrash = True
+        note.notebookId = None
         db.session.commit()
     return {'message': 'Note is trash'}
 

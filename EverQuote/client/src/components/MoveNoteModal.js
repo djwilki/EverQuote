@@ -34,7 +34,7 @@ const MoveNoteModal = () => {
 
     return (
         <div style={{position: 'fixed', width: '100%', height: '100%', backgroundColor: 'rgba(133, 133, 133, 0.5)', zIndex: '9', margin: '0', padding: '0', boxSizing: 'border-box'}}>
-            <div style={{position: 'fixed', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '312px', minWidth: '482px', backgroundColor: 'white', opacity: '1', zIndex: '10', borderRadius: '4px', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 8px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: '0', padding: '0'}}>
+            <div style={{position: 'fixed', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '640px', width: '730px', backgroundColor: 'white', opacity: '1', zIndex: '10', borderRadius: '4px', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 2px 8px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', margin: '0', padding: '0', maxWidth: 'calc(100% - 48px)', minHeight: '246px', maxHeight: 'calc(100% - 48px)'}}>
                 <header style={{padding: '20px 25px 18px'}}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
                         <div>

@@ -3,7 +3,6 @@ import { useDispatch, useSelector, connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
 import UserModal from './UserModal';
-// import { toggleUserModal } from '../store/ui';
 import NotebookSelect from './NotebookSelect';
 import { addNote } from '../store/notes';
 import { logout } from '../store/session';
@@ -14,10 +13,6 @@ function Navbar({ history, userId, selectedNotebookId }) {
     const notebooks = useSelector(state => Object.values(state.entities.notebooks));
     const userModal = useSelector(state => state.ui.userModal);
     const user = useSelector(state => state.entities.users[state.session.user_id]);
-
-    // const handleModalClick = (e) => {
-    //     dispatch(toggleUserModal());
-    // }
 
     const handleNewNoteClick = async (event) => {
         event.stopPropagation();
@@ -31,7 +26,6 @@ function Navbar({ history, userId, selectedNotebookId }) {
     const handleLogout = async (e) => {
         e.preventDefault();
         const res = await dispatch(logout());
-        // await dispatch(toggleUserModal());
         if (res.ok) {
             history.replace("/login")
         }
@@ -47,7 +41,6 @@ function Navbar({ history, userId, selectedNotebookId }) {
 
     return (
         <nav className={styles.navbar_container}>
-            {/* <button className={styles.usernameDropDown} onClick={handleModalClick} id="toggleUserModal">{getUsername} ▼</button> */}
             { userModal ? <UserModal /> : <></>}
             <div className={styles.navbar_content}>
                 <div className={styles.top_section}>
@@ -61,14 +54,6 @@ function Navbar({ history, userId, selectedNotebookId }) {
                                 {user ? user.username : ""}
                             </span>
                         </div>
-                        {/* <div className={styles.navlink_text}>
-                            <span className={styles.username_text}>
-                                {user ? user.username : ""}
-                            </span>
-                            <span className={`${styles.user_toggle_icon}`}>
-                                ▼
-                            </span>
-                        </div> */}
                     </div>
                     <div className={styles.note_button_content} onClick={handleNewNoteClick}>
                         <svg className={styles.note_button_icon} fill="none" xmlns="http://www.w3.org/2000/svg">

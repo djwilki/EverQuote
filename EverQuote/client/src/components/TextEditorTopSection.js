@@ -38,7 +38,7 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
             </div>
             <span className={noteStyles.updatedText}>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
             </div>
-            <button onClick={handleNoteModal}>...</button>
+            <button onClick={handleNoteModal} style={{width: '50px', height: '50px'}}>...</button>
             { noteModal ? <NoteOptionsModal /> : <></>}
         </div>
     )

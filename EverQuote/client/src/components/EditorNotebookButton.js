@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNoteList } from '../store/session';
-import { toggleNotebookTooltip } from '../store/ui';
+import { toggleNotebookTooltip, toggleMoveNoteButton } from '../store/ui';
 import noteStyles from '../styles/note.module.css';
+import MoveNoteButton from './MoveNoteButton';
 
 const EditorNotebookButton = ({ activeNotebook }) => {
     const dispatch = useDispatch();
     const { notebookTooltip: showTooltip } = useSelector(state => state.ui);
+    const moveNote = useSelector(state => state.ui.showMoveNoteButton);
 
     const getTooltipPlacement = () => {
         let box = document.querySelector(".notebookButton") || { offsetWidth: 0 };
@@ -19,6 +21,7 @@ const EditorNotebookButton = ({ activeNotebook }) => {
 
     const handleHover = () => {
         dispatch(toggleNotebookTooltip());
+        dispatch(toggleMoveNoteButton());
     }
 
     return (
@@ -33,6 +36,9 @@ const EditorNotebookButton = ({ activeNotebook }) => {
                 </div>
                 <span>{activeNotebook ? activeNotebook.title : ""}</span>
             </button>
+            <div style={{display: 'flex', alignItems: 'center', margin: '0 3px', minWidth: '28px', height: '100%'}}>
+                {moveNote ? <MoveNoteButton /> : ''}
+            </div>
             <div
             className={showTooltip ? noteStyles.notebookTooltip : noteStyles.hidden}
             style={{ left: getTooltipPlacement(), right: getTooltipPlacement()}}>

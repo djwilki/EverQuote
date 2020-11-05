@@ -20,11 +20,19 @@ function Notebooks(props) {
     const createNotebook = useSelector(state => state.ui.createNotebook)
     const editNotebook = useSelector(state => state.ui.editNotebook)
     const [editNotebookId, setEditNotebookId] = useState(null);
-
+    const [notebookOrder, setNotebookOrder] = useState("date");
+    const [titleOrder, setTitleOrder] = useState("asc");
+    const [dateOrder, setDateOrder] = useState("asc");
+    console.log(notebooks)
     console.log(editNotebookId)
 
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
+
+    const titleUp = (notebookOrder === "title" && titleOrder === "asc");
+    const titleDown = (notebookOrder === "title" && titleOrder === "dsc");
+    const dateUp = (notebookOrder === "date" && dateOrder === "asc");
+    const dateDown = (notebookOrder === "date" && dateOrder === "dsc");
 
 
     useEffect(() => {
@@ -52,10 +60,62 @@ function Notebooks(props) {
         dispatch(toggleNotebookModal());
     }
 
+    const sortTitleNotebooks = (e) => {
+        e.preventDefault()
+        if (notebookOrder === "date") {
+            setNotebookOrder("title")
+            setTitleOrder("asc")
+        } else {
+            if (titleOrder === "asc") {
+                setTitleOrder("dsc")
+            } else {
+                setTitleOrder("asc")
+            }
+        }
+    }
+
+    const sortDateNotebooks = (e) => {
+        e.preventDefault()
+        if (notebookOrder === "title") {
+            setNotebookOrder("date")
+            setDateOrder("asc")
+        } else {
+            if (dateOrder === "asc") {
+                setDateOrder("dsc")
+            } else {
+                setDateOrder("asc")
+            }
+        }
+
+    }
+
+    const sortFunction = () => {
+        if (titleUp) {
+            return (a, b) => {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) { return 1 };
+                if (a.title.toLowerCase() < b.title.toLowerCase()) { return -1 };
+                return 0;
+            }
+        }
+        if (titleDown) {
+            return (a, b) => {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) { return -1 };
+                if (a.title.toLowerCase() < b.title.toLowerCase()) { return 1 };
+                return 0;
+            }
+        }
+        if (dateUp) {
+            return (a, b) => {return a.updated_at - b.updated_at}
+        }
+        if (dateDown) {
+            return (a, b) => {return b.updated_at - a.updated_at}
+        }
+    }
+
     return (
         <main className={styles.notebooks_container}>
-            {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal}/> : ""}
-            {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId}/> : ""}
+            {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal} /> : ""}
+            {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId} /> : ""}
             <h1>Notebooks</h1>
             <div className={styles.notebooks_title_bar}>
                 <div className={styles.notebooks_title}>
@@ -74,14 +134,34 @@ function Notebooks(props) {
             <table className={styles.notebooks_table}>
                 <tbody>
                     <tr className={styles.notebooks_table_headers}>
-                        <th>TITLE</th>
+                        <th>
+                            <button style={{ backgroundColor: "transparent", outline: "none" }} onClick={sortTitleNotebooks}>
+                                TITLE
+                                {titleDown ?
+                                    <svg style={{ width: "12px", height: "12px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                    : ""}
+                                {titleUp ?
+                                    <svg style={{ width: "12px", height: "12px", transform: "rotate(180deg)" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                    : ""}
+                            </button>
+                        </th>
                         <th>CREATED BY</th>
-                        <th>UPDATED</th>
+                        <th>
+                            {/* <button style={{ backgroundColor: "transparent", outline: "none" }} onClick={sortDateNotebooks}> */}
+                            UPDATED
+                                {/* {dateDown ?
+                                <svg style={{ width: "12px", height: "12px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                : ""}
+                            {dateUp ?
+                                <svg style={{ width: "12px", height: "12px", transform: "rotate(180deg)" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                : ""}
+                        </button> */}
+                        </th>
                         <th>ACTIONS</th>
                     </tr>
-                    { notebooks.map((notebook, i) => {
+                    {notebooks.sort(sortFunction()).map((notebook, i) => {
                         return (
-                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username}/>
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} />
                         )
                     })}
                 </tbody>

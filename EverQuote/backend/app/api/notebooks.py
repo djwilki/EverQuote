@@ -28,6 +28,19 @@ def update_notebook(notebook_id):
     db.session.commit()
     return notebook.to_dict()
 
+@notebooks.route("/<int:notebook_id>", methods=["DELETE"])
+def delete_notebook():
+    notes = Note.query.filter(Note.notebookId == notebook_id).all()
+    for note in notes:
+        if not note['isTrash']:
+            note['isTrash'] = True
+            note['notebookId'] = null
+            db.session.commit()
+    notebook = Notebook.query.get(notebook_id)
+    db.session.delete(notebook)
+    db.session.commit()
+
+
 @notebooks.route("/<int:notebook_id>")
 def get_notebook():
     notebook = Notebook.query

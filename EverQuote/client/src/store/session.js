@@ -114,7 +114,7 @@ export default function sessionReducer(state = initialSessionState, action) {
             newState.user_id = action.user.user_id;
             return newState;
         case LOGOUT_USER:
-            return {};
+            return initialSessionState;
         case SET_SELECTED_NOTEBOOK:
             localStorage.setItem('selectedNotebook', action.notebookId)
             newState.selectedNotebookId = action.notebookId;

@@ -63,7 +63,8 @@ li:first-child {
 li {
     font-size: 14px;
     display: inline-block;
-    margin: 0 5px;
+    /* margin: 0 5px; */
+    margin: 0;
     position: relative;
     vertical-align: middle;
 }

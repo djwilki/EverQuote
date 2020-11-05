@@ -6,8 +6,9 @@ import Notes from './Notes';
 function MainContent({ match }) {
     return (
         <div style={{width: "100%"}}>
-            <Route path={match.url + "notes"} component={Notes} />
-            <Route path={match.url + "notebooks"} component={Notebooks} />
+            <Route path={match.url + "notes"} exact component={Notes} />
+            <Route path={match.url + "notebooks"} exact component={Notebooks} />
+            <Route path={match.url + "notebooks/:notebookId"} exact component={Notes} />
         </div>
     );
 }

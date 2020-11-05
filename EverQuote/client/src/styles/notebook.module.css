@@ -38,7 +38,7 @@ h2 {
 button {
     /* outline: none !important; */
     border: none;
-    background-color: white;
+    /* background-color: white; */
     color: #00a82d;
     font-size: 14px;
     font-weight: 500;
@@ -55,9 +55,34 @@ button.sortOptions {
 
 }
 
+
 table {
     margin-top: 13px;
     border-top: 2px black solid;
+    border-collapse: collapse;
     width: 100%;
 }
 
+th {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgb(230 230 230);
+    color: rgb(188 188 188);
+    height: 37px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+th, td {
+    text-align: left;
+}
+
+th {
+    padding: 0 5px
+}
+
+td {
+    padding: 8px;
+}
+
+tr:nth-child(odd) {background-color: #f8f8f8;}

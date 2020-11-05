@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { editUserNotebooks } from '../store/notesbooks'
+import { editUserNotebooks, removeNotebook } from '../store/notesbooks'
 import { toggleCreateNotebookModal, toggleEditNotebookModal, toggleNotebookModal } from '../store/ui'
 
 
@@ -24,10 +24,18 @@ const EditNotebookModal = ({ editNotebookId }) => {
     }
 
     const togEditNotebookModal = (e) => {
-        e.preventDefault()
         dispatch(toggleEditNotebookModal())
     }
 
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        const res = await dispatch(removeNotebook(editNotebookId))
+
+        if (res.ok) {
+            togEditNotebookModal(e);
+            return;
+        }
+    }
 
 
     return (
@@ -42,11 +50,13 @@ const EditNotebookModal = ({ editNotebookId }) => {
                 <form action="" method="" style={{display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 25px 0" }}>
                     <div style={{marginBottom: "5px"}}>Name</div>
                     <input style={{ outline: "none", borderRadius: "5px", border: "1px solid #E6E6E6", padding: "0 10px 0", width: "406px", height: "38px", marginLeft: "auto", marginRight: "auto", }}
-                        name="title" type="text" placeholder={notebook.title} onChange={(e) => setTitle(e.target.value)} />
+                        name="title" type="text" placeholder={notebook ? notebook.title : ""} onChange={(e) => setTitle(e.target.value)} />
                     <div style={{display: "flex", justifyContent: "flex-end", marginTop: "95px", }}>
                         <button style={{boxBorder: "1px solid black", borderRadius: "5px", padding: "10px 15x 10px", outline: "none"}} type="button" onClick={(e) => { togEditNotebookModal(e) }}>Cancel</button>
                         <button style={{outline: "none"}} type="button" onClick={handleClick}>Continue</button>
                     </div>
+                    <hr></hr>
+                    <button style={{outline: "none"}} type="button" onClick={handleDelete}>Delete</button>
                 </form>
             </div>
         </div >

@@ -1,6 +1,7 @@
-from flask import Blueprint, request
-from app.models import db, Notebook
+from flask import Blueprint, request, make_response
+from app.models import db, Notebook, Note
 from datetime import datetime
+from sqlalchemy import null
 
 notebooks = Blueprint("notebooks", __name__)
 
@@ -29,16 +30,18 @@ def update_notebook(notebook_id):
     return notebook.to_dict()
 
 @notebooks.route("/<int:notebook_id>", methods=["DELETE"])
-def delete_notebook():
+def delete_notebook(notebook_id):
     notes = Note.query.filter(Note.notebookId == notebook_id).all()
     for note in notes:
-        if not note['isTrash']:
-            note['isTrash'] = True
-            note['notebookId'] = null
+        if not note.isTrash or note.notebookId is not None:
+            note.isTrash = True
+            note.notebookId = null()
             db.session.commit()
     notebook = Notebook.query.get(notebook_id)
     db.session.delete(notebook)
     db.session.commit()
+    res = make_response({ "message": "notebook successfully deleted" }, 200)
+    return res
 
 
 @notebooks.route("/<int:notebook_id>")

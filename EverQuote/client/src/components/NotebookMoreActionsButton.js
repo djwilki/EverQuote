@@ -43,4 +43,4 @@ const NotebookMoreActionsButton = ({ activeNotebook }) => {
     )
 }
 
-export default EditorNotebookButton;
+export default NotebookMoreActionsButton;

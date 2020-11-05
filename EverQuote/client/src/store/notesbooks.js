@@ -6,6 +6,7 @@ export const ADD_NOTEBOOK = "notebooks/ADD_NOTEBOOK";
 export const EDIT_NOTEBOOK = "notebooks/EDIT_NOTEBOOK";
 export const SET_DEFAULT_NOTEBOOK = "notebooks/SET_DEFAULT_NOTEBOOK";
 export const LOGOUT_USER = 'session/LOGOUT_USER';
+export const DELETE_NOTEBOOK = 'notebooks/DELETE_NOTEBOOKS';
 
 
 const setNotebooks = (notebooks) => {
@@ -27,6 +28,13 @@ const editNotebook = (notebook) => {
     return {
         type: EDIT_NOTEBOOK,
         notebook
+    }
+}
+
+const deleteNotebook = (notebookId) => {
+    return {
+        type: DELETE_NOTEBOOK,
+        notebookId
     }
 }
 
@@ -125,18 +133,39 @@ export const editUserNotebooks = (title, isDefault, userId, id) => {
     }
 }
 
+export const removeNotebook = (notebookId) => {
+    const csrfToken = Cookies.get("XSRF-TOKEN");
+    return async dispatch => {
+        const res = await fetch(`/api/notesbooks/${notebookId}`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRFTOKEN": csrfToken
+            }
+        });
+
+        if (res.ok) {
+            dispatch(deleteNotebook(notebookId));
+        }
+
+        return res;
+    }
+}
+
 export default function notebooksReducer(state = {}, action) {
     const newState = Object.assign({}, state);
     switch (action.type) {
         case SET_NOTEBOOKS:
             return action.notebooks;
         case ADD_NOTEBOOK:
-            return {...state, [action.notebook.id]: action.notebook};
+            return { ...state, [action.notebook.id]: action.notebook };
         case EDIT_NOTEBOOK:
             newState[action.notebook.id] = action.notebook;
             return newState;
         case LOGOUT_USER:
             return {};
+        case DELETE_NOTEBOOK:
+            delete newState[action.notebookId]
+            return newState;
         default:
             return state;
     }

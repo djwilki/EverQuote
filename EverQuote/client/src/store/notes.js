@@ -76,7 +76,7 @@ export const addNote = (userId, notebookId) => {
         }
         return res;
     }
-}
+};
 
 export const updateNote = (noteId, title, content) => {
     const csrfToken = Cookies.get("XSRF-TOKEN");
@@ -98,7 +98,27 @@ export const updateNote = (noteId, title, content) => {
         }
         return res;
     }
-}
+};
+
+export const moveNote = (noteId, notebookId) => {
+    const csrfToken = Cookies.get('XSRF-TOKEN');
+    return async dispatch => {
+        const res = await fetch(`/api/notes/${noteId}/move_to/${notebookId}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN': csrfToken
+            }
+        });
+        res.data = await res.json();
+
+        if (res.ok) {
+            dispatch(updateNoteItem(res.data));
+            await dispatch(updateUserNotebook(res.data.notebookId));
+        }
+        return res;
+    }
+};
 
 export default function noteReducer(state = {}, action) {
     const newState = Object.assign({}, state);

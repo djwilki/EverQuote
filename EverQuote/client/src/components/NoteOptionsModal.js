@@ -38,7 +38,7 @@ const NoteOptionModal = () => {
     };
 
     return (
-        <div style={{ top: '48.5px', position: 'absolute', left: '518px' }}>
+        <div style={{ top: '55px', position: 'absolute', right: '5px' }}>
             <div style={{ maxHeight: 'calc(100vh - 20px)', minWidth: '150px', margin: '10px 0', display: 'block', background: '#fff', boxShadow: '0 0 6px rgba(0,0,0,0.3)', padding: '12px 0', textAlign: 'left', border: '1px solid #d9d9d9', borderRadius: '3px', color: '#333', fontSize: '14px', overflowY: 'auto' }}>
                 <div>
                     <ul style={{display: 'flex', flexDirection: 'column'}}>

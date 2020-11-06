@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import {useDispatch, useSelector} from 'react-redux'
+import {setSelectedNotebook, setActiveNote, loadSession} from './store/session'
 import UserList from './components/UsersList';
 import SignUpPage from './components/SignUp'
 import LoginForm from './components/LoginForm';
@@ -20,6 +21,20 @@ function App() {
 
         getCSRF();
     }, []);
+
+    const dispatch = useDispatch()
+    const userId = useSelector(state => state.session.user_id)
+
+    useEffect(() => {
+        const load = async () => {
+            const selectedNotebook = await localStorage.getItem('selectedNotebook')
+            await dispatch(setSelectedNotebook(Number(selectedNotebook)))
+            const activeNote = await localStorage.getItem('activeNote')
+            await dispatch(setActiveNote(Number(activeNote)))
+            await dispatch(loadSession());
+        }
+        load()
+    }, [dispatch])
 
 
     return (

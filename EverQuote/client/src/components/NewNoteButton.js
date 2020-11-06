@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { addNote } from '../store/notes';
+import styles from '../styles/navbar.module.css';
 
 const NewNoteButton = ({ userId, selectedNotebookId }) => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const NewNoteButton = ({ userId, selectedNotebookId }) => {
     }
 
     return (
-        <button type="button" className="newNoteBtn" onClick={handleClick}>New Note</button>
+        <button type="button" className={styles.new_note_button} onClick={handleClick}>New Note</button>
     );
 }
 

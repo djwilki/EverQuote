@@ -39,7 +39,7 @@ const EditNotebookModal = ({ editNotebookId }) => {
 
 
     return (
-        <div className={"edit-notebook-modal-container"} style={{ position: "fixed", top: "0", left: "0", width: "100vw", height: "100vh", backgroundColor: "rgba(133, 133, 133, 0.5)", zIndex: "9" }}>
+        <div className={"edit-notebook-modal-container"} style={{ position: "fixed", top:"0", left:"0", width: "100vw", height: "100vh", backgroundColor: "rgba(133, 133, 133, 0.5)", zIndex: "9" }}>
             <div style={{ backgroundColor: "white", opacity: "100%", zIndex: "10", width: "478px", height: "263px", borderRadius: "4px", boxShadow: "0 2px 8px rgba(0,0,0,0.16)", position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "20px 25px 18px" }}>
                     <span style={{ fontSize: "18px", fontWeight: "500", fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif" }}>Rename notebook</span>
@@ -58,6 +58,8 @@ const EditNotebookModal = ({ editNotebookId }) => {
                             <button style={{ cursor: "pointer", color: "grey", outline: "none" }} type="button" onClick={handleClick}>Continue</button>
                         </div>
                     </div>
+                    <hr></hr>
+                    <button style={{outline: "none"}} type="button" onClick={handleDelete}>Delete</button>
                 </form>
             </div>
         </div >

@@ -88,6 +88,7 @@ export const loadSession = () => {
         res.data = await res.json();
         if (res.ok) {
             dispatch(setUser(res.data.user));
+
         }
         return res
     }

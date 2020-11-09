@@ -114,7 +114,10 @@ function Notebooks(props) {
 
     return (
         <main className={styles.notebooks_container}>
+<<<<<<< HEAD
             {Object.keys(users).length !==0 ? <>
+=======
+>>>>>>> baaeca7c6fafdfcbb441db8b11f232fe51cb2c15
             {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal} /> : ""}
             {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId} /> : ""}
             <h1>Notebooks</h1>
@@ -162,7 +165,7 @@ function Notebooks(props) {
                     </tr>
                     {notebooks.sort(sortFunction()).map((notebook, i) => {
                         return (
-                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={users[userId].username} />
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} />
                         )
                     })}
                 </tbody>

@@ -134,6 +134,7 @@ function Notebooks(props) {
     );
 }
 export default Notebooks;
+<<<<<<< HEAD
 
 // { notebooks.map((notebook, i) => {
 //     return (
@@ -184,3 +185,5 @@ export default Notebooks;
 //     );
 // }
 // export default Notebooks;
+=======
+>>>>>>> Remove notebook commented code

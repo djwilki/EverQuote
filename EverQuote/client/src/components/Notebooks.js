@@ -17,6 +17,7 @@ function Notebooks(props) {
     const notebooks = useSelector(state => Object.values(state.entities.notebooks))
     const notes = useSelector(state => Object.values(state.entities.notes))
     const users = useSelector(state => state.entities.users)
+    const username = users[userId].username;
     const createNotebook = useSelector(state => state.ui.createNotebook)
     const editNotebook = useSelector(state => state.ui.editNotebook)
     const [editNotebookId, setEditNotebookId] = useState(null);
@@ -114,10 +115,7 @@ function Notebooks(props) {
 
     return (
         <main className={styles.notebooks_container}>
-<<<<<<< HEAD
             {Object.keys(users).length !==0 ? <>
-=======
->>>>>>> baaeca7c6fafdfcbb441db8b11f232fe51cb2c15
             {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal} /> : ""}
             {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId} /> : ""}
             <h1>Notebooks</h1>

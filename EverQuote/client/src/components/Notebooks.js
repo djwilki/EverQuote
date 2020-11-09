@@ -16,7 +16,7 @@ function Notebooks(props) {
     const userId = useSelector(state => state.session.user_id)
     const notebooks = useSelector(state => Object.values(state.entities.notebooks))
     const notes = useSelector(state => Object.values(state.entities.notes))
-    const username = useSelector(state => state.entities.users[userId].username)
+    const users = useSelector(state => state.entities.users)
     const createNotebook = useSelector(state => state.ui.createNotebook)
     const editNotebook = useSelector(state => state.ui.editNotebook)
     const [editNotebookId, setEditNotebookId] = useState(null);
@@ -114,6 +114,7 @@ function Notebooks(props) {
 
     return (
         <main className={styles.notebooks_container}>
+            {Object.keys(users).length !==0 ? <>
             {createNotebook ? <NewNotebookModal CreateNotebookModal={CreateNotebookModal} /> : ""}
             {editNotebook ? <EditNotebookModal editNotebookId={editNotebookId} /> : ""}
             <h1>Notebooks</h1>
@@ -159,17 +160,15 @@ function Notebooks(props) {
                         </th>
                         <th>ACTIONS</th>
                     </tr>
-<<<<<<< HEAD
-                    {notebooks.map((notebook, i) => {
-=======
                     {notebooks.sort(sortFunction()).map((notebook, i) => {
->>>>>>> Add display order sort by title
                         return (
-                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} />
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={users[userId].username} />
                         )
                     })}
                 </tbody>
             </table>
+            </>
+            : <></>}
         </main>
     );
 }

@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/session';
 import styles from '../styles/splash.module.css';
 
-function SplashPage(props) {
+const SplashPage = ({ history }) => {
+    const [emailOrUsername, setEmailOrUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
+
+    const demoUserClick = async (event) => {
+        event.preventDefault();
+        const res = await dispatch(login("demo", "password"))
+
+        if (res.ok) {
+            history.replace('/');
+            return;
+        }
+
+        setErrors(res.data.errors);
+    }
+
     return (
         <div className={styles.main_wrapper}>
             <div className={styles.topbar}>
@@ -10,7 +29,9 @@ function SplashPage(props) {
                 </div>
                 <div className={styles.buttons}>
                     <div className={styles.buttons_container}>
-                        <div><a href="#" className={styles.outline}>Demo</a></div>
+                        <div>
+                            <button onClick={demoUserClick} className={styles.outline}>Demo</button>
+                        </div>
                         <div>or</div>
                         <div><a href="/login">Log in</a></div>
                     </div>

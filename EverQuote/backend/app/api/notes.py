@@ -24,15 +24,19 @@ def update_note(note_id):
     return note.to_dict()
 
 
-@notes.route("/<int:note_id>", methods=['PUT'])
-def delete_note(note_id):
-    note = Note.query.filter(Note.id == note_id).first()
-    if not note['isTrash']:
-        note['isTrash'] = True
+@notes.route("/", methods=['PUT'])
+def delete_note():
+    data = request.json
+    note = Note.query.filter(Note.id == data).first()
+    print('NOTE!!!!: ', note)
+    if not note.isTrash:
+        note.isTrash = True
+        note.notebookId = None
         db.session.commit()
+    return {'message': 'Note is trash'}
 
 
-@notes.route('/<int:note_id>/move_to/<int:notebook_id>')
+@notes.route('/<int:note_id>/move_to/<int:notebook_id>', methods=['PUT'])
 def move_note(note_id, notebook_id):
     note = Note.query.get(note_id)
     note.notebookId = notebook_id

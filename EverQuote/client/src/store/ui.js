@@ -8,6 +8,8 @@ const TOGGLE_LIST_NOTES = 'ui/TOGGLE_LIST_NOTES';
 const TOGGLE_EDITOR_FULLSCREEN = 'ui/TOGGLE_EDITOR_FULLSCREEN';
 const TOGGLE_NOTEBOOK_TOOLTIP = "session/TOGGLE_NOTEBOOK_TOOLTIP";
 const TOGGLE_FULLSCREEN_TOOLTIP = "session/TOGGLE_FULLSCREEN_TOOLTIP";
+const TOGGLE_MOVE_NOTE_BUTTON = 'ui/TOGGLE_MOVE_NOTE_BUTTON';
+const TOGGLE_MOVE_TIP = 'ui/TOGGLE_MOVE_TIP';
 
 export const toggleNotebookTooltip = () => {
     return {
@@ -67,6 +69,18 @@ export const toggleListNotes = () => {
     return {
         type: TOGGLE_LIST_NOTES
     }
+};
+
+export const toggleMoveNoteButton = () => {
+    return {
+        type: TOGGLE_MOVE_NOTE_BUTTON
+    }
+};
+
+export const toggleMoveTip = () => {
+    return {
+        type: TOGGLE_MOVE_TIP
+    }
 }
 
 const initialUIState = {
@@ -81,7 +95,9 @@ const initialUIState = {
         isFullscreen: false,
         showTooltip: false
     },
-    notebookTooltip: false
+    notebookTooltip: false,
+    showMoveNoteButton: false,
+    showMoveTip: false
 };
 
 export default function uiReducer(state = initialUIState, action) {
@@ -98,7 +114,7 @@ export default function uiReducer(state = initialUIState, action) {
             newState.editNotebook = !newState.editNotebook;
             return newState;
         case TOGGLE_NOTE_OPTIONS_MODAL:
-            newState.noteOptions = !newState.userModal;
+            newState.noteOptions = !newState.noteOptions;
             return newState;
         case TOGGLE_NOTEBOOK_OPTIONS_MODAL:
             newState.notebookOptions = !newState.notebookOptions;
@@ -119,6 +135,12 @@ export default function uiReducer(state = initialUIState, action) {
             return newState;
         case TOGGLE_NOTEBOOK_TOOLTIP:
             newState.notebookTooltip = !newState.notebookTooltip;
+            return newState;
+        case TOGGLE_MOVE_NOTE_BUTTON:
+            newState.showMoveNoteButton = !newState.showMoveNoteButton;
+            return newState;
+        case TOGGLE_MOVE_TIP:
+            newState.showMoveTip = !newState.showMoveTip;
             return newState;
         default:
             return state;

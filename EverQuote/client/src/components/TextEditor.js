@@ -22,6 +22,10 @@ const TextEditor = ({ activeNoteObj }) => {
         handleContentChange(activeNoteObj.content);
     }, [activeNoteObj]);
 
+    useEffect(()=> {
+        handleAutoSave()
+    }, [content, title])
+
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     }
@@ -30,9 +34,8 @@ const TextEditor = ({ activeNoteObj }) => {
         setContent(contents);
     }
 
-    const handleAutoSave = (event) => {
+    const handleAutoSave = () => {
         setLoading(true);
-        event.stopPropagation();
         console.log("content", content)
         dispatch(updateNoteItem({
             id: activeNoteObj.id,
@@ -66,7 +69,7 @@ const TextEditor = ({ activeNoteObj }) => {
         <TextEditorContext.Provider value={value}>
             <div className={editorFullscreen ? noteStyles.editorFullscreen : noteStyles.editor}>
                 <TextEditorTopSection />
-                <form onSubmit={preventSubmit} className={noteStyles.noteForm} onKeyUp={handleAutoSave} >
+                <form onSubmit={preventSubmit} className={noteStyles.noteForm} >
                     <div id='mytoolbar' onClick={handleAutoSave}></div>
                         <input
                             className={noteStyles.noteTitleInput}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { setActiveNote } from '../store/session';
+import {toggleEmptyTrash} from '../store/ui';
 import NoteCard from './NoteCard';
 import noteStyles from '../styles/note.module.css';
 
@@ -16,13 +17,18 @@ const TrashList = ({hidden}) => {
         }
     }, []);
 
+    const emptyAll = e => {
+        e.preventDefault();
+        dispatch(toggleEmptyTrash());
+    }
+
     return (
         <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
                 <div >
                     <h1 className={noteStyles.noteListHeader}>
                         Trash
-                        <button style={{marginLeft: '100px', padding: '8px 15px', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', lineHeight: '1', letterSpacing: '0', fontSize: '14px', borderRadius: '4px'}}>
+                        <button onClick={emptyAll} style={{marginLeft: '100px', padding: '8px 15px', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', lineHeight: '1', letterSpacing: '0', fontSize: '14px', borderRadius: '4px'}}>
                             Empty Trash
                         </button>
                     </h1>

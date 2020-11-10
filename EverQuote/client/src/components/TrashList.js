@@ -1,27 +1,30 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { setActiveNote } from '../store/session';
 import NoteCard from './NoteCard';
 import noteStyles from '../styles/note.module.css';
 
-const NoteList = ({ noteList, notes, hidden}) => {
+const TrashList = ({hidden}) => {
     const dispatch = useDispatch();
-    const notTrash = notes.filter(note => !note.isTrash);
+    const notesObj = useSelector(state => state.entities.notes);
+    const notes = Object.values(notesObj);
+    const trash = notes.filter(note => note.isTrash);
+    console.log(trash)
 
     useEffect(() => {
-        if (notes.length) {
-            dispatch(setActiveNote(notes[0].id));
+        if (trash.length) {
+            dispatch(setActiveNote(trash[0].id));
         }
-    }, [noteList]);
+    }, []);
 
     return (
         <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
-                <h1 className={noteStyles.noteListHeader}>{noteList ? noteList.title : "All Notes"}</h1>
-                <span className={noteStyles.noteAmount}>{notTrash.length} Notes</span>
+                <h1 className={noteStyles.noteListHeader}>Trash</h1>
+                <span className={noteStyles.noteAmount}>{trash.length} Notes</span>
             </div>
             <div className={noteStyles.noteList + " noteList"}>
-            { notTrash.map((note, i) => {
+            { trash.map((note, i) => {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />
                 );
@@ -29,7 +32,8 @@ const NoteList = ({ noteList, notes, hidden}) => {
             </div>
         </div>
     );
-}
+};
+
 
 const mapStateToProps = (state, ownProps) => {
     let notes;
@@ -48,9 +52,9 @@ const mapStateToProps = (state, ownProps) => {
     });
 
     return {
-        noteList: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
+        trashList: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
         notes
     };
-}
+};
 
-export default connect(mapStateToProps)(NoteList);
+export default TrashList;

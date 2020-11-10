@@ -9,7 +9,6 @@ const TrashList = ({hidden}) => {
     const notesObj = useSelector(state => state.entities.notes);
     const notes = Object.values(notesObj);
     const trash = notes.filter(note => note.isTrash);
-    console.log(trash)
 
     useEffect(() => {
         if (trash.length) {

@@ -6,6 +6,9 @@ import noteStyles from '../styles/note.module.css';
 const NoteCard = ({ note }) => {
     const dispatch = useDispatch();
     const isActive = useSelector(state => note.id === state.session.activeNote);
+    const noteContent = note.content.replace("<[^>]*>", "");
+    console.log(noteContent)
+
 
     const handleNoteClick = () => {
         dispatch(setActiveNote(note.id));
@@ -27,7 +30,7 @@ const NoteCard = ({ note }) => {
             {
                 <>
                     <h5 className={noteStyles.noteHeader}>{note.title ? note.title : "Untitled"}</h5>
-                    <span className={noteStyles.noteText}>{note.content.length > 80 ? note.content.slice(0, 83) + '...' : note.content ? note.content : ""}</span>
+                    <span className={noteStyles.noteText}>{noteContent.length > 80 ? noteContent.slice(0, 83) + '...' : noteContent ? noteContent : ""}</span>
                 </>
             }
             <span className={isActive ? noteStyles.activeUpdated : noteStyles.noteUpdated}>{genUpdatedAt(note.updated_at)}</span>

@@ -17,7 +17,7 @@ const TrashList = ({hidden}) => {
         }
     }, []);
 
-    const emptyAll = e => {
+    const emptyConfirm = e => {
         e.preventDefault();
         dispatch(toggleEmptyTrash());
     }
@@ -28,7 +28,7 @@ const TrashList = ({hidden}) => {
                 <div >
                     <h1 className={noteStyles.noteListHeader}>
                         Trash
-                        <button onClick={emptyAll} style={{marginLeft: '100px', padding: '8px 15px', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', lineHeight: '1', letterSpacing: '0', fontSize: '14px', borderRadius: '4px'}}>
+                        <button onClick={emptyConfirm} style={{marginLeft: '100px', padding: '8px 15px', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', lineHeight: '1', letterSpacing: '0', fontSize: '14px', borderRadius: '4px'}}>
                             Empty Trash
                         </button>
                     </h1>

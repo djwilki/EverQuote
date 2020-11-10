@@ -1,4 +1,5 @@
 import Cookie from "js-cookie";
+import { setUserNotes } from './notes';
 
 const SET_TRASH = "trash/SET_TRASH";
 const ADD_TO_TRASH = 'trash/ADD_TO_TRASH';
@@ -58,23 +59,26 @@ export const trashNote = noteId => {
     }
 }
 
-export const emptyUserTrash = (userId) => {
-    const csrfToken = Cookie.get("XSRF-TOKEN");
+export const emptyUserTrash = trash => {
+    const csrfToken = Cookie.get('XSRF-TOKEN');
+    debugger;
     return async dispatch => {
-        const res = await fetch(`/api/users/${userId}/trash`, {
-            method: "DELETE",
+        const res = await fetch('/api/notes/', {
+            method: 'DELETE',
             headers: {
-                "X-CSRFTOKEN": csrfToken
-            }
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN': csrfToken
+            },
+            body: JSON.stringify(trash)
         });
+        res.data = await res.json();
 
         if (res.ok) {
             dispatch(emptyTrash());
         }
-
         return res;
     }
-}
+};
 
 export default function trashReducer(state = { trash: [] }, action) {
     const newState = Object.assign({}, state);

@@ -1,15 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import { toggleEmptyTrash } from '../store/ui';
-import {moveNote} from '../store/notes';
+import { emptyUserTrash } from '../store/trash';
 import {  useSelector, useDispatch } from "react-redux";
 
 
 const EmptyTrashModal = () => {
     const dispatch = useDispatch();
+    const trash = useSelector(state => state.entities.trash.trash);
+    const notes = useSelector(state => state.entities.notes);
 
     const handleClose = () => {
         dispatch(toggleEmptyTrash());
-    }
+    };
+
+    const emptyAll = async e => {
+        e.preventDefault();
+        trash.forEach(noteId => delete notes[noteId]);
+        await dispatch(emptyUserTrash(trash));
+        dispatch(toggleEmptyTrash());
+    };
 
     return (
         <div style={{position: 'fixed', width: '100%', height: '100%', backgroundColor: 'rgba(133, 133, 133, 0.5)', zIndex: '9', margin: '0', padding: '0', boxSizing: 'border-box'}}>
@@ -35,7 +44,7 @@ const EmptyTrashModal = () => {
                 </div>
                 <div style={{borderTop: '1px solid #d9d9d9', padding: '20px 25px', position: 'relative'}}>
                     <div style={{display: 'flex', justifyContent: 'flex-start', flexDirection: 'row-reverse', marginTop: '0', width: '100%'}}>
-                        <button style={{fontSize: '14px', lineHeight: '15px', backgroundColor: '#e54e40', border: '1px solid #e54e40', color: '#fff', borderRadius: '4px', padding: '10px 15px'}}>
+                        <button onClick={emptyAll} style={{fontSize: '14px', lineHeight: '15px', backgroundColor: '#e54e40', border: '1px solid #e54e40', color: '#fff', borderRadius: '4px', padding: '10px 15px'}}>
                             Empty Trash
                         </button>
                         <button onClick={handleClose} style={{margin: '0 10px 0 0', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', borderRadius: '4px', padding: '10px 15px', fontSize: '14px', lineHeight: '1'}}>

@@ -19,7 +19,14 @@ const TrashList = ({hidden}) => {
     return (
         <div className={hidden ? "hidden" : noteStyles.noteListAndHeader}>
             <div className={noteStyles.noteListHeaderContainer}>
-                <h1 className={noteStyles.noteListHeader}>Trash</h1>
+                <div >
+                    <h1 className={noteStyles.noteListHeader}>
+                        Trash
+                        <button style={{marginLeft: '100px', padding: '8px 15px', overflow: 'hidden', textOverflow: 'ellipsis', backgroundColor: 'transparent', border: '1px solid #737373', color: '#737373', lineHeight: '1', letterSpacing: '0', fontSize: '14px', borderRadius: '4px'}}>
+                            Empty Trash
+                        </button>
+                    </h1>
+                </div>
                 <span className={noteStyles.noteAmount}>{trash.length} Notes</span>
             </div>
             <div className={noteStyles.noteList + " noteList"}>
@@ -33,27 +40,5 @@ const TrashList = ({hidden}) => {
     );
 };
 
-
-const mapStateToProps = (state, ownProps) => {
-    let notes;
-
-    if (state.session.noteList.id) {
-        notes = Object.values(state.entities.notes).filter((note) => note.notebookId === state.session.noteList.id)
-    } else {
-        notes = Object.values(state.entities.notes);
-    }
-
-    notes.sort((a, b) => {
-        const aDate = new Date(a.updated_at)
-        const bDate = new Date(b.updated_at)
-
-        return bDate.getTime() - aDate.getTime();
-    });
-
-    return {
-        trashList: state.session.noteList.id ? state.entities.notebooks[state.session.noteList.id] : null,
-        notes
-    };
-};
 
 export default TrashList;

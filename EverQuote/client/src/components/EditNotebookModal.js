@@ -58,8 +58,6 @@ const EditNotebookModal = ({ editNotebookId }) => {
                             <button style={{ cursor: "pointer", color: "grey", outline: "none" }} type="button" onClick={handleClick}>Continue</button>
                         </div>
                     </div>
-                    <hr></hr>
-                    <button style={{outline: "none"}} type="button" onClick={handleDelete}>Delete</button>
                 </form>
             </div>
         </div >

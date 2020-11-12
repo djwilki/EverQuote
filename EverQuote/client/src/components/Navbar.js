@@ -84,6 +84,13 @@ function Navbar({ history, userId, selectedNotebookId }) {
                             Notebooks
                         </div>
                     </NavLink>
+                    <div className={styles.expanded_list_items}>
+                        {listNotebooks ? notebooks.map(ele => {
+                            return (
+                                <NotebookSelect notebook={ele} />
+                            )
+                        }) : ''}
+                    </div>
                     <NavLink activeClassName={styles.active} exact to='/trash'>
                         <svg className={`${styles.navlist_icon} ${styles.push_right}`} fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.298 17.93l.494-8.846H7.208l.514 8.85c.05.88.78 1.57 1.664 1.57h5.248c.885 0 1.615-.692 1.664-1.575z" fill="currentColor"></path>
@@ -93,13 +100,6 @@ function Navbar({ history, userId, selectedNotebookId }) {
                             Trash
                         </div>
                     </NavLink>
-                    <div className={styles.expanded_list_items}>
-                        {listNotebooks ? notebooks.map(ele => {
-                            return (
-                                <NotebookSelect notebook={ele} />
-                            )
-                        }) : ''}
-                    </div>
                     <div className={styles.extra_navlinks}>
                         <NavLink activeClassName={styles.active} exact to="/about">
                             <svg className={`${styles.navlist_icon} ${styles.push_right}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -38,8 +38,6 @@ def delete_note():
 @notes.route('/', methods=['DELETE'])
 def empty_trash():
     data = request.json
-    print('INSIDE EMPTY TRASH')
-    print(data)
     for noteId in data:
         note = Note.query.filter(Note.id == noteId).first()
         db.session.delete(note)

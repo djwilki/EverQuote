@@ -60,7 +60,7 @@ const NotebookRow = ({ notebook, key, username, setEditNotebookId }) => {
                 <td>{username}</td>
                 <td>{notebook.updated_at}</td>
                 <td>
-                    <button style={{outline: "none", backgroundColor: "transparent"}} onClick={togEditNotebookModal}>...</button>
+                    <button style={{outline: "none", backgroundColor: "transparent", color: "black"}} onClick={togEditNotebookModal}>...</button>
                     <div></div>
                     {notebookOptions ? <NotebookMoreActionsModal notebook={notebook} togEditNotebookModal={togEditNotebookModal} setEditNotebookId={setEditNotebookId} notebookId={notebook.id}/> : ""}
                 </td>

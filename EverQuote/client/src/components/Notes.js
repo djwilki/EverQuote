@@ -13,7 +13,7 @@ function Notes(props) {
 
     return (
         <section style={{ display: "flex" }}>
-            {path === '/notes' ? <NoteList hidden={!noteList} /> : <TrashList hidden={!noteList} />}
+            {path === '/notes' || path.includes('/notebooks') ? <NoteList hidden={!noteList} /> : <TrashList hidden={!noteList} />}
             <TextEditor />
         </section>
     );

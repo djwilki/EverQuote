@@ -21,7 +21,7 @@ const NewNotebookModal = ({ CreateNotebookModal }) => {
     }
 
     return (
-        <div style={{ position: "fixed", width: "100%", height: "100%", backgroundColor: "rgba(133, 133, 133, 0.5)", zIndex: "9" }}>
+        <div style={{ position: "fixed", width: "100vw", height: "100vh", top: "0px", left: "0px", backgroundColor: "rgba(133, 133, 133, 0.5)", zIndex: "9" }}>
             <div style={{ backgroundColor: "white", opacity: "100%", zIndex: "10", width: "478px", height: "263px", borderRadius: "4px", boxShadow: "0 2px 8px rgba(0,0,0,0.16)", position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "20px 25px 18px" }}>
                     <span style={{ fontSize: "18px", fontWeight: "500", fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif" }}>Create new notebook</span>

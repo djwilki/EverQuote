@@ -163,7 +163,7 @@ function Notebooks(props) {
                     </tr>
                     {notebooks.sort(sortFunction()).map((notebook, i) => {
                         return (
-                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={username} />
+                            <NotebookRow notebook={notebook} setEditNotebookId={setEditNotebookId} username={users[userId].username} />
                         )
                     })}
                 </tbody>

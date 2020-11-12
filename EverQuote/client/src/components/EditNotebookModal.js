@@ -44,7 +44,7 @@ const EditNotebookModal = ({ editNotebookId }) => {
                 <div style={{ display: "flex", justifyContent: "space-between", padding: "20px 25px 18px" }}>
                     <span style={{ fontSize: "18px", fontWeight: "500", fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif" }}>Rename notebook</span>
                     <button style={{ outline: "none" }} type="button" onClick={(e) => { togEditNotebookModal(e) }}>
-                        <svg style={{ width: "24px", height: "24px" }} fill="none" xmlns="http://www.w3.org/2000/svg" className="vQzJB1pohgMjFOPTzHGKk" id="qa-DIALOG_CLOSE"><path d="M17.53 6.47a.75.75 0 00-1.06 0L12 10.94 7.53 6.47a.75.75 0 00-1.06 1.06L10.94 12l-4.47 4.47a.75.75 0 101.06 1.06L12 13.06l4.47 4.47a.75.75 0 101.06-1.06L13.06 12l4.47-4.47a.75.75 0 000-1.06z" fill="currentColor"></path></svg>
+                        <svg style={{ width: "24px", height: "24px" }}  fill="grey" xmlns="http://www.w3.org/2000/svg" className="vQzJB1pohgMjFOPTzHGKk" id="qa-DIALOG_CLOSE"><path d="M17.53 6.47a.75.75 0 00-1.06 0L12 10.94 7.53 6.47a.75.75 0 00-1.06 1.06L10.94 12l-4.47 4.47a.75.75 0 101.06 1.06L12 13.06l4.47 4.47a.75.75 0 101.06-1.06L13.06 12l4.47-4.47a.75.75 0 000-1.06z" fill="grey"></path></svg>
                     </button>
                 </div>
                 <form action="" method="" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 25px 0" }}>
@@ -58,8 +58,6 @@ const EditNotebookModal = ({ editNotebookId }) => {
                             <button style={{ cursor: "pointer", color: "grey", outline: "none" }} type="button" onClick={handleClick}>Continue</button>
                         </div>
                     </div>
-                    <hr></hr>
-                    <button style={{outline: "none"}} type="button" onClick={handleDelete}>Delete</button>
                 </form>
             </div>
         </div >

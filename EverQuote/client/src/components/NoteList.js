@@ -4,10 +4,9 @@ import { setActiveNote } from '../store/session';
 import NoteCard from './NoteCard';
 import noteStyles from '../styles/note.module.css';
 
-const NoteList = ({ noteList, notes, hidden }) => {
+const NoteList = ({ noteList, notes, hidden}) => {
     const dispatch = useDispatch();
     const notTrash = notes.filter(note => !note.isTrash);
-    console.log(notTrash);
 
     useEffect(() => {
         if (notes.length) {
@@ -23,11 +22,9 @@ const NoteList = ({ noteList, notes, hidden }) => {
             </div>
             <div className={noteStyles.noteList + " noteList"}>
             { notTrash.map((note, i) => {
-                if (!note.isTrash) {
                 return (
                     <NoteCard key={`note-${i + 1}`} note={note} />
                 );
-                }
             })}
             </div>
         </div>

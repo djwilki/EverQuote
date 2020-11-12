@@ -120,6 +120,8 @@ export const moveNote = (noteId, notebookId) => {
     }
 };
 
+
+
 export default function noteReducer(state = {}, action) {
     const newState = Object.assign({}, state);
     switch (action.type) {

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import MainContent from './MainContent';
 import Navbar from './Navbar';
+import MoveNoteModal from './MoveNoteModal';
+import EmptyTrashModal from './EmptyTrashModal';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
@@ -12,6 +14,8 @@ import { setUserInfo } from '../store/users';
 function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {
     const dispatch = useDispatch();
     const { editorFullscreen: { isFullscreen: editorFullscreen } } = useSelector(state => state.ui);
+    const noteMoveModal = useSelector(state => state.ui.moveNotes);
+    const emptyTrashModal = useSelector(state => state.ui.showEmptyTrash);
 
     useEffect(() => {
         const getNotes = async () => {
@@ -40,7 +44,9 @@ function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId 
     return (
         <>
             <div style={{ display: "flex", height: "100vh" }}>
-               { editorFullscreen ? <></> : <Navbar /> }
+                {noteMoveModal ? <MoveNoteModal /> : <></>}
+                {emptyTrashModal ? <EmptyTrashModal /> : <></>}
+                {editorFullscreen ? <></> : <Navbar />}
                 <MainContent />
             </div>
         </>

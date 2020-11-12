@@ -28,12 +28,21 @@ def update_note(note_id):
 def delete_note():
     data = request.json
     note = Note.query.filter(Note.id == data).first()
-    print('NOTE!!!!: ', note)
     if not note.isTrash:
         note.isTrash = True
         note.notebookId = None
         db.session.commit()
     return {'message': 'Note is trash'}
+
+
+@notes.route('/', methods=['DELETE'])
+def empty_trash():
+    data = request.json
+    for noteId in data:
+        note = Note.query.filter(Note.id == noteId).first()
+        db.session.delete(note)
+    db.session.commit()
+    return {'message': 'Trash taken out'}
 
 
 @notes.route('/<int:note_id>/move_to/<int:notebook_id>', methods=['PUT'])

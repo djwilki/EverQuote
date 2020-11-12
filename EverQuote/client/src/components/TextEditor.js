@@ -10,6 +10,7 @@ import TextEditorBottomBar from './TextEditorBottomBar';
 const TextEditor = ({ activeNoteObj }) => {
     console.log(activeNoteObj);
     const dispatch = useDispatch();
+    const path = window.location.pathname;
     const { editorFullscreen: { isFullscreen: editorFullscreen } } = useSelector(state => state.ui);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -69,14 +70,16 @@ const TextEditor = ({ activeNoteObj }) => {
                 className={noteStyles.noteTitleInput}
                 type="text" value={title}
                 onChange={handleTitleChange}
-                placeholder="Title"/>
+                placeholder="Title"
+                disabled={path === '/trash' ? true : false}/>
                 <textarea
                 className={noteStyles.noteContentInput}
                 rows="8"
                 value={content}
                 onChange={handleContentChange}
                 resize="none"
-                placeholder="Start writing your note!"></textarea>
+                placeholder="Start writing your note!"
+                disabled={path === '/trash' ? true : false}></textarea>
             </form>
             <TextEditorBottomBar />
         </div>

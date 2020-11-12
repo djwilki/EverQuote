@@ -17,7 +17,6 @@ function Notebooks(props) {
     const notebooks = useSelector(state => Object.values(state.entities.notebooks))
     const notes = useSelector(state => Object.values(state.entities.notes))
     const users = useSelector(state => state.entities.users)
-    const username = users[userId].username;
     const createNotebook = useSelector(state => state.ui.createNotebook)
     const editNotebook = useSelector(state => state.ui.editNotebook)
     const [editNotebookId, setEditNotebookId] = useState(null);

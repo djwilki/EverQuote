@@ -1,0 +1,211 @@
+body {
+
+}
+
+.about,
+.about_wrapper,
+.bio_wrapper,
+.row,
+.bio_container,
+.bio_photo_wrapper,
+.bio_photo,
+.bio_text,
+.bio_text h6,
+.bio_text p {
+    /* padding: 0px;
+    margin: 0px; */
+}
+
+main.about {
+    background-image: url("https://i.imgur.com/1NFnzeB.jpg");
+    background-repeat: repeat;
+    background-size: 400px;
+    padding: 0px 80px;
+    height: 100%;
+    overflow: auto;
+    /* background-image: url("https://i.imgur.com/1NFnzeB.jpg"), linear-gradient(rgba(78, 47, 70, 0.151),rgba(78, 47, 70, 0.151));
+    background-blend-mode: overlay; */
+
+    /* min-height:100%;
+    background:linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url(http://lorempixel.com/800/600/nature/2);
+    background-size:cover; */
+}
+/* .about_wrapper {
+    background-color: black;
+}
+.bio_wrapper {
+    background-color: red;
+}
+.row {
+    background-color: pink;
+}
+.bio_container {
+    background-color: teal;
+    
+}
+.bio_photo_wrapper {
+    background-color: yellow;
+}
+.bio_photo {
+    background-color: green;
+}
+.bio_text {
+    background-color: violet;
+}
+.bio_text h6 {
+    background-color: white;
+}
+.bio_text p {
+    background-color: gray;
+} */
+
+.about_wrapper h1 {
+    position: absolute;
+    top: 5%;
+    right: 0;
+    left: 0;
+    text-align: center;
+    font-size: 55px;
+    color: black;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.301); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.377);
+  letter-spacing: 8px;
+}
+
+.about_wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    justify-content: center;
+}
+
+
+.bio_text {
+    margin-left: 15px;
+}
+
+.bio_wrapper {
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: space-evenly; */
+    /* justify-content: center;
+    align-items: center;
+    align-content: center; */
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+
+.row {
+    display: flex;
+    /* justify-content: stretch; */
+    width: 100%;
+    /* align-items: center; */
+    /* align-content: center; */
+}
+
+.bio_photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: rgba(31, 31, 31, 0.575) solid 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bio_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.767);
+    box-shadow: rgba(0, 0, 0, 0.212) 8px 8px 8px;
+    padding: 40px;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+.bio_text h6 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgb(63, 63, 63);
+    margin-bottom: 7px;
+}
+
+.bio_text p {
+    font-size: 15px;
+}
+
+.daniel {
+    background-image: url("https://i.imgur.com/kLzZZ6F.jpg");
+}
+.panayiotis {
+    background-image: url("https://i.imgur.com/OcXTqTj.jpg");
+}
+.jerel {
+    background-image: url("https://i.imgur.com/Fh4seJK.jpg");
+}
+.cole {
+    background-image: url("https://i.imgur.com/s54zSoJ.jpg");
+}
+
+.links {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    margin-top: 13px;
+}
+
+.link {
+    margin-right: 15px;
+    text-align: center;
+}
+
+
+.link_icon {
+    font-size: 30px;
+}
+
+.link_label {
+    font-size: 13px;
+    color: rgb(97, 97, 97);
+}
+
+.github_wrapper {
+    position: absolute;
+
+    border-radius: 15px;
+
+    /* background-color: rgb(12, 78, 17); */
+    background-color: #1a1a1a;
+    box-shadow: rgba(0, 0, 0, 0.212) 8px 8px 8px;
+    padding: 35px;
+}
+
+.github_links {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    /* margin-top: 13px; */
+}
+
+.github_link {
+    text-align: center;
+    line-height: 0;
+}
+
+.github_link_icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.github_link_label {
+    font-size: 15px;
+    font-weight: 500;
+    /* color: rgb(119, 119, 119); */
+    color: rgb(255, 255, 255);
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
+import UserModal from './UserModal';
 import NotebookSelect from './NotebookSelect';
 import { addNote } from '../store/notes';
 import { logout } from '../store/session';
@@ -10,11 +11,13 @@ import { logout } from '../store/session';
 function Navbar({ history, userId, selectedNotebookId }) {
     const dispatch = useDispatch();
     const notebooks = useSelector(state => Object.values(state.entities.notebooks));
+    const userModal = useSelector(state => state.ui.userModal);
     const user = useSelector(state => state.entities.users[state.session.user_id]);
 
     const handleNewNoteClick = async (event) => {
         event.stopPropagation();
         const res = await dispatch(addNote(userId, selectedNotebookId));
+
         if (res.ok) {
             return;
         }
@@ -38,9 +41,11 @@ function Navbar({ history, userId, selectedNotebookId }) {
 
     return (
         <nav className={styles.navbar_container}>
+            { userModal ? <UserModal /> : <></>}
             <div className={styles.navbar_content}>
                 <div className={styles.top_section}>
                     <div className={`${styles.username_content}`}>
+                        {/* <div className={`${styles.username_content} ${styles.usernameDropDown}`} id="toggleUserModal" onClick={handleModalClick}> */}
                         <div className={styles.username_icon_wrapper}>
                             <div className={styles.username_icon}></div>
                         </div>
@@ -87,16 +92,16 @@ function Navbar({ history, userId, selectedNotebookId }) {
                         }) : ''}
                     </div>
                     <div className={styles.extra_navlinks}>
-                        <NavLink activeClassName={styles.active_extra} exact to="/about">
-                            <svg className={`${styles.navlist_icon} ${styles.extra_navlist_icon} ${styles.push_right}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <NavLink activeClassName={styles.active} exact to="/about">
+                            <svg className={`${styles.navlist_icon} ${styles.push_right}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path id="270a" d="M19.333 15.333a.667.667 0 01-.666-.666v-.477A7.321 7.321 0 0016.803 12h-6.47a2.333 2.333 0 000 4.667h1.334a3 3 0 003-3c0-.232-.039-.452-.092-.667h1.304c.071.323.121.655.121 1a4.667 4.667 0 01-4.667 4.667h-.666a4.667 4.667 0 110-9.334h6.112a7.312 7.312 0 001.888-2.21v-.456a.667.667 0 011.333 0v8a.667.667 0 01-.667.666zM6.091 10.667h-.758a.667.667 0 01-1.333 0V9.333a.667.667 0 011.333 0h2.122a5.694 5.694 0 00-1.364 1.334z" fill="#ccc"></path>
                             </svg>
                             <div className={styles.navlink_text}>
-                                About This Project
+                                Project
                         </div>
                         </NavLink>
                         <a onClick={handleLogout}>
-                            <svg className={`${styles.navlist_icon} ${styles.extra_navlist_icon} ${styles.push_right}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className={`${styles.navlist_icon} ${styles.push_right}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.52 19.347l1.176-.946a.537.537 0 00.076-.742.538.538 0 00-.741-.076l-1.177.947a.538.538 0 00-.076.741.527.527 0 00.741.076zM6.476 16.898a.537.537 0 00.076-.741.538.538 0 00-.74-.076l-1.865 1.523a.537.537 0 00-.076.741.538.538 0 00.742.076l1.863-1.523zM5.257 15.396a.537.537 0 00.076-.741.538.538 0 00-.742-.076l-1.177.946a.538.538 0 00-.076.742.538.538 0 00.742.076l1.177-.947zM9.558 16.984l.517-.413c.425.752.766 1.574.982 2.42.082.342.494.49.789.303l2.08-1.437a2.605 2.605 0 001.06-2.8l-.1-.265 2.5-2.036a5.669 5.669 0 001.977-3.322l.473-2.594a1.023 1.023 0 00-.977-1.213l-2.619-.061a5.478 5.478 0 00-3.671 1.253l-2.5 2.036-.279-.136a2.637 2.637 0 00-2.955.467L5.02 10.915a.514.514 0 00.128.837c.793.382 1.532.87 2.172 1.463l-.516.412c-.193.162-.216.428-.056.643l2.18 2.647a.443.443 0 00.63.067zm5.054-6.336l-.627-.747a.622.622 0 01.064-.854l.747-.627a.622.622 0 01.854.064l.627.747c.212.253.18.63-.064.854l-.747.627a.601.601 0 01-.854-.063z" fill="#ccc"></path>
                             </svg>
                             <div className={styles.navlink_text}>
@@ -118,3 +123,4 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default withRouter(connect(mapStateToProps)(Navbar));
+// export default withRouter(Navbar);

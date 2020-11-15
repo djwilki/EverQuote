@@ -139,10 +139,10 @@ function Notebooks(props) {
                             <button style={{ backgroundColor: "transparent", outline: "none" }} onClick={sortTitleNotebooks}>
                                 TITLE
                                 {titleDown ?
-                                    <svg style={{ width: "12px", height: "12px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                    <svg style={{ width: "12px", height: "12px" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fillRule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
                                     : ""}
                                 {titleUp ?
-                                    <svg style={{ width: "12px", height: "12px", transform: "rotate(180deg)" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
+                                    <svg style={{ width: "12px", height: "12px", transform: "rotate(180deg)" }} fill="none" xmlns="http://www.w3.org/2000/svg" class="NceTqhCj1zfJ22yrTtw0T"><path fillRule="evenodd" clip-rule="evenodd" d="M7 2.5a.5.5 0 01.5.5v6.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 9.293V3a.5.5 0 01.5-.5z" fill="currentColor"></path></svg>
                                     : ""}
                             </button>
                         </th>

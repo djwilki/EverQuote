@@ -73,7 +73,9 @@
     height: 34px;
     margin: 0 0 20px 0;
     padding: 14px;
-    /* cursor: pointer; */
+    text-overflow: ellipsis !important;
+    /* overflow: hidden;  */
+    white-space: nowrap !important;
 }
 
 .username_icon_wrapper {
@@ -97,6 +99,9 @@
     font-weight: 100;
     margin: 0 10px 0 3px;
     cursor: default;
+    text-overflow: ellipsis !important;
+    /* overflow: hidden !important;  */
+    white-space: nowrap !important;
 }
 
 /* .username_text:hover {
@@ -164,10 +169,13 @@
 }
 
 .navlinks a:hover,
-.expanded_list_items a:hover,
-.extra_navlinks a:hover {
+.expanded_list_items a:hover {
     background-color: #333;
-    overflow: hidden;
+}
+
+.extra_navlinks a:hover {
+    color: white;
+    background: none !important;
 }
 
 .expanded_list_items a {
@@ -184,6 +192,11 @@
     color: white !important;
 }
 
+.active_extra {
+    /* background-color: none !important; */
+    color: white !important;
+}
+
 .push_right {
     margin-left: 20px;
 }
@@ -197,8 +210,10 @@
 .extra_navlinks {
     position: fixed;
     bottom: 10px;
-    
-    /* margin-top: 300px; */
+}
+
+.extra_navlist_icon {
+    margin-right: 5px;
 }
 
 .extra_navlinks a {

@@ -11,6 +11,7 @@ function MainContent({ match }) {
             <Route path={match.url + "notebooks"} exact component={Notebooks} />
             <Route path={match.url + "notebooks/:notebookId"} exact component={Notes} />
             <Route path={match.url + "about"} exact component={About} />
+            <Route path={match.url + "trash"} exact component={Notes} />
         </div>
     );
 }

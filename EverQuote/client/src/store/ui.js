@@ -10,6 +10,7 @@ const TOGGLE_NOTEBOOK_TOOLTIP = "session/TOGGLE_NOTEBOOK_TOOLTIP";
 const TOGGLE_FULLSCREEN_TOOLTIP = "session/TOGGLE_FULLSCREEN_TOOLTIP";
 const TOGGLE_MOVE_NOTE_BUTTON = 'ui/TOGGLE_MOVE_NOTE_BUTTON';
 const TOGGLE_MOVE_TIP = 'ui/TOGGLE_MOVE_TIP';
+const TOGGLE_EMPTY_TRASH = 'ui/TOGGLE_EMPTY_TRASH';
 
 export const toggleNotebookTooltip = () => {
     return {
@@ -81,7 +82,13 @@ export const toggleMoveTip = () => {
     return {
         type: TOGGLE_MOVE_TIP
     }
-}
+};
+
+export const toggleEmptyTrash = () => {
+    return{
+        type: TOGGLE_EMPTY_TRASH
+    }
+};
 
 const initialUIState = {
     userModal: false,
@@ -97,7 +104,8 @@ const initialUIState = {
     },
     notebookTooltip: false,
     showMoveNoteButton: false,
-    showMoveTip: false
+    showMoveTip: false,
+    showEmptyTrash: false
 };
 
 export default function uiReducer(state = initialUIState, action) {
@@ -141,6 +149,9 @@ export default function uiReducer(state = initialUIState, action) {
             return newState;
         case TOGGLE_MOVE_TIP:
             newState.showMoveTip = !newState.showMoveTip;
+            return newState;
+        case TOGGLE_EMPTY_TRASH:
+            newState.showEmptyTrash = !newState.showEmptyTrash;
             return newState;
         default:
             return state;

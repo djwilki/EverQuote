@@ -8,6 +8,7 @@ import NoteOptionsModal from './NoteOptionsModal';
 
 const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     const dispatch = useDispatch();
+    const path = window.location.pathname;
     const noteModal = useSelector(state => state.ui.noteOptions);
 
 
@@ -32,15 +33,15 @@ const TextEditorTopSection = ({ activeNote, activeNotebook }) => {
     return (
         <div className={noteStyles.editorTopSection}>
             <div className={noteStyles.editorTopLeftContainer}>
-            <div className={noteStyles.buttonContainer}>
-                <FullscreenButton />
-                <EditorNotebookButton activeNotebook={activeNotebook} />
+                <div className={noteStyles.buttonContainer}>
+                    <FullscreenButton />
+                    <EditorNotebookButton activeNotebook={activeNotebook} />
+                </div>
+                <span className={noteStyles.updatedText}>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
             </div>
-            <span className={noteStyles.updatedText}>Last updated {genUpdatedAt(activeNote.updated_at)}</span>
-            </div>
-            <div style={{display: 'flex'}}>
-                <button onClick={handleNoteModal} style={{width: '50px', height: '50px'}}>...</button>
-                { noteModal ? <NoteOptionsModal /> : <></>}
+            <div style={{ display: 'flex' }}>
+                <button disabled={path === '/trash' ? true : false} onClick={handleNoteModal} style={{ width: '50px', height: '50px' }}>...</button>
+                {noteModal ? <NoteOptionsModal /> : <></>}
             </div>
         </div>
     )

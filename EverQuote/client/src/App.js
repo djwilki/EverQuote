@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {setSelectedNotebook, setActiveNote, loadSession} from './store/session'
 import UserList from './components/UsersList';
 import SignUpPage from './components/SignUp'
@@ -22,8 +22,7 @@ function App() {
         getCSRF();
     }, []);
 
-    const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user_id)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const load = async () => {

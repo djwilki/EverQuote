@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React from 'react';
 
 const MoveNotebookTitle = ({ notebook, activeNote, selectedNotebook, setSelectedNotebook }) => {
-    const dispatch = useDispatch();
-
 
     const handleSelectNotebook = e => {
         e.preventDefault();

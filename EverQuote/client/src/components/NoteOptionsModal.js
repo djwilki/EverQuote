@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { toggleMoveModal, toggleNoteModal } from '../store/ui';
 import { setActiveNote } from '../store/session';
 import { trashNote } from '../store/trash';

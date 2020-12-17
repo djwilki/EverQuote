@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom'
 import NoteRow from './NoteRow';
 import NotebookMoreActionsModal from './NotebookMoreActionsModal'
-import { toggleEditNotebookModal, toggleNotebookModal, toggleListNotes } from '../store/ui';
+import { toggleEditNotebookModal } from '../store/ui';
 import { setSelectedNotebook, setNoteList } from '../store/session';
 import styles from '../styles/notebook_row.module.css';
 
@@ -12,20 +12,13 @@ import styles from '../styles/notebook_row.module.css';
 const NotebookRow = ({ notebook, key, username, setEditNotebookId }) => {
     const notes = useSelector(state => Object.values(state.entities.notes).filter((note) => note.notebookId === notebook.id && !note.isTrash));
     const notebookOptions = useSelector(state => state.ui.notebookOptions);
-    const [arrow, setArrow] = useState("carrot")
-    const [toggle, setToggle] = useState("carrot")
+    const [arrow, setArrow] = useState("carrot");
 
     const dispatch = useDispatch();
 
     const setNoteListAndSelectedNotebook = () => {
         dispatch(setNoteList("notebook", notebook.id, true));
         dispatch(setSelectedNotebook(notebook.id));
-    }
-
-    const MoreActionsNotebookModal = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        dispatch(toggleNotebookModal());
     }
 
     const togEditNotebookModal = (e) => {

@@ -62,13 +62,13 @@
 
 
 .top_section {
-    
+
 }
 
 /* USER NAME */
 .username_content {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     height: 34px;
     margin: 0 0 20px 0;
@@ -115,7 +115,7 @@
     top: -55px;
     z-index: 999999; */
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     margin: 20px 13px 20px 13px;
     padding: 11px;
@@ -129,7 +129,7 @@
     background-color: #008f26;
 }
 
-.new_note_button, 
+.new_note_button,
 .navlinks button {
     background: none;
     outline: none;
@@ -142,7 +142,7 @@
     font-weight: normal;
     cursor: pointer;
     text-overflow: ellipsis;
-    overflow: hidden; 
+    overflow: hidden;
     white-space: nowrap;
 }
 
@@ -159,7 +159,7 @@
 
 .navlinks a {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     color: #ccc;
     font-size: 14px;
@@ -203,7 +203,7 @@
 
 .navlink_text {
     text-overflow: ellipsis;
-    overflow: hidden; 
+    overflow: hidden;
     white-space: nowrap;
 }
 
@@ -217,7 +217,7 @@
 }
 
 .extra_navlinks a {
-    
+
 }
 
 

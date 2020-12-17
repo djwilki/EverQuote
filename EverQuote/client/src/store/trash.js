@@ -1,5 +1,4 @@
 import Cookie from "js-cookie";
-import { setUserNotes } from './notes';
 
 const SET_TRASH = "trash/SET_TRASH";
 const ADD_TO_TRASH = 'trash/ADD_TO_TRASH';

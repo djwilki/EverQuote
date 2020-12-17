@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { editUserNotebooks, removeNotebook } from '../store/notesbooks'
-import { toggleCreateNotebookModal, toggleEditNotebookModal, toggleNotebookModal } from '../store/ui'
+import { toggleEditNotebookModal } from '../store/ui'
 
 
 

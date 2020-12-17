@@ -8,7 +8,6 @@ import { setUserNotes } from '../store/notes';
 import { setSelectedNotebook } from '../store/session';
 import { setUserNotebooks } from '../store/notesbooks';
 import { setUserTrash } from '../store/trash';
-import { addUserNotebooks } from '../store/notesbooks';
 import { setUserInfo } from '../store/users';
 
 function Home({ userId, selectedNotebookId, notes, notebooks, defaultNotebookId }) {

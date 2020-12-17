@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/session';
 import styles from '../styles/splash.module.css';
 
 const SplashPage = ({ history }) => {
-    const [emailOrUsername, setEmailOrUsername] = useState("");
-    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 

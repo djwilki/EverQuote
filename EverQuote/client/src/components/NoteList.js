@@ -9,7 +9,7 @@ const NoteList = ({ noteList, notes, hidden, activeNoteId }) => {
     const notTrash = notes.filter(note => !note.isTrash);
 
     useEffect(() => {
-        if (notes.length && !activeNoteId) {
+        if (notes.length && notes.findIndex(note => note.id === activeNoteId) === - 1) {
             dispatch(setActiveNote(notes[0].id));
         }
     }, [noteList]);

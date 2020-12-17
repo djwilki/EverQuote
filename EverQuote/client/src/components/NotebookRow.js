@@ -10,7 +10,7 @@ import styles from '../styles/notebook_row.module.css';
 
 
 const NotebookRow = ({ notebook, key, username, setEditNotebookId }) => {
-    const notes = useSelector(state => Object.values(state.entities.notes).filter((note) => note.notebookId === notebook.id));
+    const notes = useSelector(state => Object.values(state.entities.notes).filter((note) => note.notebookId === notebook.id && !note.isTrash));
     const notebookOptions = useSelector(state => state.ui.notebookOptions);
     const [arrow, setArrow] = useState("carrot")
     const [toggle, setToggle] = useState("carrot")

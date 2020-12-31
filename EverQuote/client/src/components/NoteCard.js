@@ -28,7 +28,6 @@ const NoteCard = ({ note }) => {
 
   const findSlice = (noteContent) => {
     let slice = window.innerWidth > 1440 ? 80 : 72;
-    console.log(noteContent.includes(' '), /\w/.test(noteContent[slice]));
     if (noteContent.includes(' ')) {
       while (!/\w/.test(noteContent[slice]) || noteContent[slice + 1] !== ' ') {
         slice--;

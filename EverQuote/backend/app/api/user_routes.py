@@ -13,9 +13,7 @@ def index():
 @user_routes.route('/', methods=["POST"])
 def new():
   data = MultiDict(mapping=request.json)
-  print(data)
   form = SignUpForm(data)
-  print(form.data)
   if form.validate():
     if User.query.filter(User.email == data["email"]).first() is None:
       newUser = User(username = data["username"], email = data["email"], password = data["password"] )

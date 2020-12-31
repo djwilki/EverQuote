@@ -13,9 +13,7 @@ session = Blueprint("session", __name__)
 @session.route("/login", methods=["POST"])
 def login():
     data = MultiDict(mapping=request.json)
-    print('data!:', data)
     form = LoginForm(data)
-    print(form.data)
     if form.validate():
         user = User.query.filter(or_(User.username == data['email_or_username'], User.email == data['email_or_username'])).first()
         if user and user.check_password(data['password']):
@@ -43,7 +41,6 @@ def csrf():
 
 @session.route('/load', methods=["GET"])
 def load():
-    print(current_user)
     if current_user.is_authenticated:
         return {"user": { "user_id": current_user.to_dict()['id']}}
     else:

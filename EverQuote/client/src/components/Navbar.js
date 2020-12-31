@@ -19,6 +19,12 @@ function Navbar({ history, userId, selectedNotebookId }) {
     event.stopPropagation();
     const res = await dispatch(addNote(userId, selectedNotebookId));
     if (res.ok) {
+      if (
+        history.location.pathname !== '/notes' ||
+        !/\/notesbooks\/w+/.test(history.location.pathname)
+      ) {
+        history.push('/notes');
+      }
       return;
     }
   };

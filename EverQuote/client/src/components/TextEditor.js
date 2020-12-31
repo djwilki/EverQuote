@@ -90,7 +90,11 @@ const TextEditor = ({ activeNoteObj }) => {
             value={content}
             onChange={handleContentChange}
             resize="none"
-            placeholder="Start writing your note!"
+            placeholder={
+              path === '/trash'
+                ? 'Click new note to start writing notes!'
+                : 'Start writing your note!'
+            }
             disabled={path === '/trash' ? true : false}
           ></textarea>
         </form>

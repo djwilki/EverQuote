@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../store/session';
 import styles from '../styles/splash.module.css';
 
-const SplashPage = ({ history }) => {
+const SplashPage = () => {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
@@ -12,7 +12,6 @@ const SplashPage = ({ history }) => {
     const res = await dispatch(login('demo', 'password'));
 
     if (res.ok) {
-      history.replace('/');
       return;
     }
 

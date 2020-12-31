@@ -190,7 +190,7 @@ button:hover {
 
   padding: 4px 2px 4px 4px;
 
-  opacity: 60%;
+  opacity: 0.6;
 
   border-radius: 8px;
 }
@@ -228,7 +228,7 @@ button:hover {
 
   font-size: 18px;
 
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .notebookButton:hover {
@@ -283,7 +283,7 @@ button:hover {
 
   margin-right: 4px;
 
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 .noteForm {

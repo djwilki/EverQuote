@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from "react"
 import '../styles/index.css';
 import styles from '../styles/notebook.module.css';
-import { addUserNotebooks } from '../store/notesbooks'
-import { toggleCreateNotebookModal, toggleEditNotebookModal, toggleNotebookModal } from '../store/ui'
+import { toggleCreateNotebookModal } from '../store/ui'
 import { useDispatch, useSelector } from 'react-redux';
 import NewNotebookModal from './NewNotebookModal';
-import EditNotebookModal from './EditNotebookModal'
-import NotebookMoreActionsModal from './NotebookMoreActionsModal'
+import EditNotebookModal from './EditNotebookModal';
 import NotebookRow from './NotebookRow';
 
 
 function Notebooks(props) {
 
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user_id)
-    const notebooks = useSelector(state => Object.values(state.entities.notebooks))
-    const notes = useSelector(state => Object.values(state.entities.notes))
-    const users = useSelector(state => state.entities.users)
-    const createNotebook = useSelector(state => state.ui.createNotebook)
-    const editNotebook = useSelector(state => state.ui.editNotebook)
+    const userId = useSelector(state => state.session.user_id);
+    const notebooks = useSelector(state => Object.values(state.entities.notebooks));
+    const users = useSelector(state => state.entities.users);
+    const createNotebook = useSelector(state => state.ui.createNotebook);
+    const editNotebook = useSelector(state => state.ui.editNotebook);
     const [editNotebookId, setEditNotebookId] = useState(null);
     const [notebookOrder, setNotebookOrder] = useState("date");
     const [titleOrder, setTitleOrder] = useState("asc");
     const [dateOrder, setDateOrder] = useState("asc");
-    console.log(notebooks)
-    console.log(editNotebookId)
 
     const [title, setTitle] = useState('');
     const [errors, setErrors] = useState([]);
@@ -39,25 +34,9 @@ function Notebooks(props) {
         setErrors([]);
     }, [title]);
 
-    const newNotebook = async (e) => {
-        e.preventDefault();
-        const res = await dispatch(addUserNotebooks(title, false, userId))
-
-        if (res.ok) {
-            return;
-        }
-
-        setErrors(res.data.errors);
-    }
-
     const CreateNotebookModal = (e) => {
         e.preventDefault()
         dispatch(toggleCreateNotebookModal());
-    }
-
-    const MoreActionsNotebookModal = (e) => {
-        e.preventDefault()
-        dispatch(toggleNotebookModal());
     }
 
     const sortTitleNotebooks = (e) => {
@@ -72,21 +51,6 @@ function Notebooks(props) {
                 setTitleOrder("asc")
             }
         }
-    }
-
-    const sortDateNotebooks = (e) => {
-        e.preventDefault()
-        if (notebookOrder === "title") {
-            setNotebookOrder("date")
-            setDateOrder("asc")
-        } else {
-            if (dateOrder === "asc") {
-                setDateOrder("dsc")
-            } else {
-                setDateOrder("asc")
-            }
-        }
-
     }
 
     const sortFunction = () => {

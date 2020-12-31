@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { toggleEmptyTrash } from '../store/ui';
 import { emptyUserTrash } from '../store/trash';
 import { useSelector, useDispatch } from "react-redux";

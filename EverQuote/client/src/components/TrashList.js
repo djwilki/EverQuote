@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActiveNote } from '../store/session';
 import { toggleEmptyTrash } from '../store/ui';
 import NoteCard from './NoteCard';

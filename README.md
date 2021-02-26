@@ -1,5 +1,5 @@
 # EverQuote
-[Visit EverQuote](https://everquote.herokuapp.com/)*
+[Visit EverQuote](https://everquote.herokuapp.com/)
 
 **Table of Contents**
 * [EverQuote at a Glance](#everquote-at-a-glance)

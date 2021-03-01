@@ -23,10 +23,18 @@ EverQuote is very frontend heavy application. Below are the frontend technologie
 
 ### Frontend Technologies Used:
 #### React
-At its core, EverQuote is a React application.
+React was a useful tool for rendering lists of notebooks and notes
 
 ```jsx
-
+{notebooks.sort(sortFunction()).map((notebook, i) => {
+                return (
+                  <NotebookRow
+                    notebook={notebook}
+                    setEditNotebookId={setEditNotebookId}
+                    username={users[userId].username}
+                  />
+                );
+              })}
 ```
 
 #### Redux

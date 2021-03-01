@@ -6,7 +6,7 @@
 * [Application Architecture & Technologies Used](#application-architecture) 
 * [Frontend Overview](#frontend-overview)
 * [Backend Overview](#backend-overview)
-* [Conclusion](#conclusion-and-next-steps)
+* [Conclusion](#conclusion)
 
 ## EverQuote at a Glance
 EverQuote is a fullstack app for writing and generating notes, inspired by evernote.com. Users can create notebooks to store notes, which are facilitated with a rich text editor.
